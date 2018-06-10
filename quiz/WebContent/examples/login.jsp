@@ -10,11 +10,7 @@
 		<!-- <base href="${pageContext.request.requestURI}" /> -->
 		<title>Insert title here</title>
 </head>
-<body>
-	Fehler provozieren
-		<% String irgendwas = null;	out.println(irgendwas.toString()); %>
-		
-	
+<body>	
 	<h1>Willkommen beim Megaquiz</h1>
 	<br><b>Bitte melden Sie sich an!</b>
 	<form id="loginForm" action="../UserManagement" method="post">
