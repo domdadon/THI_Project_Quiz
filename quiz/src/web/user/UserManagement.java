@@ -92,6 +92,7 @@ public class UserManagement extends HttpServlet {
 		
 
 	
+	@SuppressWarnings("unused")
 	private int registerUser(String username, String password, String nName, String vName) {
 		
 		return 0;
