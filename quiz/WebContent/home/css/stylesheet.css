@@ -1,6 +1,85 @@
 * {
 	box-sizing: border-box;
-	/* border: 1px solid black; */
+	/*border: 1px solid black;*/
  }
  
+body {
+    font-family: "Helvetica Neue", Helvetica , Arial, sans-serif;
+    font-size: 1em;
+}
+
+article {
+	border: 1px solid;
+    padding: 20px;
+    margin: 20px;
+    background: #dddddd;
+    border-color: black;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+}
+
+h1 {
+	font-size: 2.5em;
+	text-align: center;
+    border: 0px solid;
+}
+
+fieldset {
+	width: 30em;
+	padding-top: 1.5em;
+	padding-left: 1.5em;
+	background: #dddddd;
+	border: 1px solid;
+	border-radius: 6px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.2);
+ 	margin: auto; /* zentriert Formular */
+}
  
+legend {
+	background: white;
+	padding: 0.2em;
+	border: 1px solid #000330;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+input:hover {
+    background: #fffff0;
+    border: 2px solid #efe816; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+button[type="submit"]:hover {
+    background:#366896;
+    border: 1px solid #3879B4; 
+}
+
+button[type="submit"]:active {
+    background:#8f8f8f;
+}
+
+input:required + label::after{ color: red; content: " *";}
+
+input[type='email']:valid + label::after{
+    color: green;
+    content: " ✓"; 
+}
+
+label {
+    min-width: 6em;
+    display: inline-block;
+	text-align: left;
+}
+
+form div { padding: 0.2em; }
+
+button[type="submit"] {
+	width: 12em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	background: #3879B4;
+	border: 1px solid #3879B4;
+	color: #ffffff;
+	border-radius: 0px;
+}
+
+input { width: 16em; }

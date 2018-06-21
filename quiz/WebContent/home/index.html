@@ -9,12 +9,25 @@
 	</head>
 	<body>
 		<h1>Megaquiz</h1>
-		<div>Benutzername:</div>
-		<div>Passwort:</div>
-		<div>
-			<button>Anmelden</button>
-			<button>Registrieren</button>
-		</div>
-		<div>Highscore</div>
+			<fieldset><legend>Login-Formular</legend>
+				<form action="login.jsp">
+					<div>
+						<label for="email">E-Mail:</label>
+						<input type="email" name="email" id="email" placeholder="example@example.net" required />
+						<label for="email"></label>
+					</div>
+					<div>
+						<label for="password">Passwort:</label>
+						<input type="password" name="password" id="password" required />
+						<label for="password"></label>
+					</div>
+					<div>
+						<button type="submit">Login</button>
+						<button type="submit">Registrieren</button>
+					</div>
+					<div>Highscore</div>
+					<p>(*) = Eingabe erforderlich</p>
+				</form>
+			</fieldset>
 	</body>
 </html>
