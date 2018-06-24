@@ -80,15 +80,43 @@ public class QuizManagement extends HttpServlet {
 					dispatcher.forward(request, response);
 				}
 			} else {
+				String password = request.getParameter("password");;
+				String userName = request.getParameter("userName");
+				final RequestDispatcher dispatcher;
 				switch (action) {
 				case "login":
 					String user = request.getParameter("user");
-					String password = request.getParameter("password");
+					
 					Integer id = checkUser(user, password);
 					if (id != -1)
 						session.setAttribute("userID", id);
-					final RequestDispatcher dispatcher = request.getRequestDispatcher("/home/html/landing.jsp");
+					dispatcher = request.getRequestDispatcher("/home/html/landing.jsp");
 					dispatcher.forward(request, response);
+					break;
+				case "register":
+					String vName = request.getParameter("vName");
+					String nName = request.getParameter("nName");
+					String mail = request.getParameter("mail");
+					Integer result = registerUser(vName, nName, userName, password, mail);
+					session.setAttribute("userID", result);
+					dispatcher = request.getRequestDispatcher("/home/html/landing.jsp");
+					dispatcher.forward(request, response);
+					break;
+				case "checkUsername":
+					if (checkUsername(userName)) {
+						response.getWriter().println("true");
+					}
+					break;
+				case "startGame":
+					categoryID =  (Integer) request.getAttribute("categoryID");
+					session.setAttribute("categoryID", categoryID);
+					gameID = startGame(userID, categoryID);
+					session.setAttribute("gameID", gameID);
+					QuestionBean qb = getNextQuestion(gameID, categoryID);
+					request.setAttribute("QuestionBean", qb);
+					dispatcher = request.getRequestDispatcher("/home/html/quiz.jsp");
+					dispatcher.forward(request, response);
+					
 				}
 			}
 		} catch (Exception ex) {
@@ -105,6 +133,53 @@ public class QuizManagement extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	protected Integer startGame(Integer userID, Integer categoryID) throws Exception {
+			try (Connection cnx = ds.getConnection();){
+			
+			PreparedStatement sql = cnx.prepareStatement("INSERT INTO games (userID, categoryID, starttime) VALUES (?, ?, GETDATE())");
+			sql.setInt(1, userID);
+			sql.setInt(1, categoryID);
+			
+			
+			sql.executeUpdate();
+			Integer result = -1;
+			ResultSet rs = sql.getGeneratedKeys();
+				while (rs.next()) {
+					result = rs.getInt(1);
+				}
+				
+			return result;
+		} 
+		catch (Exception ex) {
+			throw ex;
+		}
+	}
+	
+	protected Integer registerUser(String vName, String nName, String userName, String password, String mail) throws Exception{
+		try (Connection cnx = ds.getConnection();){
+			
+			PreparedStatement sql = cnx.prepareStatement("INSERT INTO players (nName, vName, pw, username) VALUES (?, ?, ?, ?)");
+			sql.setString(1, nName);
+			sql.setString(1, vName);
+			sql.setString(1, password);
+			sql.setString(1, userName);
+			
+			sql.executeUpdate();
+			Integer result = -1;
+			ResultSet rs = sql.getGeneratedKeys();
+				while (rs.next()) {
+					result = rs.getInt(1);
+				}
+				
+			return result;
+		} 
+		catch (Exception ex) {
+			throw ex;
+		}
+		
+		
 	}
 
 	protected Boolean hasOpenGame(Integer userID, HttpSession session) throws Exception {
@@ -130,6 +205,29 @@ public class QuizManagement extends HttpServlet {
 			throw ex;
 
 		}
+	}
+	
+	protected Boolean checkUsername(String userName) throws Exception {
+		try (Connection cnx = ds.getConnection();
+				 PreparedStatement sql = cnx.prepareStatement("SELECT * FROM users WHERE username = ?");)
+			{
+				sql.setString(1, userName);
+				
+				Boolean result = false;
+				
+				
+				try (ResultSet rs = sql.executeQuery()){
+					if (rs != null && rs.next()) {
+						result = true;
+					}
+				}
+				return result;
+				
+			}
+			catch (Exception ex){
+				throw ex;
+				
+			}
 	}
 
 	protected QuestionBean getNextQuestion(Integer gameID, Integer categoryID) throws Exception{
