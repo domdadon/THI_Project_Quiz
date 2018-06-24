@@ -12,11 +12,11 @@
 	<body>
 		<h1>Megaquiz</h1>
 			<fieldset><legend>Login-Formular</legend>
-				<form action="/thi-quiz-war/quizmanagement" id="loginForm" method="post">
+				<form action="login">
 					<div>
-						<label for="user">E-Mail:</label>
-						<input type="text" name="user" id="user" placeholder="example@example.net" required />
-						<label for="user"></label>
+						<label for="email">E-Mail:</label>
+						<input type="email" name="email" id="email" placeholder="example@example.net" required />
+						<label for="email"></label>
 					</div>
 					<div>
 						<label for="password">Passwort:</label>
@@ -24,8 +24,8 @@
 						<label for="password"></label>
 					</div>
 					<div>
-						<button type="submit" name="action" value="login">Login</button>
-						<button type="submit" name="action" value="login">Registrieren</button>
+						<button type="submit">Login</button>
+						<button type="submit">Registrieren</button>
 					</div>
 					<div>Highscore Tabelle</div>
 					<p>(*) = Eingabe erforderlich</p>

@@ -11,7 +11,7 @@
 			<input type="password" id="password" name="password">
 		</div>
 		<div>
-			<button type="submit" name="login" value="login">Anmelden</button>
+			<button type="submit" name="action" value="login">Anmelden</button>
 		</div>
 	</form>
 <%@ include file="footer.jspf" %>
