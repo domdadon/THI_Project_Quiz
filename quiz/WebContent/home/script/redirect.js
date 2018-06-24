@@ -1,5 +1,3 @@
 var xmlhrObj = new XMLHttpRequest();
-	
-xmlhrObj.open("GET","QuizManagement.java", true);
-	
+xmlhrObj.open("GET","../quizmanagement", true);
 xmlhrObj.send();

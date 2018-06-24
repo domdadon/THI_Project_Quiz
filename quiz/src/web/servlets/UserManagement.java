@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 /**
  * Servlet implementation class UserManagement
  */
-@WebServlet("/UserManagement")
+@WebServlet("/usermanagement")
 public class UserManagement extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Resource(lookup="jdbc/MyTHIPool")
