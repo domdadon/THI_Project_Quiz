@@ -1,4 +1,4 @@
-package web.user;
+package web.servlets;
 
 import java.io.IOException;
 import java.sql.Connection;

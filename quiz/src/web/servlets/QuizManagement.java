@@ -1,4 +1,4 @@
-package web.quiz;
+package web.servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
