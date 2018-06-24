@@ -29,13 +29,9 @@ public class QuizManagement extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		//response.sendRedirect("http://localhost:8081/thi-quiz-war/home/html/login.jsp");
-		//RequestDispatcher dispatcher = request.getRequestDispatcher("http://localhost:8081/thi-quiz-war/home/html/login.jsp");
-		//RequestDispatcher dispatcher = request.getRequestDispatcher("/home/html/login.jsp");
-		//dispatcher.forward(request, response);
 		
-		final RequestDispatcher dispatcher = request.getRequestDispatcher("/examples/passt.jsp");
+		//Methode Redirect
+		final RequestDispatcher dispatcher = request.getRequestDispatcher("/home/html/login.jsp");
 		dispatcher.forward(request, response);
 	}
 

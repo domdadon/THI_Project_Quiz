@@ -1,7 +1,7 @@
 <%@ include file="header.jspf" %> 
 	<h1>Willkommen beim Megaquiz</h1>
 	<br><b>Bitte melden Sie sich an!</b>
-	<form id="loginForm" action="../UserManagement" method="post">
+	<form id="loginForm" action="../usermanagement" method="post">
 		<div>
 			<label for="username">Benutzername:</label>
 			<input type="text" id="username" name="username">
