@@ -42,13 +42,14 @@ public class QuizManagement extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		// Methode Redirect
-		String action = request.getParameter("action");
+		
 		final HttpSession session = request.getSession();
 		Integer userID = -1;
 		Integer gameID = -1;
 		Integer categoryID = -1;
-
+		
+		//Sessionhandling init
+		
 		if (session.getAttribute("userID") != null) {
 			userID = (Integer) session.getAttribute("userID");
 		}
@@ -61,6 +62,8 @@ public class QuizManagement extends HttpServlet {
 			categoryID = (Integer) session.getAttribute("categoryID");
 		}
 
+		String action = request.getParameter("action");
+		
 		try {
 			if (action == null) {
 				// Abfrage ob User bereits eine gültige Session hat
@@ -88,25 +91,30 @@ public class QuizManagement extends HttpServlet {
 				final RequestDispatcher dispatcher;
 				switch (action) {
 				case "login":
-					String user = request.getParameter("user");
 					
-					Integer id = checkUser(user, password);
-					if (id != -1)
+					Integer id = checkUser(userName, password);
+					if (id != -1) {
 						session.setAttribute("userID", id);
-					
-					if (hasOpenGame(id, session)) {
-						gameID = (Integer) session.getAttribute("gameID");
-						categoryID = (Integer) session.getAttribute("categoryID");
-								
-						QuestionBean qb = getNextQuestion(gameID, categoryID);
-						request.setAttribute("QuestionBean", qb);
-						dispatcher = request.getRequestDispatcher("/home/html/quiz.jsp");
+						
+						if (hasOpenGame(id, session)) {
+							gameID = (Integer) session.getAttribute("gameID");
+							categoryID = (Integer) session.getAttribute("categoryID");
+									
+							QuestionBean qb = getNextQuestion(gameID, categoryID);
+							request.setAttribute("QuestionBean", qb);
+							dispatcher = request.getRequestDispatcher("/home/html/quiz.jsp");
+							dispatcher.forward(request, response);
+						}
+						else {
+						dispatcher = request.getRequestDispatcher("/home/html/landing.jsp");
 						dispatcher.forward(request, response);
+						}
 					}
 					else {
-					dispatcher = request.getRequestDispatcher("/home/html/landing.jsp");
-					dispatcher.forward(request, response);
+						dispatcher = request.getRequestDispatcher("/home/html/login.jsp");
+						dispatcher.forward(request, response);
 					}
+						
 					break;
 				case "register":
 					String vName = request.getParameter("vName");
@@ -153,12 +161,13 @@ public class QuizManagement extends HttpServlet {
 	protected Integer startGame(Integer userID, Integer categoryID) throws Exception {
 			try (Connection cnx = ds.getConnection();){
 			
-			PreparedStatement sql = cnx.prepareStatement("INSERT INTO games (userID, categoryID, starttime) VALUES (?, ?, GETDATE())");
+			PreparedStatement sql = cnx.prepareStatement("INSERT INTO games (userID, categoryID, starttime) VALUES (?, ?, NOW())");
 			sql.setInt(1, userID);
-			sql.setInt(1, categoryID);
+			sql.setInt(2, categoryID);
 			
 			
 			sql.executeUpdate();
+			
 			Integer result = -1;
 			ResultSet rs = sql.getGeneratedKeys();
 				while (rs.next()) {
@@ -177,9 +186,9 @@ public class QuizManagement extends HttpServlet {
 			
 			PreparedStatement sql = cnx.prepareStatement("INSERT INTO players (nName, vName, pw, username) VALUES (?, ?, ?, ?)");
 			sql.setString(1, nName);
-			sql.setString(1, vName);
-			sql.setString(1, password);
-			sql.setString(1, userName);
+			sql.setString(2, vName);
+			sql.setString(3, password);
+			sql.setString(4, userName);
 			
 			sql.executeUpdate();
 			Integer result = -1;
@@ -230,6 +239,7 @@ public class QuizManagement extends HttpServlet {
 				
 				Boolean result = false;
 				
+				sql.executeQuery();
 				
 				try (ResultSet rs = sql.executeQuery()){
 					if (rs != null && rs.next()) {
