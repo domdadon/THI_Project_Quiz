@@ -5,7 +5,6 @@
 		<br>
 		<div>Deine aktuelle Platzierung ist: xxx</div>
 		<br>
-		<br>
 		<div>Wählen Sie den gewünschten Schwierigkeitsgrad aus:</div>
 		
 		<form action="/thi-quiz-war/quizmanagement" id="landingForm" method="post">
