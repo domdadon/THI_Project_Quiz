@@ -63,7 +63,9 @@ public class QuizManagement extends HttpServlet {
 
 		try {
 			if (action == null) {
+				// Abfrage ob User bereits eine gültige Session hat
 				if (userID != -1) {
+					//ja, check ob noch ein offenes Spiel besteht
 					if (hasOpenGame(userID, session)) {
 						QuestionBean qb = getNextQuestion(gameID, categoryID);
 						request.setAttribute("QuestionBean", qb);
@@ -76,6 +78,7 @@ public class QuizManagement extends HttpServlet {
 					}
 				} 
 				else {
+					//nein => login
 					final RequestDispatcher dispatcher = request.getRequestDispatcher("/home/html/login.jsp");
 					dispatcher.forward(request, response);
 				}
@@ -90,8 +93,20 @@ public class QuizManagement extends HttpServlet {
 					Integer id = checkUser(user, password);
 					if (id != -1)
 						session.setAttribute("userID", id);
+					
+					if (hasOpenGame(id, session)) {
+						gameID = (Integer) session.getAttribute("gameID");
+						categoryID = (Integer) session.getAttribute("categoryID");
+								
+						QuestionBean qb = getNextQuestion(gameID, categoryID);
+						request.setAttribute("QuestionBean", qb);
+						dispatcher = request.getRequestDispatcher("/home/html/quiz.jsp");
+						dispatcher.forward(request, response);
+					}
+					else {
 					dispatcher = request.getRequestDispatcher("/home/html/landing.jsp");
 					dispatcher.forward(request, response);
+					}
 					break;
 				case "register":
 					String vName = request.getParameter("vName");
