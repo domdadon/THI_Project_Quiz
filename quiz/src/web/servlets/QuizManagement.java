@@ -84,7 +84,7 @@ public class QuizManagement extends HttpServlet {
 					}
 				} else {
 					// nein => login
-					final RequestDispatcher dispatcher = request.getRequestDispatcher("login");
+					final RequestDispatcher dispatcher = request.getRequestDispatcher(login);
 					dispatcher.forward(request, response);
 				}
 			} else {
@@ -181,10 +181,11 @@ public class QuizManagement extends HttpServlet {
 	}
 
 	protected Integer startGame(Integer userID, Integer categoryID) throws Exception {
+		
+		
 		try (Connection cnx = ds.getConnection();) {
-
-			PreparedStatement sql = cnx
-					.prepareStatement("INSERT INTO games (userID, categoryID, starttime) VALUES (?, ?, NOW())");
+			String[] generatedKeys = new String[] {"idGame"};
+			PreparedStatement sql = cnx.prepareStatement("INSERT INTO games (userID, categoryID, starttime) VALUES (?, ?, NOW())", generatedKeys);
 			sql.setInt(1, userID);
 			sql.setInt(2, categoryID);
 
@@ -205,8 +206,8 @@ public class QuizManagement extends HttpServlet {
 	protected Integer registerUser(String vName, String nName, String userName, String password, String mail)
 			throws Exception {
 		try (Connection cnx = ds.getConnection();) {
-
-			PreparedStatement sql = cnx.prepareStatement("INSERT INTO users (nName, vName, pw, username) VALUES (?, ?, md5(?), ?)");
+			String[] generatedKeys = new String[] {"idUser"};
+			PreparedStatement sql = cnx.prepareStatement("INSERT INTO users (nName, vName, pw, username) VALUES (?, ?, md5(?), ?)", generatedKeys);
 			sql.setString(1, nName);
 			sql.setString(2, vName);
 			sql.setString(3, password);
