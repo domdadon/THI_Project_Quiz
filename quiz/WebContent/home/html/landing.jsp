@@ -1,16 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="home/css/stylesheet.css">
-    	<!-- <script type="text/javascript" src="script.js" -->
-    	<meta name="author" content="Dominik MÃ¼ller, Daniel ReiÃ, Harald Schwirzenbeck">
-		<title>Megaquiz</title>
-	</head>
-	<body>
-		<h1>Landing</h1>
+<%@ include file="header.jspf" %>
+
+	<article>
+		<h2>W�hlen Sie den gew�nschten Schwierigkeitsgrad aus:</h2>
+		
+		<form action="/thi-quiz-war/quizmanagement" id="xxx" method="post">
+			<div>
+				<button type="submit" name="action" value="login">leicht</button>
+			</div>
+			<div>
+				<button type="submit" name="action" value="login">mittel</button>
+			</div>
+			<div>
+				<button type="submit" name="action" value="login">schwer</button>
+			</div>
+			<p>(*) = Eingabe erforderlich</p>
+		</form>
+		
+		
+	</article>
+	
+	<div>Highscore Tabelle</div>
 			
-	</body>
-</html>
+<%@ include file="footer.jspf" %>
