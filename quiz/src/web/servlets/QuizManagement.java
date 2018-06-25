@@ -135,10 +135,30 @@ public class QuizManagement extends HttpServlet {
 						response.getWriter().println("true");
 					}
 					break;
-				case "startGame":
-					categoryID = (Integer) request.getAttribute("categoryID");
-					session.setAttribute("categoryID", categoryID);
-					gameID = startGame(userID, categoryID);
+				case "startGame2":
+					
+					session.setAttribute("categoryID", 2);
+					gameID = startGame(userID, 2);
+					session.setAttribute("gameID", gameID);
+					qb = getNextQuestion(gameID, 2);
+					qb.setQ_Number(1);
+					request.setAttribute("QuestionBean", qb);
+					dispatcher = request.getRequestDispatcher(quiz);
+					dispatcher.forward(request, response);
+					break;
+				case "startGame1":
+					session.setAttribute("categoryID", 1);
+					gameID = startGame(userID, 1);
+					session.setAttribute("gameID", gameID);
+					qb = getNextQuestion(gameID, 1);
+					qb.setQ_Number(1);
+					request.setAttribute("QuestionBean", qb);
+					dispatcher = request.getRequestDispatcher(quiz);
+					dispatcher.forward(request, response);
+					break;
+				case "startGame3":
+					session.setAttribute("categoryID", 3);
+					gameID = startGame(userID, 3);
 					session.setAttribute("gameID", gameID);
 					qb = getNextQuestion(gameID, categoryID);
 					qb.setQ_Number(1);
@@ -181,10 +201,11 @@ public class QuizManagement extends HttpServlet {
 	}
 
 	protected Integer startGame(Integer userID, Integer categoryID) throws Exception {
+		
+		
 		try (Connection cnx = ds.getConnection();) {
-
-			PreparedStatement sql = cnx
-					.prepareStatement("INSERT INTO games (userID, categoryID, starttime) VALUES (?, ?, NOW())");
+			String[] generatedKeys = new String[] {"idGame"};
+			PreparedStatement sql = cnx.prepareStatement("INSERT INTO games (userID, categoryID, starttime) VALUES (?, ?, NOW())", generatedKeys);
 			sql.setInt(1, userID);
 			sql.setInt(2, categoryID);
 
@@ -205,8 +226,8 @@ public class QuizManagement extends HttpServlet {
 	protected Integer registerUser(String vName, String nName, String userName, String password, String mail)
 			throws Exception {
 		try (Connection cnx = ds.getConnection();) {
-
-			PreparedStatement sql = cnx.prepareStatement("INSERT INTO users (nName, vName, pw, username) VALUES (?, ?, md5(?), ?)");
+			String[] generatedKeys = new String[] {"idUser"};
+			PreparedStatement sql = cnx.prepareStatement("INSERT INTO users (nName, vName, pw, username) VALUES (?, ?, md5(?), ?)", generatedKeys);
 			sql.setString(1, nName);
 			sql.setString(2, vName);
 			sql.setString(3, password);
