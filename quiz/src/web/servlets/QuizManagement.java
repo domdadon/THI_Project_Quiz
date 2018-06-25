@@ -206,8 +206,7 @@ public class QuizManagement extends HttpServlet {
 			throws Exception {
 		try (Connection cnx = ds.getConnection();) {
 
-			PreparedStatement sql = cnx
-					.prepareStatement("INSERT INTO users (nName, vName, pw, username) VALUES (?, ?, ?, ?)");
+			PreparedStatement sql = cnx.prepareStatement("INSERT INTO users (nName, vName, pw, username) VALUES (?, ?, ?, ?)");
 			sql.setString(1, nName);
 			sql.setString(2, vName);
 			sql.setString(3, password);
