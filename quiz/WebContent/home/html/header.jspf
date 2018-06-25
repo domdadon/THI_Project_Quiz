@@ -14,5 +14,6 @@
 	<body>
 		<header>
 			<h1>Megaquiz</h1>
+			<br>
 			Hallo, (User) Logout
 		</header>
