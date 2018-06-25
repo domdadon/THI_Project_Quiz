@@ -135,7 +135,29 @@ public class QuizManagement extends HttpServlet {
 						response.getWriter().println("true");
 					}
 					break;
-				case "startGame":
+				case "startGame2":
+					categoryID = (Integer) request.getAttribute("categoryID");
+					session.setAttribute("categoryID", categoryID);
+					gameID = startGame(userID, categoryID);
+					session.setAttribute("gameID", gameID);
+					qb = getNextQuestion(gameID, categoryID);
+					qb.setQ_Number(1);
+					request.setAttribute("QuestionBean", qb);
+					dispatcher = request.getRequestDispatcher(quiz);
+					dispatcher.forward(request, response);
+					break;
+				case "startGame1":
+					categoryID = (Integer) request.getAttribute("categoryID");
+					session.setAttribute("categoryID", categoryID);
+					gameID = startGame(userID, categoryID);
+					session.setAttribute("gameID", gameID);
+					qb = getNextQuestion(gameID, categoryID);
+					qb.setQ_Number(1);
+					request.setAttribute("QuestionBean", qb);
+					dispatcher = request.getRequestDispatcher(quiz);
+					dispatcher.forward(request, response);
+					break;
+				case "startGame3":
 					categoryID = (Integer) request.getAttribute("categoryID");
 					session.setAttribute("categoryID", categoryID);
 					gameID = startGame(userID, categoryID);
