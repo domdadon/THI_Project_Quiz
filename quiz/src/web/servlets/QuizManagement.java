@@ -84,7 +84,7 @@ public class QuizManagement extends HttpServlet {
 					}
 				} else {
 					// nein => login
-					final RequestDispatcher dispatcher = request.getRequestDispatcher("login");
+					final RequestDispatcher dispatcher = request.getRequestDispatcher(login);
 					dispatcher.forward(request, response);
 				}
 			} else {
