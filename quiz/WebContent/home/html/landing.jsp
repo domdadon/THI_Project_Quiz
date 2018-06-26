@@ -17,7 +17,6 @@
 			<div>
 				<button type="submit" name="action" value="startGame3">schwer</button>
 			</div>
-			<p>(*) = Eingabe erforderlich</p>
 		</form>
 		
 		

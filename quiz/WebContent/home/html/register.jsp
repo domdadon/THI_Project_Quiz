@@ -3,12 +3,12 @@
 				<form action="/thi-quiz-war/quizmanagement" id="loginForm" method="post">
 					<div>
 						<label for="vName">Vorname:</label>
-						<input type="text" name="vName" id="vName" placeholder="Vorname" required />
+						<input type="text" name="vName" id="vName" placeholder="Max" required />
 						<label for="vName"></label>
 					</div>
 					<div>
 						<label for="nName">Nachname:</label>
-						<input type="text" name="nName" id="nName" placeholder="Nachname" required />
+						<input type="text" name="nName" id="nName" placeholder="Mustermann" required />
 						<label for="nName"></label>
 					</div>
 					<div>
@@ -18,7 +18,7 @@
 					</div>
 					<div>
 						<label for="userName">Benutzername:</label>
-						<input type="text" name="userName" id="userName" placeholder="Benutzername" required />
+						<input type="text" name="userName" id="userName" placeholder="MaxMustermann" required />
 						<label for="userName"></label>
 					</div>
 					<div>
@@ -27,8 +27,8 @@
 						<label for="password"></label>
 					</div>
 					<div>
-						<button onclick="location.href='login.jsp'" type="submit">zurück zum Login</button>
 						<button type="submit" name="action" value="register">Registrieren</button>
+						<button onclick="location.href='login.jsp'" type="submit">zurück zum Login</button>
 					</div>
 					<p>(*) = Eingabe erforderlich</p>
 				</form>

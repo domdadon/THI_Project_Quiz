@@ -24,7 +24,7 @@ h1 {
 }
 
 fieldset {
-	width: 30em;
+	width: 35em;
 	padding-top: 1.5em;
 	padding-left: 1.5em;
 	background: #dddddd;
@@ -65,7 +65,7 @@ input[type='email']:valid + label::after{
 }
 
 label {
-    min-width: 6em;
+    min-width: 8em;
     display: inline-block;
 	text-align: left;
 }
