@@ -25,10 +25,10 @@ public class QuizManagement extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Resource(lookup = "jdbc/MyTHIPool")
 	private DataSource ds;
-	private String landing = "/home/html/landing.jsp";
-	private String quiz = "/home/html/quiz.jsp";
-	private String login = "/home/html/login.jsp";
-	private String register = "/home/html/register.jsp";
+	private String landing = "./html/landing.jsp";
+	private String quiz = "./html/quiz.jsp";
+	private String login = "/html/login.jsp";
+	private String register = "/html/register.jsp";
 
 	/**
 	 * @see HttpServlet#HttpServlet()

@@ -1,6 +1,6 @@
 <%@ include file="header.jspf" %>
 			<fieldset><legend>Register-Formular</legend>
-				<form action="/thi-quiz-war/quizmanagement" id="loginForm" method="post">
+				<form action="../quizmanagement" id="loginForm" method="post">
 					<div>
 						<label for="vName">Vorname:</label>
 						<input type="text" name="vName" id="vName" placeholder="Max" required />
@@ -28,10 +28,10 @@
 					</div>
 					<div>
 						<button type="submit" name="action" value="register">Registrieren</button>
-						<button onclick="location.href='login.jsp'" type="submit">zurück zum Login</button>
 					</div>
 					<p>(*) = Eingabe erforderlich</p>
 				</form>
+					<a href="login.jsp">zurück zum Login</a>
 			</fieldset>
 			<div>Highscore Tabelle</div>
 <%@ include file="footer.jspf" %>

@@ -7,7 +7,7 @@
 		<br>
 		<div>Wählen Sie den gewünschten Schwierigkeitsgrad aus:</div>
 		
-		<form action="/thi-quiz-war/quizmanagement" id="landingForm" method="post">
+		<form action="../quizmanagement" id="landingForm" method="post">
 			<div>
 				<button type="submit" name="action" value="startGame1">leicht</button>
 			</div>

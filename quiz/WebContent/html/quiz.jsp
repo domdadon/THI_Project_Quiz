@@ -7,7 +7,7 @@
 		
 		<div>Frage</div>
 				
-		<form action="/thi-quiz-war/quizmanagement" id="quizForm" method="post">
+		<form action="../quizmanagement" id="quizForm" method="post">
 			<div>
 				<button type="submit" name="action" value="answer1">Antwort 1</button>
 			</div>
