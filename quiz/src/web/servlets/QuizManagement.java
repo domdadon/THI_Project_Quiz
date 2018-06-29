@@ -126,7 +126,7 @@ public class QuizManagement extends HttpServlet {
 					dispatcher = request.getRequestDispatcher(landing);
 					dispatcher.forward(request, response);
 					break;
-				//nicht mehr benötigt
+				//nicht mehr benï¿½tigt
 				case "registerForm":
 					dispatcher = request.getRequestDispatcher(register);
 					dispatcher.forward(request, response);
@@ -315,7 +315,7 @@ public class QuizManagement extends HttpServlet {
 				}
 
 				sql = cnx.prepareStatement(
-						"SELECT qa.answerID, a.answer FROM questions_answers AS qa INNER JOIN answers AS a WHERE qa.questionID = ?");
+						"SELECT qa.answerID, a.answer FROM questions_answers AS qa INNER JOIN answers AS a ON qa.answerID = a.idAnswer  WHERE qa.questionID = ?");
 
 				sql.setInt(1, qb.getqID());
 
