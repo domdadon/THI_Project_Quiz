@@ -5,20 +5,20 @@
 		<div>Punkte x</div>
 		
 		
-		<div>Frage</div>
+		<div>${QuestionBean.q}</div>
 				
 		<form action="../quizmanagement" id="quizForm" method="post">
 			<div>
-				<button type="submit" name="action" value="answer1">Antwort 1</button>
+				<button type="submit" name="action" value="answer1">${QuestionBean.a_1}</button>
 			</div>
 			<div>
-				<button type="submit" name="action" value="answer2">Antwort 2</button>
+				<button type="submit" name="action" value="answer2">${QuestionBean.a_2}</button>
 			</div>
 			<div>
-				<button type="submit" name="action" value="answer3">Antwort 3</button>
+				<button type="submit" name="action" value="answer3">${QuestionBean.a_3}</button>
 			</div>
 			<div>
-				<button type="submit" name="action" value="answer4">Antwort 4</button>
+				<button type="submit" name="action" value="answer4">${QuestionBean.a_4}</button>
 			</div>
 			<div>
 				<button type="submit" name="action" value="nextQuestion">weiter</button>

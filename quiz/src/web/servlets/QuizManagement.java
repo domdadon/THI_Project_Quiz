@@ -126,6 +126,7 @@ public class QuizManagement extends HttpServlet {
 					dispatcher = request.getRequestDispatcher(landing);
 					dispatcher.forward(request, response);
 					break;
+				//nicht mehr benötigt
 				case "registerForm":
 					dispatcher = request.getRequestDispatcher(register);
 					dispatcher.forward(request, response);
