@@ -3,7 +3,7 @@
 		<div>Frage x/x</div>
 		<div>Progressbar</div>
 		<div>Punkte x</div>
-		<div>Schwierigkeitsgrad x</div>
+		
 		
 		<div>Frage</div>
 				
