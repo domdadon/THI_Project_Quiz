@@ -1,5 +1,4 @@
 <%@ include file="header.jspf" %>
-	
 	<article>
 		<div>Frage x/x</div>
 		<div>Progressbar</div>

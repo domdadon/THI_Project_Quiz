@@ -9,6 +9,7 @@ function init() {
 	document.getElementById("answer4").addEventListener("click", checkAnswer);
 }
 
+
 function checkAnswer() {
 	//var source = event.target.id;
 	var source = document.getElementById("a_ID1").id;
