@@ -177,10 +177,10 @@ public class QuizManagement extends HttpServlet {
 
 					
 					if (checkAnswer(q_ID, a_ID, gameID)) {
-						response.getWriter().println("true");
+						response.getWriter().append("true");
 					}
 					else {
-						response.getWriter().println("false");
+						response.getWriter().append("false");
 					}
 					break;
 				case "getNextQuestion":
@@ -214,7 +214,7 @@ public class QuizManagement extends HttpServlet {
 		
 		try (Connection cnx = ds.getConnection();) {
 			String[] generatedKeys = new String[] {"idGame"};
-			PreparedStatement sql = cnx.prepareStatement("INSERT INTO games (userID, categoryID, starttime) VALUES (?, ?, NOW())", generatedKeys);
+			PreparedStatement sql = cnx.prepareStatement("INSERT INTO games (userID, categoryID, starttime, score) VALUES (?, ?, NOW(), 0)", generatedKeys);
 			sql.setInt(1, userID);
 			sql.setInt(2, categoryID);
 
@@ -305,17 +305,35 @@ public class QuizManagement extends HttpServlet {
 	protected QuestionBean getNextQuestion(Integer gameID, Integer categoryID) throws Exception {
 
 		try (Connection cnx = ds.getConnection()) {
-
-			PreparedStatement sql = cnx.prepareStatement(
-					"SELECT * FROM questions WHERE idQuestion NOT IN (SELECT questionID FROM results WHERE gameID = ?) AND categoryID = ? ORDER BY RAND() LIMIT 1;");
-
+			QuestionBean qb = new QuestionBean();
+			
+			PreparedStatement sql = cnx.prepareStatement("SELECT COUNT(*) as Anzahl FROM thidb.results WHERE gameID = ?");
+			
+			sql.setInt(1, gameID);
+			
+			ResultSet rs = sql.executeQuery();
+			
+			Integer qCount = -1; 
+			
+			if (rs != null && rs.next()) {
+				qCount = rs.getInt(1);
+			}
+			else {
+				return null;
+			}
+			
+			qb.setQ_Number(qCount);
+			
+			sql = cnx.prepareStatement("SELECT * FROM questions WHERE idQuestion NOT IN (SELECT questionID FROM results WHERE gameID = ?) AND categoryID = ? ORDER BY RAND() LIMIT 1;");
+			
 			sql.setLong(1, gameID);
 			sql.setLong(2, categoryID);
-			QuestionBean qb = new QuestionBean();
+			
 
 			try {
-				ResultSet rs = sql.executeQuery();
-
+				
+				rs = sql.executeQuery();
+				
 				if (rs != null && rs.next()) {
 					qb.setqID(rs.getInt(1));
 					qb.setQ(rs.getString(2));
@@ -386,9 +404,20 @@ public class QuizManagement extends HttpServlet {
 	}
 
 	private Boolean checkAnswer(Integer questionID, Integer answerID, Integer gameID) throws Exception {
-		try (Connection cnx = ds.getConnection();) {
-			PreparedStatement sql = cnx.prepareStatement("INSERT INTO results (gameID, questionID, answerID) VALUES (?, ?, ?)");
-
+		try (Connection cnx = ds.getConnection()) {
+			
+			PreparedStatement sql = cnx.prepareStatement("SELECT * from results WHERE questionID = ? AND gameID = ?");
+			sql.setInt(1, questionID);
+			sql.setInt(2, gameID);
+			
+			ResultSet rs = sql.executeQuery();
+			
+			if (rs != null && rs.next()) {
+				return false;
+			}
+			
+			sql = cnx.prepareStatement("INSERT INTO results (gameID, questionID, answerID) VALUES (?, ?, ?)");
+			sql.clearParameters();
 			sql.setInt(1, gameID);
 			sql.setInt(2, questionID);
 			sql.setInt(3, answerID);
@@ -404,12 +433,16 @@ public class QuizManagement extends HttpServlet {
 			sql.setInt(1, questionID);
 			sql.setInt(2, answerID);
 			
-			try (ResultSet rs = sql.executeQuery()) {
-				if (rs != null && rs.next()) {
-					result = true;
-				}
-			}
+			rs = sql.executeQuery();
 			
+			if (rs != null && rs.next()) {
+				sql = cnx.prepareStatement("UPDATE games SET score = score + 1 WHERE idGame = ?");
+				sql.clearParameters();
+				sql.setInt(1, gameID);
+				sql.executeUpdate();
+				result = true;
+			}
+						
 			return result;
 
 		} catch (Exception ex) {
