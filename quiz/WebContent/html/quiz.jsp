@@ -10,16 +10,16 @@
 				
 		<form action="../quizmanagement" id="quizForm" method="post">
 			<div>
-				<button type="button" class="answer" name="action" value="answer1" id="answer1">${QuestionBean.a_1}</button>
+				<button type="button" class="answer" name="action" value="setAnswer" id="answer1">${QuestionBean.a_1}</button>
 			</div>
 			<div>
-				<button type="button" class="answer" name="action" value="answer2" id="answer2">${QuestionBean.a_2}</button>
+				<button type="button" class="answer" name="action" value="setAnswer" id="answer2">${QuestionBean.a_2}</button>
 			</div>
 			<div>
-				<button type="button" class="answer" name="action" value="answer3" id="answer3">${QuestionBean.a_3}</button>
+				<button type="button" class="answer" name="action" value="setAnswer" id="answer3">${QuestionBean.a_3}</button>
 			</div>
 			<div>
-				<button type="button" class="answer" name="action" value="answer4" id="answer4">${QuestionBean.a_4}</button>
+				<button type="button" class="answer" name="action" value="setAnswer" id="answer4">${QuestionBean.a_4}</button>
 			</div>
 			<div>
 				<button type="submit" name="action" value="nextQuestion" id="nextQuestion">weiter</button>
