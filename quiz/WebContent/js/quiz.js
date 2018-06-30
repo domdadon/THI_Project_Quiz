@@ -42,5 +42,6 @@ function response() {
 	//if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 	//	element.className = "newcolor";
 	//}
+	console.log("reached");
 	element.className = "newcolor";
 }
