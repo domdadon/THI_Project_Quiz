@@ -21,7 +21,7 @@
 				<button type="button" class="answer" name="action" value="setAnswer" id="answer4" data-answerid="${QuestionBean.a_ID4}">${QuestionBean.a_4}</button>
 			</div>
 			<div>
-				<button type="submit" name="action" value="nextQuestion" id="nextQuestion">weiter</button>
+				<button type="submit" name="action" value="getNextQuestion" id="nextQuestion">weiter</button>
 			</div>
 		</form>
 		
