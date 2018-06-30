@@ -103,4 +103,22 @@ button.answer {
 	border-radius: 0px;
 }
 
-button.newcolor { background: black;}
+button.answerTrue {
+	width: 12em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	background: green;
+	border: 1px solid #3879B4;
+	color: #ffffff;
+	border-radius: 0px;
+}
+
+button.answerFalse {
+	width: 12em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	background: red;
+	border: 1px solid #3879B4;
+	color: #ffffff;
+	border-radius: 0px;
+}
