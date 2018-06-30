@@ -57,6 +57,16 @@ button[type="submit"]:active {
     background:#8f8f8f;
 }
 
+button[type="submit"] {
+	width: 12em;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	background: #3879B4;
+	border: 1px solid #3879B4;
+	color: #ffffff;
+	border-radius: 0px;
+}
+
 input:required + label::after{ color: red; content: " *";}
 
 input[type='email']:valid + label::after{
@@ -72,7 +82,18 @@ label {
 
 form div { padding: 0.2em; }
 
-button[type="submit"] {
+input { width: 16em; }
+
+button[type="button"]:hover {
+    background:#366896;
+    border: 1px solid #3879B4; 
+}
+
+button[type="button"]:active {
+    background:#8f8f8f;
+}
+
+button[type="button"] {
 	width: 12em;
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
@@ -82,4 +103,4 @@ button[type="submit"] {
 	border-radius: 0px;
 }
 
-input { width: 16em; }
+button[type="button"].newcolor { color: #000000;}
