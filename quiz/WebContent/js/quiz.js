@@ -4,9 +4,9 @@ var element;
 var xmlhttp = null;
 function init() {
 	document.getElementById("answer1").addEventListener("click", function(){checkAnswer(event);});
-	document.getElementById("answer2").addEventListener("click", checkAnswer);
-	document.getElementById("answer3").addEventListener("click", checkAnswer);
-	document.getElementById("answer4").addEventListener("click", checkAnswer);
+	document.getElementById("answer2").addEventListener("click", function(){checkAnswer(event);});
+	document.getElementById("answer3").addEventListener("click", function(){checkAnswer(event);});
+	document.getElementById("answer4").addEventListener("click", function(){checkAnswer(event);});
 }
 
 
