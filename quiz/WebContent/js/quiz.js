@@ -16,23 +16,25 @@ function checkAnswer() {
 	var q_ID = document.getElementById("q_ID").value;
 	var a_ID;
 	
-	if (source == "answer1") {
+	if (source == "a_ID1") {
 			a_ID = document.getElementById("a_ID1").value;
-	} else if (source == "answer2") {
+	} else if (source == "a_ID2") {
 			a_ID = document.getElementById("a_ID2").value;
-	} else if (source == "answer3") {
+	} else if (source == "a_ID3") {
 			a_ID = document.getElementById("a_ID3").value;
-	} else if (source == "answer4") {
+	} else if (source == "a_ID4") {
 			a_ID = document.getElementById("a_ID4").value;
 	}
 	
 	//element = event.target;
+	
+	var par = "action=setAnswer&question="+q_ID+"&answer="+a_ID
 	element = document.getElementById("a_ID1");
 	xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("POST", "../quizmanagement", true);
 	xmlhttp.onreadystatechange = response;
-	xmlhttp.open("GET", "../quizmanagement", true);
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	xmlhttp.send("action=setAnswer&question="+q_ID+"&answer="+a_ID);
+	xmlhttp.send(par);
 }
 
 function response() {

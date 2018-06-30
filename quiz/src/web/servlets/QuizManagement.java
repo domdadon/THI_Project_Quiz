@@ -46,6 +46,8 @@ public class QuizManagement extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		System.out.println(request.getParameterNames());
+		
 		final HttpSession session = request.getSession();
 		Integer userID = -1;
 		Integer gameID = -1;
@@ -170,9 +172,10 @@ public class QuizManagement extends HttpServlet {
 					dispatcher.forward(request, response);
 					break;
 				case "setAnswer":
-					Integer q_ID = (Integer) request.getAttribute("question");
-					Integer a_ID = (Integer) request.getAttribute("answer");
+					Integer q_ID = Integer.parseInt(request.getParameter("question"));
+					Integer a_ID = Integer.parseInt(request.getParameter("answer"));
 
+					
 					if (checkAnswer(q_ID, a_ID, gameID)) {
 						response.getWriter().println("true");
 					}
@@ -394,7 +397,7 @@ public class QuizManagement extends HttpServlet {
 			
 			Boolean result = false;
 
-			sql = cnx.prepareStatement("SELECT * FROM questions_answers WHERE questionID = ? AND answerID = ?");
+			sql = cnx.prepareStatement("SELECT * FROM questions_answers WHERE questionID = ? AND answerID = ? AND isRight=1");
 			
 			sql.clearParameters();
 			
