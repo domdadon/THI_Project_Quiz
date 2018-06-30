@@ -13,19 +13,9 @@ function init() {
 function checkAnswer(event) {
 	var source = event.target.id
 	//var source = document.getElementById("a_ID1").id;
-	var q_ID = document.getElementById("q_ID").value;
-	var a_ID;
-	
-	if (source == "answer1") {
-			a_ID = document.getElementById("a_ID1").value;
-	} else if (source == "answer2") {
-			a_ID = document.getElementById("a_ID2").value;
-	} else if (source == "answer3") {
-			a_ID = document.getElementById("a_ID3").value;
-	} else if (source == "answer4") {
-			a_ID = document.getElementById("a_ID4").value;
-	}
-	
+	var q_ID = document.getElementById("question").dataset.questionid;
+	var a_ID = event.target.dataset.answerid;
+		
 	element = event.target;
 	
 	var par = "action=setAnswer&question="+q_ID+"&answer="+a_ID
@@ -40,8 +30,10 @@ function checkAnswer(event) {
 function response() {
 	
 	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-		element.className = "newcolor";
+		if (xmlhttp.responseText == "true") {
+			element.className = "answerTrue";
+		} else {
+			element.className = "answerFalse";
+		}
 	}
-	//console.log("reached");
-	//element.className = "newcolor";
 }

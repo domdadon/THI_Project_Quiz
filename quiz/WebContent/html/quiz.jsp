@@ -5,7 +5,7 @@
 		<div>Punkte x</div>
 		
 		
-		<div data-questionid="${QuestionBean.qID}">${QuestionBean.q}?</div>
+		<div id="question" data-questionid="${QuestionBean.qID}">${QuestionBean.q}?</div>
 				
 		<form action="../quizmanagement" id="quizForm" method="post">
 			<div>
