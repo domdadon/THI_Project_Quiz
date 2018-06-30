@@ -135,9 +135,11 @@ public class QuizManagement extends HttpServlet {
 					if (checkUsername(userName)) {
 						response.getWriter().println("true");
 					}
+					else {
+						response.getWriter().println("false");
+					}						
 					break;
 				case "startGame2":
-					
 					session.setAttribute("categoryID", 2);
 					gameID = startGame(userID, 2);
 					session.setAttribute("gameID", gameID);
@@ -173,6 +175,9 @@ public class QuizManagement extends HttpServlet {
 
 					if (checkAnswer(q_ID, a_ID, gameID)) {
 						response.getWriter().println("true");
+					}
+					else {
+						response.getWriter().println("false");
 					}
 					break;
 				case "getNextQuestion":
