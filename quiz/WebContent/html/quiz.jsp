@@ -23,7 +23,7 @@
 			<div>
 				<button type="submit" name="action" value="nextQuestion" id="nextQuestion">weiter</button>
 			</div>
-			<input type="text" id="q_ID" name="qID" value=${QuestionBean.qID} hidden>
+			<input type="text" id="q_ID" name="qID" value=${QuestionBean.qID} hidden>			
 			<input type="text" id="a_ID1" name="aID1" value=${QuestionBean.a_ID1} hidden>
 			<input type="text" id="a_ID2" name="aID2" value=${QuestionBean.a_ID2} hidden>
 			<input type="text" id="a_ID3" name="aID3" value=${QuestionBean.a_ID3} hidden>
