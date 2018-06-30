@@ -3,7 +3,7 @@
 				<form action="../quizmanagement" id="loginForm" method="post">
 					<div>
 						<label for="userName">Benutzername</label>
-						<input type="text" name="userName" id="userName" placeholder="Benutzername" required />
+						<input type="text" name="userName" id="userName" placeholder="Benutzername" required autofocus/>
 						<label for="userName"></label>
 					</div>
 					<div>
