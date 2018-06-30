@@ -23,11 +23,12 @@
 			<div>
 				<button type="submit" name="action" value="nextQuestion" id="nextQuestion">weiter</button>
 			</div>
-			<input type="text" id="q_ID" name="qID" value=${QuestionBean.qID} hidden>			
-			<input type="text" id="a_ID1" name="aID1" value=${QuestionBean.a_ID1} hidden>
-			<input type="text" id="a_ID2" name="aID2" value=${QuestionBean.a_ID2} hidden>
-			<input type="text" id="a_ID3" name="aID3" value=${QuestionBean.a_ID3} hidden>
-			<input type="text" id="a_ID4" name="aID4" value=${QuestionBean.a_ID4} hidden>
+			<input type="hidden" id="q_ID" name="qID" value="${QuestionBean.qID}">
+						
+			<input type="hidden" id="a_ID1" name="aID1" value="${QuestionBean.a_ID1}">
+			<input type="hidden" id="a_ID2" name="aID2" value="${QuestionBean.a_ID2}">
+			<input type="hidden" id="a_ID3" name="aID3" value="${QuestionBean.a_ID3}">
+			<input type="hidden" id="a_ID4" name="aID4" value="${QuestionBean.a_ID4}">
 		</form>
 		
 	</article>

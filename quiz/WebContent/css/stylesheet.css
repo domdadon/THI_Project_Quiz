@@ -84,16 +84,16 @@ form div { padding: 0.2em; }
 
 input { width: 16em; }
 
-button[type="button"]:hover {
+button.answer:hover {
     background:#366896;
     border: 1px solid #3879B4; 
 }
 
-button[type="button"]:active {
+button.answer:active {
     background:#8f8f8f;
 }
 
-button[type="button"] {
+button.answer {
 	width: 12em;
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
@@ -103,4 +103,4 @@ button[type="button"] {
 	border-radius: 0px;
 }
 
-button[type="button"].newcolor { color: #000000;}
+button.newcolor { background: black;}

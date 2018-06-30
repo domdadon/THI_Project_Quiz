@@ -29,7 +29,7 @@ function checkAnswer(event) {
 	element = event.target;
 	
 	var par = "action=setAnswer&question="+q_ID+"&answer="+a_ID
-	element = document.getElementById("a_ID1");
+	
 	xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("POST", "../quizmanagement", true);
 	xmlhttp.onreadystatechange = response;
