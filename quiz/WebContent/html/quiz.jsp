@@ -5,7 +5,7 @@
 		<div>Punkte x</div>
 		
 		
-		<div>${QuestionBean.q}</div>
+		<div>${QuestionBean.q}?</div>
 				
 		<form action="../quizmanagement" id="quizForm" method="post">
 			<div>
