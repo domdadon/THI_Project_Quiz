@@ -1,6 +1,9 @@
 <%@ include file="header.jspf" %>
-			<fieldset><legend>Login</legend>
+			<fieldset>
 				<form action="../quizmanagement" id="loginForm" method="post">
+					<div class="formhead">Login</div>
+					<hr>
+					<p>
 					<div class="form">
 						<label for="userName">Ihr Benutzername:</label>
 						<br>

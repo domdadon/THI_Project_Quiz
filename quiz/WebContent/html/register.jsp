@@ -1,6 +1,9 @@
 <%@ include file="header.jspf" %>
-			<fieldset><legend>Registrierung</legend>
+			<fieldset>
 				<form action="../quizmanagement" id="loginForm" method="post">
+					<div class="formhead">Registrierung</div>
+					<hr>
+					<p>
 					<div>
 						<label for="vName">Vorname:</label>
 						<input type="text" name="vName" id="vName" class="vName" placeholder="Max" required="required" autofocus="autofocus"/>
