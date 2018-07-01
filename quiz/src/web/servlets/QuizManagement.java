@@ -135,10 +135,10 @@ public class QuizManagement extends HttpServlet {
 					break;
 				case "checkUsername":
 					if (checkUsername(userName)) {
-						response.getWriter().println("true");
+						response.getWriter().append("true");
 					}
 					else {
-						response.getWriter().println("false");
+						response.getWriter().append("false");
 					}						
 					break;
 				case "startGame2":

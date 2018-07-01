@@ -24,7 +24,7 @@ h1 {
 }
 
 fieldset {
-	width: 35em;
+	width: 22%;
 	padding-top: 1.5em;
 	padding-left: 1.5em;
 	background: #dddddd;
@@ -36,7 +36,7 @@ fieldset {
  
 legend {
 	background: white;
-	padding: 0.2em;
+	padding: 0.3em;
 	border: 1px solid #000330;
 	border-radius: 5px;
 	box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -59,12 +59,18 @@ button[type="submit"] {
 	border: 1px solid #3879B4;
 	color: #ffffff;
 	border-radius: 0px;
+	position: relative;
+	
 }
 
 label {
-    min-width: 8em;
+    /*min-width: 8em;
     display: inline-block;
-	text-align: left;
+	text-align: left;*/
+}
+
+label.checkUsername {
+	font-size: 0.75em;	
 }
 
 form div {
@@ -86,25 +92,19 @@ input:required + label::after{
 	content: " *";
 	}
 
-/*input[type='email']:valid + label::after{
+input:valid + label::after{
     color: green;
     content: " ✔";
 }
 
-
-input[type='text']:valid + label::after{
-    color: green;
-    content: " ✔";
-}*/
-
-/*input:valid + label::after{
-    color: green;
-    content: " ✔";
-}*/
-
 input.userExisting + label::after{
     color: red;
-    content: " Benutzername bereits vorhanden";
+    content: "Benutzername bereits vorhanden";
+}
+
+input.userNotExisting + label::after{
+    color: red;
+    content: "Benutzername nicht vorhanden";
 }
 
 button.answer:hover {
@@ -144,6 +144,27 @@ button.answerFalse {
 	border: 1px solid #3879B4;
 	color: #ffffff;
 	border-radius: 0px;
+}
+
+div.button {
+	text-align: center;
+}
+
+div.register {
+	font-size: 0.75em;
+	text-align: center;
+}
+
+div.login {
+	font-size: 0.75em;
+	text-align: center;
+}
+
+div.inputrequired {
+	font-size: 0.75em;
+	position: relative;
+	text-align: right;
+	right: 25px;
 }
 
 div.noscript {

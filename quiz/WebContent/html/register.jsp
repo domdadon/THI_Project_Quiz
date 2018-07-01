@@ -1,5 +1,5 @@
 <%@ include file="header.jspf" %>
-			<fieldset><legend>Register-Formular</legend>
+			<fieldset><legend>Registrierung</legend>
 				<form action="../quizmanagement" id="loginForm" method="post">
 					<div>
 						<label for="vName">Vorname:</label>
@@ -18,20 +18,23 @@
 					</div>
 					<div>
 						<label for="userName">Benutzername:</label>
-						<input type="text" name="userName" id="userName" class="userName" placeholder="MaxMustermann"  />
-						<label for="userName"></label>
+						<input type="text" name="userName" id="userName" class="userName" placeholder="MaxMustermann" required="required" />
+						<label for="userName" class="checkUsername"></label>
 					</div>
 					<div>
 						<label for="password">Passwort:</label>
 						<input type="password" name="password" id="password" class="password" required="required" />
 						<label for="password"></label>
 					</div>
-					<div>
+					<div class="inputrequired">* Pflichtfeld</div>
+					<p>
+					<div class="button">
 						<button type="submit" name="action" value="register" class="register">Registrieren</button>
 					</div>
-					<p>(*) = Eingabe erforderlich</p>
+					
 				</form>
-					<a href="login.jsp">zurück zum Login</a>
+					<p>
+					<div class="login"><a href="login.jsp">zurück zum Login</a></div>
 			</fieldset>
 			<div class="highscore">Highscore Tabelle</div>
 			<script type="text/javascript" src="../js/register.js"></script>

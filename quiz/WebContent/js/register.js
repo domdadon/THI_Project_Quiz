@@ -25,12 +25,10 @@ function response() {
 	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 		if (xmlhttp.responseText == "true") {
 			document.getElementById("userName").className = "userExisting";
+			console.log("change class to userExisting executed");
 		} else {
-			
+			document.getElementById("userName").className = "userName";
+			console.log("change class reset executed");
 		}	
 	}
-	/*
-	if (xmlhttp.responseText == "false"){
-		document.getElementById("userName").className = "userName";
-	}*/
 }
