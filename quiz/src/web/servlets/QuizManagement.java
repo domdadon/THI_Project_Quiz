@@ -27,8 +27,8 @@ public class QuizManagement extends HttpServlet {
 	private DataSource ds;
 	private String landing = "./html/landing.jsp";
 	private String quiz = "./html/quiz.jsp";
-	private String login = "/html/login.jsp";
-	private String register = "/html/register.jsp";
+	private String login = "./html/login.jsp";
+	private String register = "./html/register.jsp";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
