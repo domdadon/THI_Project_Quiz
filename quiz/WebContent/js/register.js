@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", init);
 var element;
 var xmlhttp = null;
 function init() {
-	/*document.getElementById("userName").addEventListener("keyup", checkUsername);*/
-	document.getElementById("userName").addEventListener("blur", checkUsername);
+	/*document.getElementById("userName").addEventListener("blur", checkUsername);*/
+	document.getElementById("userName").addEventListener("keyup", checkUsername);
 }
 
 
@@ -27,7 +27,10 @@ function response() {
 			document.getElementById("userName").className = "userExisting";
 		} else {
 			
-		}
-	
+		}	
 	}
+	/*
+	if (xmlhttp.responseText == "false"){
+		document.getElementById("userName").className = "userName";
+	}*/
 }

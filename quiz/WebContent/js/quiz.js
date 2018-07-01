@@ -1,7 +1,7 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", init);
 var element;
-var xmlhttp = null;
+var xmlhttp;
 function init() {
 	document.getElementById("answer1").addEventListener("click", checkAnswer);
 	document.getElementById("answer2").addEventListener("click", checkAnswer);
@@ -33,9 +33,10 @@ function response() {
 		} else {
 			element.className = "answerFalse";
 		}
-		document.getElementById("answer1").setAttribute("disabled");
-		document.getElementById("answer2").setAttribute("disabled");
-		document.getElementById("answer3").setAttribute("disabled");
-		document.getElementById("answer4").setAttribute("disabled");
+		console.log("buttons disablen");
+		document.getElementById("answer1").setAttribute("disabled", "disabled");
+		document.getElementById("answer2").setAttribute("disabled", "disabled");
+		document.getElementById("answer3").setAttribute("disabled", "disabled");
+		document.getElementById("answer4").setAttribute("disabled", "disabled");
 	}
 }

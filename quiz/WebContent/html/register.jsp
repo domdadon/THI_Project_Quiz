@@ -18,7 +18,7 @@
 					</div>
 					<div>
 						<label for="userName">Benutzername:</label>
-						<input type="text" name="userName" id="userName" class="userName" placeholder="MaxMustermann" required="required" />
+						<input type="text" name="userName" id="userName" class="userName" placeholder="MaxMustermann"  />
 						<label for="userName"></label>
 					</div>
 					<div>
