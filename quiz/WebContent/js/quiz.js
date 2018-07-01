@@ -35,6 +35,9 @@ function response() {
 		} else {
 			element.className = "answerFalse";
 		}
-		element.setAttribute("disabled");
+		document.getElementById("answer1").setAttribute("disabled");
+		document.getElementById("answer2").setAttribute("disabled");
+		document.getElementById("answer3").setAttribute("disabled");
+		document.getElementById("answer4").setAttribute("disabled");
 	}
 }
