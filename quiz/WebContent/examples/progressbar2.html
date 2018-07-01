@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<style>
+			#clock {
+				width: 300px;
+				height: 300px;
+				border-radius: 50%;
+				background-color: lightgrey;
+				margin: auto;
+			}
+	
+			span {
+				display: block;
+				width: 100%;
+				margin: auto;
+				padding-top: 60px;
+				text-align: center;
+				font-size: 150px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>JavaScript Progress Bar</h1>
+		<div id="clock">
+			<span id="seconds">10</span>
+		</div>
+		<br>
+		<button onclick="countdown()">Click Me</button> 
+		
+		<script>
+			setState = 10;
+			timeleft = null;
+			function countdown() {
+				console.log("countdown execute");
+				setState--;
+				document.getElementById("seconds").setState = timeleft;
+				if (timeleft > 0) {
+					setTimeout(countdown, 1000);
+				}
+			};
+			setTimeout(countdown, 1000);
+			console.log("script execute");
+		</script>
+	</body>
+</html>

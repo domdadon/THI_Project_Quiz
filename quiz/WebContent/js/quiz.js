@@ -11,14 +11,12 @@ function init() {
 
 
 function checkAnswer(event) {
-	var source = event.target.id
-	//var source = document.getElementById("a_ID1").id;
 	var q_ID = document.getElementById("question").dataset.questionid;
 	var a_ID = event.target.dataset.answerid;
 		
 	element = event.target;
 	
-	var par = "action=setAnswer&question="+q_ID+"&answer="+a_ID
+	var par = "action=setAnswer&question="+q_ID+"&answer="+a_ID;
 	
 	xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("POST", "../quizmanagement", true);

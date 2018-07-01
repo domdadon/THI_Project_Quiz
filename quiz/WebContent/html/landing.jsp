@@ -22,6 +22,6 @@
 		
 	</article>
 	
-	<div>Highscore Tabelle</div>
+	<div class="highscore">Highscore Tabelle</div>
 			
 <%@ include file="footer.jspf" %>

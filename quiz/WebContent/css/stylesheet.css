@@ -42,12 +42,6 @@ legend {
 	box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
-input:hover {
-    background: #fffff0;
-    border: 2px solid #efe816; 
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-
 button[type="submit"]:hover {
     background:#366896;
     border: 1px solid #3879B4; 
@@ -67,30 +61,59 @@ button[type="submit"] {
 	border-radius: 0px;
 }
 
-input:required + label::after{ color: red; content: " *";}
-
-input[type='email']:valid + label::after{
-    color: green;
-    content: " ✓"; 
-}
-
 label {
     min-width: 8em;
     display: inline-block;
 	text-align: left;
 }
 
-form div { padding: 0.2em; }
+form div {
+	padding: 0.2em;
+}
 
-input { width: 16em; }
+input {
+	width: 16em;
+}
+
+input:hover {
+    background: #fffff0;
+    border: 2px solid #efe816; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+input:required + label::after{
+	color: red;
+	content: " *";
+	}
+
+/*input[type='email']:valid + label::after{
+    color: green;
+    content: " ✔";
+}
+
+
+input[type='text']:valid + label::after{
+    color: green;
+    content: " ✔";
+}*/
+
+/*input:valid + label::after{
+    color: green;
+    content: " ✔";
+}*/
+
+input.userExisting + label::after{
+    color: red;
+    content: " Benutzername bereits vorhanden";
+}
 
 button.answer:hover {
-    background:#366896;
+    background: #366896;
     border: 1px solid #3879B4; 
 }
 
 button.answer:active {
-    background:#8f8f8f;
+    background: #8f8f8f;
 }
 
 button.answer {
@@ -138,4 +161,50 @@ div.noscript {
 	bottom: 0;
 	opacity: 0.9;
 	font-size: 1.5em;
+}
+
+/* Dropdown Button */
+.dropbutton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+/* dropdown Container zum Positionieren */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* dropdown Inhalt */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Links innerhalb dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Farbwechsel */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* dropdown aufklappen */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Farbwechsel beim dropdownbutton */
+.dropdown:hover .dropbutton {
+    background-color: #3e8e41;
 }
