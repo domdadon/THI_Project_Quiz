@@ -12,6 +12,7 @@
 		<title>Megaquiz</title>
 	</head>
 	<body>
+		<noscript><div class="noscript">Hinweis: Diese Seite nutzt JavaScript. Bitte aktivieren JavaScript um das Quiz zu starten.</div></noscript>
 		<header>
 			<h1>Megaquiz</h1>
 			Hallo, (User) Logout

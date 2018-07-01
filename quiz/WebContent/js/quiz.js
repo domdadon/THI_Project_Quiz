@@ -35,5 +35,6 @@ function response() {
 		} else {
 			element.className = "answerFalse";
 		}
+		element.setAttribute("disabled");
 	}
 }

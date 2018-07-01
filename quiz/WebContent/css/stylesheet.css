@@ -122,3 +122,20 @@ button.answerFalse {
 	color: #ffffff;
 	border-radius: 0px;
 }
+
+div.noscript {
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+	padding: 25px;
+	background: red;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	opacity: 0.9;
+	font-size: 1.5em;
+}
