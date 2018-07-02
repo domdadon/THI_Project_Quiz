@@ -30,12 +30,6 @@ article {
     border-radius: 0.5em 0.5em 0.5em 0.5em;
 }
 
-h1 {
-	font-size: 2.5em;
-	text-align: center;
-    border: 0px solid;
-}
-
 fieldset {
 	width: 300px;
 	padding-top: 1.5em;
@@ -179,6 +173,14 @@ div.button {
 div.formhead {
 	font-size: 1.8em;
 	text-align: center
+}
+
+div.heading {
+	font-size: 2.5em;
+	font-weight: bold;
+	text-align: center;
+	padding: 10px;
+	
 }
 
 div.register {

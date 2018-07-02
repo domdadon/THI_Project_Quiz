@@ -14,14 +14,14 @@
 	<body>
 		<noscript><div class="noscript">Hinweis: Diese Seite nutzt JavaScript. Bitte aktivieren JavaScript um das Quiz zu starten.</div></noscript>
 		<header>
-			<h1>Megaquiz</h1>
+			<div class="heading">Megaquiz</div>
 			<nav>
 				Hallo, (User)&nbsp;&nbsp;&nbsp;
 				<div class="dropdown">
 					<button class="dropbutton">Menü</button>
 						<div class="dropdown-content">
 				    		<a href="#">Persönliche Daten</a>
-				    		<a href="#">Link 2</a>
+				    		<a href="#">Link xxx</a>
 				    		<a href="#">Abmelden</a>
 				  		</div>
 				</div>
