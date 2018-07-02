@@ -86,7 +86,14 @@ button[type="submit"] {
 	color: #ffffff;
 	border-radius: 0px;
 	position: relative;
-	
+}
+
+button.quiz[disabled]{
+	background: #8f8f8f;
+}
+
+button.quiz[disabled]:hover {
+	background: #8f8f8f;
 }
 
 label {

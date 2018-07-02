@@ -20,7 +20,7 @@
 							<div class="inputrequired">* Pflichtfeld</div>
 							<p>
 							<div class="button">
-								<button type="submit" name="action" value="login">Anmelden</button>
+								<button type="submit" class="quiz" id="login" name="action" value="login" disabled="disabled">Anmelden</button>
 							</div>
 						</form>
 						<p>
