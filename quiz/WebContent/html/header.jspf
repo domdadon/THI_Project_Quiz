@@ -15,13 +15,15 @@
 		<noscript><div class="noscript">Hinweis: Diese Seite nutzt JavaScript. Bitte aktivieren JavaScript um das Quiz zu starten.</div></noscript>
 		<header>
 			<h1>Megaquiz</h1>
-			Hallo, (User) Logout
-			<div class="dropdown">
-				<button class="dropbutton">Menü</button>
-					<div class="dropdown-content">
-			    		<a href="#">Link 1</a>
-			    		<a href="#">Link 2</a>
-			    		<a href="#">Link 3</a>
-			  		</div>
-			</div>
+			<nav class="mainnav">
+				Hallo, (User) Logout
+				<div class="dropdown">
+					<button class="dropbutton">Menü</button>
+						<div class="dropdown-content">
+				    		<a href="#">Link 1</a>
+				    		<a href="#">Link 2</a>
+				    		<a href="#">Link 3</a>
+				  		</div>
+				</div>
+			</nav>
 		</header>

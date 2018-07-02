@@ -22,7 +22,7 @@
 					<div>
 						<label for="userName">Benutzername:</label>
 						<input type="text" name="userName" id="userName" class="userName" placeholder="MaxMustermann" required="required" />
-						<label for="userName" class="checkUsername"></label>
+						<label for="userName"></label>
 					</div>
 					<div>
 						<label for="password">Passwort:</label>
@@ -39,6 +39,8 @@
 					<p>
 					<div class="login"><a href="login.jsp">zurück zum Login</a></div>
 			</fieldset>
-			<div class="highscore">Highscore Tabelle</div>
+			<aside class="sidebar">
+				<div class="highscore">Highscore Tabelle</div>
+			</aside>
 			<script type="text/javascript" src="../js/register.js"></script>
 <%@ include file="footer.jspf" %>

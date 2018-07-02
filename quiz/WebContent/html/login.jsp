@@ -25,6 +25,8 @@
 				<p>
 				<div class="register">oder <a href="register.jsp">Registrieren</a></div>
 			</fieldset>
-			<div class="highscore">Highscore Tabelle</div>
+			<aside class="sidebar">
+				<div class="highscore">Highscore Tabelle</div>
+			</aside>
 			<script type="text/javascript" src="../js/login.js"></script>
 <%@ include file="footer.jspf" %>

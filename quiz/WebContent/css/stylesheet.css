@@ -24,16 +24,18 @@ h1 {
 }
 
 fieldset {
-	width: 22%;
+	width: 23%;
 	padding-top: 1.5em;
 	padding-left: 1.5em;
+	padding-right: 1.5em;
 	background: #dddddd;
 	border: 1px solid;
 	border-radius: 6px;
 	box-shadow: 0 0 10px rgba(0,0,0,0.2);
  	margin: auto; /* zentriert Formular */
 }
- 
+
+/*nicht mehr verwendet*/
 legend {
 	background: white;
 	padding: 0.3em;
@@ -52,7 +54,7 @@ button[type="submit"]:active {
 }
 
 button[type="submit"] {
-	width: 12em;
+	width: 100%;
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
 	background: #3879B4;
@@ -78,7 +80,7 @@ form div {
 }
 
 input {
-	width: 16em;
+	width: 100%;
 	font-size: em;
 }
 
@@ -90,22 +92,37 @@ input:hover {
 
 input:required + label::after{
 	color: red;
-	content: " *";
+	content: "*";
+	position: relative;
+	left: 240px;
+	top: -23px;
 	}
 
 input:valid + label::after{
     color: green;
-    content: " ✔";
+    content: "✔";
+   	position: relative;
+	font-size: 0.85em;
+	left: 240px;
+	top: -23px;
 }
 
 input.userExisting + label::after{
     color: red;
     content: "Benutzername bereits vorhanden";
+	position: relative;
+	left: 240px;
+	top: -50px;
+	
 }
 
 input.userNotExisting + label::after{
     color: red;
     content: "Benutzername nicht vorhanden";
+	  font-size: 0.75em;
+		position: relative;
+	left: 1px;
+	top: 0px;
 }
 
 button.answer:hover {
@@ -170,7 +187,6 @@ div.inputrequired {
 	font-size: 0.75em;
 	position: relative;
 	text-align: right;
-	right: 25px;
 }
 
 div.noscript {
