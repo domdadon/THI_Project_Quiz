@@ -1,17 +1,19 @@
 div.grid {
 	display: flex;
 	flex-flow: row wrap;
-	border: 5px solid green;
+	/*border: 5px solid green;*/
 }
 
 section {
 	flex: 4;
-	border: 3px solid black;
+	/*border: 3px solid black;*/
 }
 
 aside {
-	flex: 1;
+	flex: 2;
 	border: 3px solid red;
+margin: 30px;
+
 }
   
 body {
@@ -244,6 +246,7 @@ div.noscript {
     padding: 6px 16px;
     text-decoration: none;
     display: block;
+	 text-align: left;
 }
 
 /* Farbwechsel */
@@ -264,4 +267,12 @@ div.noscript {
 
 footer {
 	font-size: 0.7em;
+	text-align: center;
+}
+
+nav {
+	font-size: 0.9em;
+	position: relative;
+	text-align: right;
+	right: 80px;
 }
