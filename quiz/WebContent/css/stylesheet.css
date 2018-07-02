@@ -74,6 +74,9 @@ button[type="submit"] {
 
 label {
     display: inline-block;
+	font-size: 0.8em;
+	position: relative;
+	left: 3px;
 }
 
 label.checkUsername {
@@ -83,7 +86,7 @@ label.checkUsername {
 
 input {
 	width: 100%;
-	font-size: 0.9em;
+	font-size: 1.0em;
 }
 
 input:hover {
@@ -93,20 +96,22 @@ input:hover {
 }
 
 input:required + label::after{
+	font-size: 1.2em;
 	color: red;
 	content: "*";
 	position: relative;
-	left: 240px;
-	top: -23px;
+	left: 290px;
+	top: -21px;
 	}
 
 input:valid + label::after{
-    color: green;
+  font-size: 1.0em;  
+	color: green;
     content: "✔";
    	position: relative;
-	font-size: 0.85em;
-	left: 240px;
-	top: -23px;
+	
+	left: 290px;
+	top: -21px;
 }
 
 input.userExisting + label::after{
@@ -121,10 +126,10 @@ input.userExisting + label::after{
 input.userNotExisting + label::after{
     color: red;
     content: "Benutzername nicht vorhanden";
-	  font-size: 0.75em;
+	  font-size: 0.9em;
 		position: relative;
-	left: 1px;
-	top: 0px;
+	left: 140px;
+	top: -44px;
 }
 
 button.answer:hover {

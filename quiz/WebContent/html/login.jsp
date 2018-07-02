@@ -8,12 +8,12 @@
 							<hr>
 							<p>
 							<div class="form">
-								<label for="userName">Ihr Benutzername:</label>
+								<label for="userName">Benutzername:</label>
 								<input type="text" name="userName" id="userName" class="userName" placeholder="Benutzername" required="required" autofocus="autofocus"/>
 								<label for="userName"></label>
 							</div>
 							<div class="form">
-								<label for="password">Ihr Passwort:</label>
+								<label for="password">Passwort:</label>
 								<input type="password" name="password" id="password" class="password" placeholder="Passwort" required="required" />
 								<label for="password"></label>
 							</div>
