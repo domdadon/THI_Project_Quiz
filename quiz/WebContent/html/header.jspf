@@ -22,7 +22,7 @@
 						<div class="dropdown-content">
 				    		<a href="#">Persönliche Daten</a>
 				    		<a href="#">Link xxx</a>
-				    		<a href="#">Abmelden</a>
+				    		<a href="../index.html">Abmelden</a>
 				  		</div>
 				</div>
 			</nav>

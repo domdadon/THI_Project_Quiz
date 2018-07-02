@@ -4,6 +4,23 @@ div.grid {
 	/*border: 5px solid green;*/
 }
 
+div.currentQuestion {
+	flex: 1;
+	border: 1px solid red;
+}
+
+div.progressbar {
+	flex: 2;
+	border: 1px solid red;
+	text-align: center;
+}
+
+div.numberOfPoints {
+	flex: 1;
+	border: 1px solid red;
+	text-align: right;
+}
+
 section {
 	flex: 4;
 	/*border: 3px solid black;*/
@@ -110,7 +127,7 @@ input:valid + label::after{
     content: "✔";
    	position: relative;
 	
-	left: 290px;
+	left: 280px;
 	top: -21px;
 }
 
@@ -118,9 +135,9 @@ input.userExisting + label::after{
     color: red;
     content: "Benutzername bereits vorhanden";
 	position: relative;
-	left: 240px;
-	top: -50px;
-	
+	left: 130px;
+	top: -44px;
+	font-size: 0.9em;
 }
 
 input.userNotExisting + label::after{
@@ -129,7 +146,7 @@ input.userNotExisting + label::after{
 	  font-size: 0.9em;
 		position: relative;
 	left: 140px;
-	top: -44px;
+	top: -45px;
 }
 
 button.answer:hover {
@@ -142,33 +159,53 @@ button.answer:active {
 }
 
 button.answer {
-	width: 12em;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
+	width: 25em;
+	padding-top: 2.5em;
+	padding-bottom: 2.5em;
+	margin: 10px;
 	background: #3879B4;
 	border: 1px solid #3879B4;
 	color: #ffffff;
 	border-radius: 0px;
+	font-size: 0.9em;
 }
 
 button.answerTrue {
-	width: 12em;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
+	width: 25em;
+	padding-top: 2.5em;
+	padding-bottom: 2.5em;
+	margin: 10px;
 	background: green;
 	border: 1px solid #3879B4;
 	color: #ffffff;
 	border-radius: 0px;
+	font-size: 0.9em;
 }
 
 button.answerFalse {
-	width: 12em;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
+	width: 25em;
+	padding-top: 2.5em;
+	padding-bottom: 2.5em;
+	margin: 10px;
 	background: red;
 	border: 1px solid #3879B4;
 	color: #ffffff;
 	border-radius: 0px;
+	font-size: 0.9em;
+}
+
+button.nextQuestion {
+	width: 12em;
+}
+
+button.startGame {
+	width: 32em;
+	margin: 5px;
+
+}
+
+div.answers {
+	text-align: center;
 }
 
 div.button {
@@ -219,6 +256,20 @@ div.noscript {
 	bottom: 0;
 	opacity: 0.9;
 	font-size: 1.5em;
+}
+
+div.nextQuestion {
+	text-align: right;
+}
+
+div.question {
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+div.start{
+	text-align: center;
 }
 
 /* Dropdown Button */

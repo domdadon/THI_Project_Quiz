@@ -72,7 +72,7 @@ public class QuizManagement extends HttpServlet {
 
 		try {
 			if (action == null) {
-				// Abfrage ob User bereits eine guelltige Session hat
+				// Abfrage ob User bereits eine gueltige Session hat
 				if (userID != -1) {
 					// ja, check ob noch ein offenes Spiel besteht
 					if (hasOpenGame(userID, session)) {
