@@ -1,6 +1,6 @@
 <%@ include file="header.jspf" %>
 			<div class="grid">
-				<aside>Navigation?</aside>
+				<aside><a href="./personal.jsp">Persönliche Daten</a></aside>
 				<section>
 					<fieldset>
 						<form action="../quizmanagement" id="loginForm" method="post">
