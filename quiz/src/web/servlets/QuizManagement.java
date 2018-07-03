@@ -201,22 +201,7 @@ public class QuizManagement extends HttpServlet {
 					dispatcher = request.getRequestDispatcher(quiz);
 					dispatcher.forward(request, response);
 					break;
-					
 
-				/*
-				case "personal":
-					UserBean ub = new UserBean();
-					ub = getUserData(nname, vname, user, mail);
-					request.setAttribute("U", "o");
-					
-				*/
-
-				// T E S T Daniel
-				/*case "personal":
-					UserBean ub = new UserBean();
-					ub = getUserData(nname, vname, user, mail);
-					request.setAttribute("U, o);
-				*/
 				}
 			}
 		} catch (Exception ex) {
@@ -476,33 +461,6 @@ public class QuizManagement extends HttpServlet {
 
 		}
 	}
-
-
-
-	/*
-	protected UserBean getUserData(Integer idUser) throws Exception {
-
-		try (Connection cnx = ds.getConnection()) {
-			UserBean ub = new UserBean();
-			
-			PreparedStatement sql = cnx.prepareStatement("SELECT * FROM thidb.users WHERE idUser = ?");
-			
-			sql.setInt(1, idUser);
-			
-			ResultSet rs = sql.executeQuery();
-
-				return ub;
-
-			} catch (Exception ex) {
-				throw ex;
-			}
-		}
-
-	
-
-	}
-	*/
-
 	
 	private List<HighscoreEntryBean> getHighScoreEntries(){
 		List<HighscoreEntryBean> result = new ArrayList<HighscoreEntryBean>();
