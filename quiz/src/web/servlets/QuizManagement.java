@@ -31,8 +31,9 @@ public class QuizManagement extends HttpServlet {
 	private DataSource ds;
 	private String landing = "./html/landing.jsp";
 	private String quiz = "./html/quiz.jsp";
-	private String login = "/html/login.jsp";
-	private String register = "/html/register.jsp";
+	private String login = "./html/login.jsp";
+	private String register = "./html/register.jsp";
+	private String personal = "./html/personal.jsp";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -79,7 +80,7 @@ public class QuizManagement extends HttpServlet {
 
 		try {
 			if (action == null) {
-				// Abfrage ob User bereits eine gültige Session hat
+				// Abfrage ob User bereits eine gueltige Session hat
 				if (userID != -1) {
 					// ja, check ob noch ein offenes Spiel besteht
 					if (hasOpenGame(userID, session)) {
@@ -97,6 +98,7 @@ public class QuizManagement extends HttpServlet {
 					dispatcher.forward(request, response);
 				}
 			} else {
+				// Passwort + Username aus Formular auslesen
 				String password = request.getParameter("password");
 				String userName = request.getParameter("userName");
 				
@@ -142,10 +144,10 @@ public class QuizManagement extends HttpServlet {
 					break;
 				case "checkUsername":
 					if (checkUsername(userName)) {
-						response.getWriter().println("true");
+						response.getWriter().append("true");
 					}
 					else {
-						response.getWriter().println("false");
+						response.getWriter().append("false");
 					}						
 					break;
 				case "startGame2":

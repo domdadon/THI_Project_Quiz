@@ -6,13 +6,25 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta name="author" content="Dominik Mueller, Daniel Reiss, Harald Schwirzenbeck">
+		<meta name="author" content="Dominik Mueller, Daniel Reiss,  Harald Schwirzenbeck">
 		<base href="${pageContext.request.requestURI}" />
 		<link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
 		<title>Megaquiz</title>
 	</head>
 	<body>
+		<noscript><div class="noscript">Hinweis: Diese Seite nutzt JavaScript. Bitte aktivieren JavaScript um das Quiz zu starten.</div></noscript>
 		<header>
-			<h1>Megaquiz</h1>
-			Hallo, (User) Logout
+			<div class="heading">Megaquiz</div>
+			<nav>
+				Hallo ${UserBean.vname}, ${UserBean.nname}&nbsp;&nbsp;&nbsp;
+				<div class="dropdown">
+					<button class="dropbutton">Menü</button>
+						<div class="dropdown-content">
+				    		<a href="#">Persönliche Daten</a>
+				    		<a href="#">Link xxx</a>
+				    		<a href="../index.html">Abmelden</a>
+				  		</div>
+				</div>
+			</nav>
 		</header>
+		<p>
