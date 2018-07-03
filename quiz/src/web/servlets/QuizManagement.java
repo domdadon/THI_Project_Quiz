@@ -59,7 +59,7 @@ public class QuizManagement extends HttpServlet {
 		Integer categoryID = -1;
 		
 		request.setAttribute("HighScore", getHighScoreEntries());
-		request.setAttribute("UserData", getUserData(1));
+		request.setAttribute("UserData", getUserDataBean(1));
 
 		// Sessionhandling init
 
@@ -202,12 +202,22 @@ public class QuizManagement extends HttpServlet {
 					dispatcher.forward(request, response);
 					break;
 					
+<<<<<<< HEAD
+				/*
+				case "personal":
+					UserBean ub = new UserBean();
+					ub = getUserData(nname, vname, user, mail);
+					request.setAttribute("U", "o");
+					
+				*/
+=======
 				// T E S T Daniel
 				/*case "personal":
 					UserBean ub = new UserBean();
 					ub = getUserData(nname, vname, user, mail);
 					request.setAttribute("U, o);
 					*/			
+>>>>>>> 8cc232a7e19f2089f5cc88cadeecd9142be4b8de
 				}
 			}
 		} catch (Exception ex) {
@@ -468,8 +478,11 @@ public class QuizManagement extends HttpServlet {
 		}
 	}
 
+<<<<<<< HEAD
+=======
 
 	/*
+>>>>>>> 8cc232a7e19f2089f5cc88cadeecd9142be4b8de
 	protected UserBean getUserData(Integer idUser) throws Exception {
 
 		try (Connection cnx = ds.getConnection()) {
@@ -487,8 +500,12 @@ public class QuizManagement extends HttpServlet {
 				throw ex;
 			}
 		}
+<<<<<<< HEAD
+	
+=======
 	}
 	*/
+>>>>>>> 8cc232a7e19f2089f5cc88cadeecd9142be4b8de
 
 
 	
@@ -502,8 +519,13 @@ public class QuizManagement extends HttpServlet {
 		return result;
 	}
 	
+<<<<<<< HEAD
+	private UserBean getUserDataBean(Integer UserID) {
+		return new UserBean("Müller", "Dominik", "domdadon", "dom@test.de", 1);
+=======
 	private UserBean getUserData(Integer UserID) {
 		return new UserBean("Mueller", "Dominik", "domdadon", "dom@test.de", 1);
+>>>>>>> 8cc232a7e19f2089f5cc88cadeecd9142be4b8de
 	}
 }
 

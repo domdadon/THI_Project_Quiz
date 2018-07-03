@@ -17,6 +17,11 @@ public class UserBean implements Serializable {
 	}
 	
 	
+	public UserBean() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public String getNname() {
 		return nname;
 	}
