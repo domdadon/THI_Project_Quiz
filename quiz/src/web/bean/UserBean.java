@@ -5,9 +5,17 @@ import java.io.Serializable;
 public class UserBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 		
-	//Passwort aus Sicherheitsgründen nicht in der Bean vorhanden
+	//Passwort aus Sicherheitsgrï¿½nden nicht in der Bean vorhanden
 	private String nname, vname, user, mail;
 	private int idUser;
+	
+	public UserBean(String nName, String vName, String user, String mail, int idUser) {
+		this.nname = nName;
+		this.vname = vName;
+		this.user = user;
+		this.idUser = idUser;
+	}
+	
 	
 	public String getNname() {
 		return nname;
