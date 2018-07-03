@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import web.bean.QuestionBean;
+import web.bean.UserBean;
 
 /**
  * Servlet implementation class test
@@ -70,6 +71,7 @@ public class QuizManagement extends HttpServlet {
 
 		String action = request.getParameter("action");
 		QuestionBean qb;
+		UserBean ub;
 
 		try {
 			if (action == null) {
@@ -193,6 +195,12 @@ public class QuizManagement extends HttpServlet {
 					dispatcher = request.getRequestDispatcher(quiz);
 					dispatcher.forward(request, response);
 					break;
+					
+				// T E S T Daniel
+				case "personal":
+					UserBean ub = new UserBean();
+					ub = getUserData(nname, vname, user, mail);
+					request.setAttribute("U, o);			
 				}
 			}
 		} catch (Exception ex) {
@@ -452,4 +460,25 @@ public class QuizManagement extends HttpServlet {
 
 		}
 	}
-}
+
+	//#####################################
+	protected UserBean getUserData(Integer idUser) throws Exception {
+
+		try (Connection cnx = ds.getConnection()) {
+			UserBean ub = new UserBean();
+			
+			PreparedStatement sql = cnx.prepareStatement("SELECT * FROM thidb.users WHERE idUser = ?");
+			
+			sql.setInt(1, idUser);
+			
+			ResultSet rs = sql.executeQuery();
+
+				return ub;
+
+			} catch (Exception ex) {
+				throw ex;
+			}
+		}
+	}
+	//#####################################
+
