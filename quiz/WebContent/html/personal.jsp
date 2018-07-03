@@ -1,9 +1,9 @@
 <%@ include file="header.jspf" %>
 	<div class="grid">
 		<aside><a href="./personal.jsp">Persönliche Daten</a></aside>
-		<fieldset>
-			<section>
-				<div class="formhead">Ihre Daten:</div>
+		<section>
+			<fieldset>
+				<div class="formhead">Ihre Daten</div>
 				<hr>
 				<p>
 				<div>Nachname: ${UserBean.nname}</div>
@@ -13,9 +13,8 @@
 				<div>Punkte Gesamt: x</div>
 				<div>Anzahl Spiele: x</div>
 				<div>Quote richtige Antworten: x%</div>
-				
-			</section>
-		</fieldset>
+			</fieldset>
+		</section>
 		<aside class="sidebar">
 					<div class="highscore">Highscore Tabelle</div>
 		</aside>

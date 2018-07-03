@@ -29,6 +29,7 @@ public class QuizManagement extends HttpServlet {
 	private String quiz = "./html/quiz.jsp";
 	private String login = "./html/login.jsp";
 	private String register = "./html/register.jsp";
+	private String personal = "./html/personal.jsp";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -90,6 +91,7 @@ public class QuizManagement extends HttpServlet {
 					dispatcher.forward(request, response);
 				}
 			} else {
+				// Passwort + Username aus Formular auslesen
 				String password = request.getParameter("password");
 				String userName = request.getParameter("userName");
 				
