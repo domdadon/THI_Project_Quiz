@@ -203,10 +203,11 @@ public class QuizManagement extends HttpServlet {
 					break;
 					
 				// T E S T Daniel
-				case "personal":
+				/*case "personal":
 					UserBean ub = new UserBean();
 					ub = getUserData(nname, vname, user, mail);
-					request.setAttribute("U, o);			
+					request.setAttribute("U, o);
+					*/			
 				}
 			}
 		} catch (Exception ex) {
@@ -466,9 +467,9 @@ public class QuizManagement extends HttpServlet {
 
 		}
 	}
-<<<<<<< HEAD
 
-	//#####################################
+
+	/*
 	protected UserBean getUserData(Integer idUser) throws Exception {
 
 		try (Connection cnx = ds.getConnection()) {
@@ -487,9 +488,9 @@ public class QuizManagement extends HttpServlet {
 			}
 		}
 	}
-	//#####################################
+	*/
 
-=======
+
 	
 	private List<HighscoreEntryBean> getHighScoreEntries(){
 		List<HighscoreEntryBean> result = new ArrayList<HighscoreEntryBean>();
@@ -502,7 +503,7 @@ public class QuizManagement extends HttpServlet {
 	}
 	
 	private UserBean getUserData(Integer UserID) {
-		return new UserBean("Müller", "Dominik", "domdadon", "dom@test.de", 1);
+		return new UserBean("Mueller", "Dominik", "domdadon", "dom@test.de", 1);
 	}
 }
->>>>>>> 610240294ddf4c555e58f2213c4c08c28b40a887
+
