@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import web.bean.HighscoreEntryBean;
 import web.bean.QuestionBean;
 import web.bean.UserBean;
 
@@ -54,6 +57,9 @@ public class QuizManagement extends HttpServlet {
 		Integer userID = -1;
 		Integer gameID = -1;
 		Integer categoryID = -1;
+		
+		request.setAttribute("HighScore", getHighScoreEntries());
+		request.setAttribute("UserData", getUserData(1));
 
 		// Sessionhandling init
 
@@ -460,6 +466,7 @@ public class QuizManagement extends HttpServlet {
 
 		}
 	}
+<<<<<<< HEAD
 
 	//#####################################
 	protected UserBean getUserData(Integer idUser) throws Exception {
@@ -482,3 +489,20 @@ public class QuizManagement extends HttpServlet {
 	}
 	//#####################################
 
+=======
+	
+	private List<HighscoreEntryBean> getHighScoreEntries(){
+		List<HighscoreEntryBean> result = new ArrayList<HighscoreEntryBean>();
+		
+		for (int i = 1; i<=10;i++) {
+			result.add(new HighscoreEntryBean("user" + String.valueOf(i),10-i,i));
+		}
+		
+		return result;
+	}
+	
+	private UserBean getUserData(Integer UserID) {
+		return new UserBean("Müller", "Dominik", "domdadon", "dom@test.de", 1);
+	}
+}
+>>>>>>> 610240294ddf4c555e58f2213c4c08c28b40a887
