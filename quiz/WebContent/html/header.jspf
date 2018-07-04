@@ -16,7 +16,7 @@
 		<header>
 			<div class="heading">Megaquiz</div>
 			<nav>
-				Hallo, ${UserBean}&nbsp;&nbsp;&nbsp;
+				Hallo, <div class="getUser" id="getUser">Gast</div>&nbsp;&nbsp;&nbsp;
 				<div class="dropdown">
 					<button class="dropbutton">Menü</button>
 						<div class="dropdown-content">
@@ -28,3 +28,4 @@
 			</nav>
 		</header>
 		<p>
+		<script type="text/javascript" src="../js/header.js"></script>

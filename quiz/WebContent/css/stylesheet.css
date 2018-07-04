@@ -279,6 +279,10 @@ div.start{
 	text-align: center;
 }
 
+div.getUser {
+	color: red;
+}
+
 /* Dropdown Button */
 .dropbutton {
     background-color: #3879B4;

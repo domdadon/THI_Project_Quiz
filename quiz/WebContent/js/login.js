@@ -13,12 +13,12 @@ function checkUsername() {
 	
 	xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("POST", "../quizmanagement", true);
-	xmlhttp.onreadystatechange = response;
+	xmlhttp.onreadystatechange = responseCheckUsername;
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.send(par);
 }
 
-function response() {
+function responseCheckUsername() {
 	console.log("response checkUsername executed");
 	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 		if (xmlhttp.responseText == "true") {
