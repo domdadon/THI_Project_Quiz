@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
@@ -15,7 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import web.bean.HighscoreEntryBean;
 import web.bean.QuestionBean;
+import web.bean.UserBean;
 
 /**
  * Servlet implementation class test
@@ -27,8 +31,9 @@ public class QuizManagement extends HttpServlet {
 	private DataSource ds;
 	private String landing = "./html/landing.jsp";
 	private String quiz = "./html/quiz.jsp";
-	private String login = "/html/login.jsp";
-	private String register = "/html/register.jsp";
+	private String login = "./html/login.jsp";
+	private String register = "./html/register.jsp";
+	private String personal = "./html/personal.jsp";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -52,6 +57,9 @@ public class QuizManagement extends HttpServlet {
 		Integer userID = -1;
 		Integer gameID = -1;
 		Integer categoryID = -1;
+		
+		request.setAttribute("HighScore", getHighScoreEntries());
+		request.setAttribute("UserData", getUserData(1));
 
 		// Sessionhandling init
 
@@ -69,10 +77,11 @@ public class QuizManagement extends HttpServlet {
 
 		String action = request.getParameter("action");
 		QuestionBean qb;
+		UserBean ub;
 
 		try {
 			if (action == null) {
-				// Abfrage ob User bereits eine gültige Session hat
+				// Abfrage ob User bereits eine gueltige Session hat
 				if (userID != -1) {
 					// ja, check ob noch ein offenes Spiel besteht
 					if (hasOpenGame(userID, session)) {
@@ -90,6 +99,7 @@ public class QuizManagement extends HttpServlet {
 					dispatcher.forward(request, response);
 				}
 			} else {
+				// Passwort + Username aus Formular auslesen
 				String password = request.getParameter("password");
 				String userName = request.getParameter("userName");
 				
@@ -135,10 +145,10 @@ public class QuizManagement extends HttpServlet {
 					break;
 				case "checkUsername":
 					if (checkUsername(userName)) {
-						response.getWriter().println("true");
+						response.getWriter().append("true");
 					}
 					else {
-						response.getWriter().println("false");
+						response.getWriter().append("false");
 					}						
 					break;
 				case "startGame2":
@@ -191,6 +201,7 @@ public class QuizManagement extends HttpServlet {
 					dispatcher = request.getRequestDispatcher(quiz);
 					dispatcher.forward(request, response);
 					break;
+
 				}
 			}
 		} catch (Exception ex) {
@@ -450,4 +461,21 @@ public class QuizManagement extends HttpServlet {
 
 		}
 	}
+	
+	private List<HighscoreEntryBean> getHighScoreEntries(){
+		List<HighscoreEntryBean> result = new ArrayList<HighscoreEntryBean>();
+		
+		for (int i = 1; i<=10;i++) {
+			result.add(new HighscoreEntryBean("user" + String.valueOf(i),10-i,i));
+		}
+		
+		return result;
+	}
+	
+
+	private UserBean getUserData(Integer UserID) {
+		return new UserBean("Mueller", "Dominik", "domdadon", "dom@test.de", 1);
+
+	}
 }
+

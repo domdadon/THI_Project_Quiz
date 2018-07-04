@@ -1,7 +1,7 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", init);
 var element;
-var xmlhttp = null;
+var xmlhttp;
 function init() {
 	document.getElementById("answer1").addEventListener("click", checkAnswer);
 	document.getElementById("answer2").addEventListener("click", checkAnswer);
@@ -11,14 +11,12 @@ function init() {
 
 
 function checkAnswer(event) {
-	var source = event.target.id
-	//var source = document.getElementById("a_ID1").id;
 	var q_ID = document.getElementById("question").dataset.questionid;
 	var a_ID = event.target.dataset.answerid;
 		
 	element = event.target;
 	
-	var par = "action=setAnswer&question="+q_ID+"&answer="+a_ID
+	var par = "action=setAnswer&question="+q_ID+"&answer="+a_ID;
 	
 	xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("POST", "../quizmanagement", true);
@@ -35,5 +33,10 @@ function response() {
 		} else {
 			element.className = "answerFalse";
 		}
+		console.log("buttons disablen");
+		document.getElementById("answer1").setAttribute("disabled", "disabled");
+		document.getElementById("answer2").setAttribute("disabled", "disabled");
+		document.getElementById("answer3").setAttribute("disabled", "disabled");
+		document.getElementById("answer4").setAttribute("disabled", "disabled");
 	}
 }

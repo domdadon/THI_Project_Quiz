@@ -5,8 +5,17 @@ import java.io.Serializable;
 public class HighscoreEntryBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	
+	
 	private String username;
 	private int score, rank;
+	
+	public HighscoreEntryBean(String username, int score, int rank) {
+		this.rank = rank;
+		this.score = score;
+		this.username = username;
+	}
+	
 	
 	public String getUsername() {
 		return username;
