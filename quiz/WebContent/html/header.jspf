@@ -16,7 +16,7 @@
 		<header>
 			<div class="heading">Megaquiz</div>
 			<nav>
-				Hallo ${UserBean.vName}, ${UserBean.nName}&nbsp;&nbsp;&nbsp;
+				Hallo, ${UserBean}&nbsp;&nbsp;&nbsp;
 				<div class="dropdown">
 					<button class="dropbutton">Menü</button>
 						<div class="dropdown-content">
