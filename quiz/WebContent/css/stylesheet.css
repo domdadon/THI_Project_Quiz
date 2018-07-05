@@ -28,9 +28,10 @@ section {
 
 aside {
 	flex: 2;
-	border: 3px solid red;
+	//border: 3px solid red;
 margin: 30px;
-
+position: relative;
+	top: -35px;
 }
   
 body {
@@ -246,6 +247,11 @@ div.heading {
 	
 }
 
+div.highscore {
+	font-size: 1.3em;
+	text-align: center;
+}
+
 div.register {
 	font-size: 0.75em;
 	text-align: center;
@@ -363,4 +369,31 @@ nav {
 	position: relative;
 	text-align: right;
 	right: 80px;
+}
+
+table.highscore {
+	text-align: center;
+	border-collapse: collapse;
+	margin-left: auto; 
+	margin-right: auto;
+	border: 1px solid #3879B4;
+}
+
+table.highscore th {
+	color: white;
+	background-color: #3879B4;
+	padding: 5px;
+}
+
+table.highscore tr:hover {
+	background-color: grey;
+}
+
+table.highscore td {
+	//border: 1px solid black;
+	padding: 3px;
+}
+
+table.highscore tr:nth-child(even){
+	background-color: #dddddd;
 }

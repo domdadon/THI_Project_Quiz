@@ -30,7 +30,21 @@
 					</fieldset>
 				</section>
 				<aside class="sidebar">
-					<div class="highscore">Highscore Tabelle</div>
+					<div class="highscore">Highscore Tabelle</div><p>
+						<table class="highscore">
+							<tr>
+								<th>Platz</th>
+								<th>Benutzername</th>
+								<th>Punkte</th>
+						 	</tr>
+							<c:forEach items="${HighScore}" var="HighscoreEntryBean">
+								<tr>
+									<td>${HighscoreEntryBean.rank}</td>
+									<td>${HighscoreEntryBean.username}</td>
+									<td>${HighscoreEntryBean.score}</td>
+								</tr>
+							</c:forEach>
+						</table>
 				</aside>
 			</div>
 			<script type="text/javascript" src="../js/login.js"></script>

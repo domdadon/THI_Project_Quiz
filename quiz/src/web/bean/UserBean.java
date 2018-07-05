@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class UserBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 		
-	//Passwort aus Sicherheitsgr�nden nicht in der Bean vorhanden
+	//Passwort aus Sicherheitsgruenden nicht in der Bean vorhanden
 	private String nname, vname, user, mail;
 	private int idUser;
 	
