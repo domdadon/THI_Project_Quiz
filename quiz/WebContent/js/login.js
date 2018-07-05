@@ -2,6 +2,7 @@
 document.addEventListener("DOMContentLoaded", init);
 var element;
 var xmlhttp = null;
+
 function init() {
 	document.getElementById("userName").addEventListener("keyup", checkUsername);
 }
