@@ -1,8 +1,7 @@
 <%@ include file="header.jspf" %>
 	<div class="grid">
 		<aside>
-			Navigation?
-			<div class="getUser" id="getUser">Hallo ${UserData.vname} ${UserData.nname}</div>
+			<div class="getUser" id="getUser">Hallo ${UserData.vname} ${UserData.nname}</div><p>
 			<form action="../quizmanagement" id="navigation" method="post">
 						<button type="submit" class="navigation" id="navigation" name="action" value="personal">Persönliche Daten</button><p>
 						<button type="submit" class="navigation" id="navigation" name="action" value="statistik">Statistik</button><p>

@@ -20,8 +20,8 @@
 				<div class="dropdown">
 					<button class="dropbutton">Menü</button>
 						<div class="dropdown-content">
-				    		<a href="#">Persönliche Daten</a>
-				    		<a href="#">Link xxx</a>
+				    		<a href="#">Test</a>
+				    		<a href="#">Test</a>
 				    		<a href="../index.html">Abmelden</a>
 				  		</div>
 				</div>
