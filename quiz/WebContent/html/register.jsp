@@ -1,6 +1,10 @@
 <%@ include file="header.jspf" %>
 			<div class="grid">
-				<aside></aside>
+				<aside>
+					<div class="navigation">
+						<div class="getUser" id="getUser">Hallo Gast ${UserData.vname} ${UserData.nname}</div>
+					</div>
+				</aside>
 				<section>
 					<fieldset>
 						<form action="../quizmanagement" id="loginForm" method="post">

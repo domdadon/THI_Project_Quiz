@@ -1,7 +1,9 @@
 <%@ include file="header.jspf" %>
 			<div class="grid">
 				<aside>
-					<div class="getUser" id="getUser">Hallo Gast ${UserData.vname} ${UserData.nname}</div>
+					<div class="navigation">
+						<div class="getUser" id="getUser">Hallo Gast ${UserData.vname} ${UserData.nname}</div>
+					</div>
 				</aside>
 				<section>
 					<fieldset>

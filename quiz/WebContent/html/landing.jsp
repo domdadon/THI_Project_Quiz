@@ -1,12 +1,14 @@
 <%@ include file="header.jspf" %>
 	<div class="grid">
 		<aside>
-			<div class="getUser" id="getUser">Hallo ${UserData.vname} ${UserData.nname}</div><p>
-			<form action="../quizmanagement" id="navigation" method="post">
-						<button type="submit" class="navigation" id="navigation" name="action" value="personal">Persönliche Daten</button><p>
-						<button type="submit" class="navigation" id="navigation" name="action" value="statistik">Statistik</button><p>
-						<button type="submit" class="navigation" id="navigation" name="action" value="logout">Abmelden</button>
-			</form>
+			<div class="navigation">
+				<div class="getUser" id="getUser">Hallo ${UserData.vname} ${UserData.nname}</div><p>
+				<form action="../quizmanagement" id="navigation" method="post">
+							<button type="submit" class="navigation" id="navigation" name="action" value="personal">Persönliche Daten</button><p>
+							<button type="submit" class="navigation" id="navigation" name="action" value="statistik">Statistik</button><p>
+							<button type="submit" class="navigation" id="navigation" name="action" value="logout">Abmelden</button>
+				</form>
+			</div>
 		</aside>
 		<section>
 			<article>

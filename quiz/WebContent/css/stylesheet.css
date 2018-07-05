@@ -202,6 +202,10 @@ button.answerFalse {
 	font-size: 0.9em;
 }
 
+button.navigation {
+	width: 15em;
+}
+
 button.nextQuestion {
 	padding: 15px;
 	position: relative;
@@ -266,6 +270,10 @@ div.inputrequired {
 	font-size: 0.75em;
 	position: relative;
 	text-align: right;
+}
+
+div.navigation {
+	text-align: center;
 }
 
 div.noscript {
@@ -377,6 +385,7 @@ table.highscore {
 	margin-left: auto; 
 	margin-right: auto;
 	border: 1px solid #3879B4;
+	width: 100%;
 }
 
 table.highscore th {
