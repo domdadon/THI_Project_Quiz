@@ -1,13 +1,7 @@
 <%@ include file="header.jspf" %>
 			<div class="grid">
 				<aside>
-					<form action="../quizmanagement" id="navigation" method="post">
-						<button type="submit" class="navigation" id="navigation" name="action" value="start">Startseite</button><p>
-						<button type="submit" class="navigation" id="navigation" name="action" value="personal">Persönliche Daten</button><p>
-						<button type="submit" class="navigation" id="navigation" name="action" value="logout">Abmelden</button>
-					</form>
-					<a href="./personal.jsp">Persönliche Daten (Test)</a><br>
-					<a href="#">Logout (Test)</a>
+					<div class="getUser" id="getUser">Hallo Gast ${UserData.vname} ${UserData.nname}</div>
 				</aside>
 				<section>
 					<fieldset>

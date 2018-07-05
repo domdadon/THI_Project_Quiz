@@ -6,10 +6,10 @@
 				<div class="formhead">Ihre Daten</div>
 				<hr>
 				<p>
-				<div>Nachname: ${UserBean.nname}</div>
-				<div>Vorname: ${UserBean.vname}</div>
-				<div>Benutzername: ${UserBean.user}</div>
-				<div>Vorname: ${UserBean.mail}</div>
+				<div>Nachname: ${UserData.nname}</div>
+				<div>Vorname: ${UserData.vname}</div>
+				<div>Benutzername: ${UserData.user}</div>
+				<div>Vorname: ${UserData.mail}</div>
 				<div>Punkte Gesamt: x</div>
 				<div>Anzahl Spiele: x</div>
 				<div>Quote richtige Antworten: x%</div>

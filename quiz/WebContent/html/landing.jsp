@@ -1,6 +1,14 @@
 <%@ include file="header.jspf" %>
 	<div class="grid">
-		<aside>Navigation?</aside>
+		<aside>
+			Navigation?
+			<div class="getUser" id="getUser">Hallo ${UserData.vname} ${UserData.nname}</div>
+			<form action="../quizmanagement" id="navigation" method="post">
+						<button type="submit" class="navigation" id="navigation" name="action" value="start">Startseite</button><p>
+						<button type="submit" class="navigation" id="navigation" name="action" value="personal">Persönliche Daten</button><p>
+						<button type="submit" class="navigation" id="navigation" name="action" value="logout">Abmelden</button>
+					</form>
+		</aside>
 		<section>
 			<article>
 				<div>Deine Punkte im letzten Spiel: xxx</div>
@@ -27,5 +35,5 @@
 		<aside class="sidebar">
 					<div class="highscore">Highscore Tabelle</div>
 		</aside>
-	</div>			
+	</div>
 <%@ include file="footer.jspf" %>

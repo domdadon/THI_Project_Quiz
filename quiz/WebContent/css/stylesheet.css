@@ -202,13 +202,27 @@ button.answerFalse {
 }
 
 button.nextQuestion {
-	width: 12em;
+	padding: 15px;
+	position: relative;
+	top: 10px;
+	width: 12%;
+	background-color: orange;
+	border: 1px solid black;
+	color: black;
+}
+
+button.nextQuestion:hover {
+	padding: 15px;
+	position: relative;
+	width: 12%;
+	background-color: grey;
+	border: 1px solid black;
+	color: white;
 }
 
 button.startGame {
-	width: 32em;
+	width: 80%;
 	margin: 5px;
-
 }
 
 div.answers {
@@ -266,7 +280,7 @@ div.noscript {
 }
 
 div.nextQuestion {
-	text-align: right;
+	text-align: center;
 }
 
 div.question {

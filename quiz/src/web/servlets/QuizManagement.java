@@ -60,6 +60,7 @@ public class QuizManagement extends HttpServlet {
 		
 		request.setAttribute("HighScore", getHighScoreEntries());
 		request.setAttribute("UserData", getUserData(1));
+		
 
 		// Sessionhandling init
 
@@ -74,10 +75,9 @@ public class QuizManagement extends HttpServlet {
 		if (session.getAttribute("categoryID") != null) {
 			categoryID = (Integer) session.getAttribute("categoryID");
 		}
-
+		
 		String action = request.getParameter("action");
 		QuestionBean qb;
-		UserBean ub;
 
 		try {
 			if (action == null) {
@@ -201,7 +201,19 @@ public class QuizManagement extends HttpServlet {
 					dispatcher = request.getRequestDispatcher(quiz);
 					dispatcher.forward(request, response);
 					break;
-
+					
+				case "personal":
+					request.setAttribute("UserData", getUserData(1));
+					dispatcher = request.getRequestDispatcher(personal);
+					dispatcher.forward(request, response);
+					break;
+					
+				case "logout":
+					session.invalidate();
+					request.setAttribute("UserData", getUserData(0));
+					dispatcher = request.getRequestDispatcher(login);
+					dispatcher.forward(request, response);
+			        break;
 				}
 			}
 		} catch (Exception ex) {
@@ -474,8 +486,13 @@ public class QuizManagement extends HttpServlet {
 	
 
 	private UserBean getUserData(Integer UserID) {
-		return new UserBean("Mueller", "Dominik", "domdadon", "dom@test.de", 1);
-
+		
+		if (UserID == 0) {
+			return new UserBean("Gast", "", "", "", 0);
+		} else {
+			return new UserBean("Mueller", "Dominik", "domdadon", "dom@test.de", 1);
+		}
+						
 	}
 }
 
