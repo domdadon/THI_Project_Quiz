@@ -283,6 +283,11 @@ div.nextQuestion {
 	text-align: center;
 }
 
+div.personalhead {
+	font-weight: bold;
+	font-style: italic;
+}
+
 div.question {
 	text-align: center;
 	font-weight: bold;

@@ -34,6 +34,8 @@ public class QuizManagement extends HttpServlet {
 	private String login = "./html/login.jsp";
 	private String register = "./html/register.jsp";
 	private String personal = "./html/personal.jsp";
+	private String statistik = "./html/statistik.jsp";
+	
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -151,21 +153,21 @@ public class QuizManagement extends HttpServlet {
 						response.getWriter().append("false");
 					}						
 					break;
-				case "startGame2":
-					session.setAttribute("categoryID", 2);
-					gameID = startGame(userID, 2);
-					session.setAttribute("gameID", gameID);
-					qb = getNextQuestion(gameID, 2);
-					qb.setQ_Number(1);
-					request.setAttribute("QuestionBean", qb);
-					dispatcher = request.getRequestDispatcher(quiz);
-					dispatcher.forward(request, response);
-					break;
 				case "startGame1":
 					session.setAttribute("categoryID", 1);
 					gameID = startGame(userID, 1);
 					session.setAttribute("gameID", gameID);
 					qb = getNextQuestion(gameID, 1);
+					qb.setQ_Number(1);
+					request.setAttribute("QuestionBean", qb);
+					dispatcher = request.getRequestDispatcher(quiz);
+					dispatcher.forward(request, response);
+					break;
+				case "startGame2":
+					session.setAttribute("categoryID", 2);
+					gameID = startGame(userID, 2);
+					session.setAttribute("gameID", gameID);
+					qb = getNextQuestion(gameID, 2);
 					qb.setQ_Number(1);
 					request.setAttribute("QuestionBean", qb);
 					dispatcher = request.getRequestDispatcher(quiz);
@@ -214,6 +216,17 @@ public class QuizManagement extends HttpServlet {
 					dispatcher = request.getRequestDispatcher(login);
 					dispatcher.forward(request, response);
 			        break;
+			        
+				case "landing":
+					dispatcher = request.getRequestDispatcher(landing);
+					dispatcher.forward(request, response);
+			        break;
+			        
+				case "statistik":
+					dispatcher = request.getRequestDispatcher(statistik);
+					dispatcher.forward(request, response);
+			        break;
+
 				}
 			}
 		} catch (Exception ex) {

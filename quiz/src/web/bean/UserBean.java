@@ -13,6 +13,7 @@ public class UserBean implements Serializable {
 		this.nname = nName;
 		this.vname = vName;
 		this.user = user;
+		this.mail = mail;
 		this.idUser = idUser;
 	}
 	
