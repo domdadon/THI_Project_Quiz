@@ -2,7 +2,12 @@
 			<div class="grid">
 				<aside>
 					<div class="navigation">
-						<div class="getUser" id="getUser">Hallo Gast ${UserData.vname} ${UserData.nname}</div>
+						<form action="../quizmanagement" id="navigation" method="post">
+									<button type="submit" class="navigation" id="empty1" disabled="disabled"></button><p>
+									<button type="submit" class="navigation" id="empty2" disabled="disabled"></button><p>
+									<button type="submit" class="navigation" id="empty3" disabled="disabled"></button><p>
+									<button type="submit" class="navigation" id="empty4" disabled="disabled"></button>
+						</form>
 					</div>
 				</aside>
 				<section>
@@ -32,7 +37,7 @@
 					</fieldset>
 				</section>
 				<aside class="sidebar">
-					<div class="highscore">Highscore Tabelle</div><p>
+					<div class="highscore">Highscore Tabelle<p>
 						<table class="highscore">
 							<tr>
 								<th>Platz</th>
@@ -47,6 +52,7 @@
 								</tr>
 							</c:forEach>
 						</table>
+					</div>
 				</aside>
 			</div>
 			<script type="text/javascript" src="../js/login.js"></script>

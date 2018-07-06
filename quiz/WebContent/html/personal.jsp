@@ -2,10 +2,11 @@
 	<div class="grid">
 		<aside>
 			<div class="navigation">
-				<div class="getUser" id="getUser">Hallo ${UserData.vname} ${UserData.nname}</div><p>
 				<form action="../quizmanagement" id="navigation" method="post">
-						<button type="submit" class="navigation" id="navigation" name="action" value="landing">Zurück zum Quiz</button><p>
-						<button type="submit" class="navigation" id="navigation" name="action" value="logout">Abmelden</button>
+						<button type="submit" class="navigation" id="empty1" disabled="disabled"></button><p>
+						<button type="submit" class="navigation" id="empty2" disabled="disabled"></button><p>
+						<button type="submit" class="navigation" id="quiz" name="action" value="landing">Zurück zum Quiz</button><p>
+						<button type="submit" class="navigation" id="logout" name="action" value="logout">Abmelden</button>
 				</form>
 			</div>
 		</aside>
@@ -24,7 +25,7 @@
 			</article>
 		</section>
 		<aside class="sidebar">
-			<div class="highscore">Highscore Tabelle</div><p>
+			<div class="highscore">Highscore Tabelle<p>
 				<table class="highscore">
 					<tr>
 						<th>Platz</th>
@@ -39,6 +40,7 @@
 						</tr>
 					</c:forEach>
 				</table>
+			</div>
 		</aside>
 	</div>
 <%@ include file="footer.jspf" %>

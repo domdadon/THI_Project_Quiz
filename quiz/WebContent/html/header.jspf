@@ -15,16 +15,6 @@
 		<noscript><div class="noscript">Hinweis: Diese Seite nutzt JavaScript. Bitte aktivieren JavaScript um das Quiz zu starten.</div></noscript>
 		<header>
 			<div class="heading">Megaquiz</div>
-			<nav>
-				<div class="getUser" id="getUser">Hallo, ${UserData.vname} ${UserData.nname}</div>&nbsp;&nbsp;&nbsp;
-				<div class="dropdown">
-					<button class="dropbutton">Menü</button>
-						<div class="dropdown-content">
-				    		<a href="#">Test</a>
-				    		<a href="#">Test</a>
-				    		<a href="../index.html">Abmelden</a>
-				  		</div>
-				</div>
-			</nav>
+			<div class="getUser" id="getUser">Hallo, ${UserData.vname} ${UserData.nname}.</div>
 		</header>
 		<p>
