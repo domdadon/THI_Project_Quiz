@@ -1,7 +1,7 @@
 <%@ include file="header.jspf" %>
 	<article>
 		<div class="grid">
-			<div class="currentQuestion">Frage x/10</div>
+			<div class="currentQuestion">Frage ${QuestionBean.q_Number}/10</div>
 			<p>
 			<div class="progressbar">Progressbar</div>
 			<p>

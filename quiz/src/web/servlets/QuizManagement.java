@@ -158,7 +158,7 @@ public class QuizManagement extends HttpServlet {
 					gameID = startGame(userID, 1);
 					session.setAttribute("gameID", gameID);
 					qb = getNextQuestion(gameID, 1);
-					qb.setQ_Number(1);
+					//qb.setQ_Number(1);
 					request.setAttribute("QuestionBean", qb);
 					dispatcher = request.getRequestDispatcher(quiz);
 					dispatcher.forward(request, response);
@@ -168,7 +168,7 @@ public class QuizManagement extends HttpServlet {
 					gameID = startGame(userID, 2);
 					session.setAttribute("gameID", gameID);
 					qb = getNextQuestion(gameID, 2);
-					qb.setQ_Number(1);
+					//qb.setQ_Number(1);
 					request.setAttribute("QuestionBean", qb);
 					dispatcher = request.getRequestDispatcher(quiz);
 					dispatcher.forward(request, response);
@@ -178,7 +178,7 @@ public class QuizManagement extends HttpServlet {
 					gameID = startGame(userID, 3);
 					session.setAttribute("gameID", gameID);
 					qb = getNextQuestion(gameID, categoryID);
-					qb.setQ_Number(1);
+					//qb.setQ_Number(1);
 					request.setAttribute("QuestionBean", qb);
 					dispatcher = request.getRequestDispatcher(quiz);
 					dispatcher.forward(request, response);
@@ -196,13 +196,28 @@ public class QuizManagement extends HttpServlet {
 					}
 					break;
 				case "getNextQuestion":
-					Integer qNumber = (Integer) request.getAttribute("questionNumber");
+					//Integer qNumber = (Integer) request.getAttribute("questionNumber");
+					//qb.setQ_Number(qNumber);
 					qb = getNextQuestion(gameID, categoryID);
-					qb.setQ_Number(qNumber);
-					request.setAttribute("QuestionBean", qb);
-					dispatcher = request.getRequestDispatcher(quiz);
-					dispatcher.forward(request, response);
-					break;
+					
+					if (qb == null) {
+						//TODO: Fehlerbehandlung
+					}
+					
+					if (qb == new QuestionBean()) {
+						//ist das korrekt???
+						dispatcher = request.getRequestDispatcher(statistik);
+						dispatcher.forward(request, response);
+						break;
+					}
+					else {
+						request.setAttribute("QuestionBean", qb);
+						dispatcher = request.getRequestDispatcher(quiz);
+						dispatcher.forward(request, response);
+						break;
+					}
+					
+					
 					
 				case "personal":
 					request.setAttribute("UserData", getUserData(1));
@@ -352,10 +367,15 @@ public class QuizManagement extends HttpServlet {
 			Integer qCount = -1; 
 			
 			if (rs != null && rs.next()) {
-				qCount = rs.getInt(1);
+				qCount = rs.getInt(1)+1;
 			}
 			else {
 				return null;
+			}
+			
+			if (qCount > 10) {
+				endGame(gameID, categoryID);
+				return new QuestionBean();
 			}
 			
 			qb.setQ_Number(qCount);
@@ -487,6 +507,19 @@ public class QuizManagement extends HttpServlet {
 		}
 	}
 	
+	private void endGame(Integer gameID, Integer categoryID) throws Exception{
+		try (Connection cnx = ds.getConnection();
+				PreparedStatement sql = cnx.prepareStatement("UPDATE games SET endtime = NOW(), score = score * ? WHERE idGame = ?");) {
+			sql.setInt(1, categoryID);
+			sql.setInt(2, gameID);
+			sql.executeUpdate();
+			
+		} catch (Exception ex) {
+			throw ex;
+
+		}
+	}
+	
 	private List<HighscoreEntryBean> getHighScoreEntries(){
 		List<HighscoreEntryBean> result = new ArrayList<HighscoreEntryBean>();
 		
@@ -495,6 +528,20 @@ public class QuizManagement extends HttpServlet {
 		}
 		
 		return result;
+	}
+	
+	private List<HighscoreEntryBean> getHighScoreEntriesN() throws Exception{
+		try (Connection cnx = ds.getConnection();
+				PreparedStatement sql = cnx.prepareStatement("SELECT s1.*, timediff(s1.endtime, s1.starttime) FROM thidb.games s1 LEFT JOIN thidb.games s2 ON s1.userID = s2.userID AND s1.score < s2.score WHERE s2.userID IS NULL ORDER BY score DESC, timediff(s1.endtime, s1.starttime) ASC;");) {
+			
+			ResultSet rs = sql.executeQuery();
+			
+			return new ArrayList<HighscoreEntryBean>();
+			
+		} catch (Exception ex) {
+			throw ex;
+
+		}
 	}
 	
 
