@@ -2,6 +2,7 @@ package web.bean;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.sql.Timestamp;
 
 public class HighscoreEntryBean implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -10,13 +11,13 @@ public class HighscoreEntryBean implements Serializable {
 	
 	private String username;
 	private int score, rank;
-	private Time playTime;
+	private String diff;
 	
-	public HighscoreEntryBean(String username, int score, int rank, Time playTime) {
+	public HighscoreEntryBean(String username, int score, int rank, String diff) {
 		this.rank = rank;
 		this.score = score;
 		this.username = username;
-		this.playTime = playTime;
+		this.diff = diff;
 	}
 	
 	
@@ -39,12 +40,12 @@ public class HighscoreEntryBean implements Serializable {
 		this.rank = rank;
 	}
 
-	public Time getPlayTime() {
-		return playTime;
+	public String getPlayTime() {
+		return diff;
 	}
 
-	public void setPlayTime(Time playTime) {
-		this.playTime = playTime;
+	public void setPlayTime(String diff) {
+		this.diff = diff;
 	}
 	
 }

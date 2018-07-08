@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +62,12 @@ public class QuizManagement extends HttpServlet {
 		Integer gameID = -1;
 		Integer categoryID = -1;
 		
-		request.setAttribute("HighScore", getHighScoreEntries());
+		try {
+			request.setAttribute("HighScore", getHighScoreEntriesN());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.setAttribute("UserData", getUserData(1));
 		
 
@@ -521,7 +527,7 @@ public class QuizManagement extends HttpServlet {
 		List<HighscoreEntryBean> result = new ArrayList<HighscoreEntryBean>();
 		
 		for (int i = 1; i<=10;i++) {
-			result.add(new HighscoreEntryBean("user" + String.valueOf(i),10-i,i, new Time(12)));
+			//result.add(new HighscoreEntryBean("user" + String.valueOf(i),10-i,i, new Timestamp()));
 		}
 		
 		return result;
@@ -536,7 +542,7 @@ public class QuizManagement extends HttpServlet {
 			List<HighscoreEntryBean> hs = new ArrayList<HighscoreEntryBean>();
 			
 			while (rs != null && rs.next()) {
-				hs.add(new HighscoreEntryBean(rs.getString(1), rs.getInt(2), 1, rs.getTime(3)));
+				hs.add(new HighscoreEntryBean(rs.getString(1), rs.getInt(2), 1, rs.getString(3)));
 			}
 			
 			return hs;
