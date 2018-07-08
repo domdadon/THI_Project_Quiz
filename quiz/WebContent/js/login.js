@@ -4,7 +4,12 @@ var element;
 var xmlhttp = null;
 
 function init() {
+	console.log("EventListener keyup executed");
 	document.getElementById("userName").addEventListener("keyup", checkUsername);
+	console.log("EventListener keyup successful");
+	console.log("removeChild executed");
+	document.getElementById("getUser").remove();
+	console.log("removeChild successful");
 }
 
 function checkUsername() {

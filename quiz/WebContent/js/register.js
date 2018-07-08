@@ -3,8 +3,12 @@ document.addEventListener("DOMContentLoaded", init);
 var element;
 var xmlhttp = null;
 function init() {
-	/*document.getElementById("userName").addEventListener("blur", checkUsername);*/
+	console.log("EventListener keyup executed");
 	document.getElementById("userName").addEventListener("keyup", checkUsername);
+	console.log("EventListener keyup successful");
+	console.log("removeChild executed");
+	document.getElementById("getUser").remove();
+	console.log("removeChild successful");
 }
 
 
