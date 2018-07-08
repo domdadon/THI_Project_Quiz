@@ -202,11 +202,6 @@ public class QuizManagement extends HttpServlet {
 					qb = getNextQuestion(gameID, categoryID);
 					
 					if (qb == null) {
-						//TODO: Fehlerbehandlung
-					}
-					
-					if (qb == new QuestionBean()) {
-						//ist das korrekt???
 						dispatcher = request.getRequestDispatcher(landing);
 						dispatcher.forward(request, response);
 						break;
@@ -377,7 +372,7 @@ public class QuizManagement extends HttpServlet {
 			
 			if (qCount > 10) {
 				endGame(gameID, categoryID);
-				return new QuestionBean();
+				return null;
 			}
 			
 			qb.setQ_Number(qCount);
