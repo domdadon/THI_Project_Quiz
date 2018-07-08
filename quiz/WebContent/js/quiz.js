@@ -33,11 +33,11 @@ function progressbar() {
 	  function frame() {
 	    if (width >= 100) {
 	      clearInterval(id);
+	      noAnswer();
 	    } else {
 	      width++; 
 	      elem.style.width = width + '%'; 
 	    }
-	    nowAnswer();
 	  }
 	}
 
@@ -48,9 +48,20 @@ function noAnswer() {
 	
 	xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("POST", "../quizmanagement", true);
-	xmlhttp.onreadystatechange = response;
+	xmlhttp.onreadystatechange = responseNoAnswer;
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.send(par);
+}
+
+function responseNoAnswer() {
+	
+	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+		console.log("buttons disablen");
+		document.getElementById("answer1").setAttribute("disabled", "disabled");
+		document.getElementById("answer2").setAttribute("disabled", "disabled");
+		document.getElementById("answer3").setAttribute("disabled", "disabled");
+		document.getElementById("answer4").setAttribute("disabled", "disabled");
+	}
 }
 
 function response() {
