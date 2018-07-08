@@ -3,9 +3,9 @@
 		<aside>
 			<div class="navigation">
 				<form action="../quizmanagement" id="navigation" method="post">
-							<button type="submit" class="navigation" id="empty1" disabled="disabled"></button><p>
+							<button type="submit" class="navigation" id="personal" name="action" value="personal">Persönliche Daten</button><p>
 							<button type="submit" class="navigation" id="empty2" disabled="disabled"></button><p>
-							<button type="submit" class="navigation" id="quiz" name="action" value="landing">Zurück zum Quiz</button><p>
+							<button type="submit" class="navigation" id="quiz" name="action" value="landing">Quiz</button><p>
 							<button type="submit" class="navigation" id="logout" name="action" value="logout">Abmelden</button>
 				</form>
 			</div>
