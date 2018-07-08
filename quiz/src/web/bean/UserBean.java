@@ -8,13 +8,13 @@ public class UserBean implements Serializable {
 	//Passwort aus Sicherheitsgruenden nicht in der Bean vorhanden
 	private String nname, vname, user, mail;
 	private int idUser;
-	private int currentRank = 0;
-	private int gamesPlayed = 0;
-	private int gamesPlayedEasy = 0;
-	private int gamesPlayedMiddle = 0;
-	private int gamesPlayedHard = 0;
-	private int totalScore = 0;
-	private int quoteAnswers = 0;
+	private int currentRank = 1;
+	private int gamesPlayed = 1;
+	private int gamesPlayedEasy = 1;
+	private int gamesPlayedMiddle = 1;
+	private int gamesPlayedHard = 1;
+	private int totalScore = 1;
+	private int quoteAnswers = 100;
 	
 	public UserBean(String nName, String vName, String user, String mail, int idUser) {
 		this.nname = nName;

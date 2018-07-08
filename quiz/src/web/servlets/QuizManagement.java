@@ -124,7 +124,7 @@ public class QuizManagement extends HttpServlet {
 					Integer id = checkUser(userName, password);
 					if (id != -1) {
 						session.setAttribute("userID", id);
-						request.setAttribute("UserData", getUserData(userID));
+						request.setAttribute("UserData", getUserData(id));
 
 						if (hasOpenGame(id, session)) {
 							gameID = (Integer) session.getAttribute("gameID");
