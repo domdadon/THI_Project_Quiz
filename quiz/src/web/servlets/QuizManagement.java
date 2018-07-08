@@ -288,11 +288,12 @@ public class QuizManagement extends HttpServlet {
 			throws Exception {
 		try (Connection cnx = ds.getConnection();) {
 			String[] generatedKeys = new String[] {"idUser"};
-			PreparedStatement sql = cnx.prepareStatement("INSERT INTO users (nName, vName, pw, username) VALUES (?, ?, md5(?), ?)", generatedKeys);
+			PreparedStatement sql = cnx.prepareStatement("INSERT INTO users (nName, vName, pw, username, mail) VALUES (?, ?, md5(?), ?, ?)", generatedKeys);
 			sql.setString(1, nName);
 			sql.setString(2, vName);
 			sql.setString(3, password);
 			sql.setString(4, userName);
+			sql.setString(5, mail);
 
 			sql.executeUpdate();
 			Integer result = -1;
