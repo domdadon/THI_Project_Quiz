@@ -9,6 +9,7 @@ public class UserBean implements Serializable {
 	private String nname, vname, user, mail;
 	private int idUser;
 	private int currentRank = 1;
+	private int lastScore = 1;
 	private int gamesPlayed = 1;
 	private int gamesPlayedEasy = 1;
 	private int gamesPlayedMiddle = 1;
@@ -129,6 +130,18 @@ public class UserBean implements Serializable {
 
 	public void setQuoteAnswers(int quoteAnswers) {
 		this.quoteAnswers = quoteAnswers;
+	}
+
+
+	public int getLastScore() {
+		return lastScore;
+	}
+
+
+	public void setLastScore(int lastScore) {
+		this.lastScore = lastScore;
 	}	
+	
+	
 	
 }
