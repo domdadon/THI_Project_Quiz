@@ -8,6 +8,13 @@ public class UserBean implements Serializable {
 	//Passwort aus Sicherheitsgruenden nicht in der Bean vorhanden
 	private String nname, vname, user, mail;
 	private int idUser;
+	private int currentRank = 0;
+	private int gamesPlayed = 0;
+	private int gamesPlayedEasy = 0;
+	private int gamesPlayedMiddle = 0;
+	private int gamesPlayedHard = 0;
+	private int totalScore = 0;
+	private int quoteAnswers = 0;
 	
 	public UserBean(String nName, String vName, String user, String mail, int idUser) {
 		this.nname = nName;
@@ -52,5 +59,76 @@ public class UserBean implements Serializable {
 	}
 	public void setIdUser(int idUser) {
 		this.idUser = idUser;
+	}
+
+
+	public int getCurrentRank() {
+		return currentRank;
+	}
+
+
+	public void setCurrentRank(int currentRank) {
+		this.currentRank = currentRank;
+	}
+
+
+	public int getGamesPlayed() {
+		return gamesPlayed;
+	}
+
+
+	public void setGamesPlayed(int gamesPlayed) {
+		this.gamesPlayed = gamesPlayed;
+	}
+
+
+	public int getGamesPlayedEasy() {
+		return gamesPlayedEasy;
+	}
+
+
+	public void setGamesPlayedEasy(int gamesPlayedEasy) {
+		this.gamesPlayedEasy = gamesPlayedEasy;
+	}
+
+
+	public int getGamesPlayedMiddle() {
+		return gamesPlayedMiddle;
+	}
+
+
+	public void setGamesPlayedMiddle(int gamesPlayedMiddle) {
+		this.gamesPlayedMiddle = gamesPlayedMiddle;
+	}
+
+
+	public int getGamesPlayedHard() {
+		return gamesPlayedHard;
+	}
+
+
+	public void setGamesPlayedHard(int gamesPlayedHard) {
+		this.gamesPlayedHard = gamesPlayedHard;
+	}
+
+
+	public int getTotalScore() {
+		return totalScore;
+	}
+
+
+	public void setTotalScore(int totalScore) {
+		this.totalScore = totalScore;
+	}
+
+
+	public int getQuoteAnswers() {
+		return quoteAnswers;
+	}
+
+
+	public void setQuoteAnswers(int quoteAnswers) {
+		this.quoteAnswers = quoteAnswers;
 	}	
+	
 }

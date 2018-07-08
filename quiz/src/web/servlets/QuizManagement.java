@@ -66,7 +66,12 @@ public class QuizManagement extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		request.setAttribute("UserData", getUserData(1));
+		try {
+			request.setAttribute("UserData", getUserData(1));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 
 		// Sessionhandling init
@@ -217,9 +222,8 @@ public class QuizManagement extends HttpServlet {
 						break;
 					}
 					
-					
-					
 				case "personal":
+					//hier Agrregation der Ergebnisse
 					request.setAttribute("UserData", getUserData(1));
 					dispatcher = request.getRequestDispatcher(personal);
 					dispatcher.forward(request, response);
@@ -238,6 +242,7 @@ public class QuizManagement extends HttpServlet {
 			        break;
 			        
 				case "statistik":
+					//hier Agrregation der Ergebnisse
 					dispatcher = request.getRequestDispatcher(statistik);
 					dispatcher.forward(request, response);
 			        break;
@@ -544,12 +549,30 @@ public class QuizManagement extends HttpServlet {
 	}
 	
 
-	private UserBean getUserData(Integer UserID) {
+	private UserBean getUserData(Integer UserID) throws Exception {
 		
-		if (UserID == 0) {
-			return new UserBean("Gast", "", "", "", 0);
-		} else {
-			return new UserBean("Mueller", "Dominik", "domdadon", "dom@test.de", 1);
+		try (Connection cnx = ds.getConnection();
+				PreparedStatement sql = cnx.prepareStatement("SELECT * FROM users WHERE idUser = ?");) {
+			
+			sql.setInt(1, UserID);
+			
+			ResultSet rs = sql.executeQuery();
+			
+			UserBean user = new UserBean();
+			
+			if (rs != null && rs.next()) {
+				user.setMail(rs.getString(6));
+				user.setNname(rs.getString(2));
+				user.setVname(rs.getString(3));
+				user.setUser(rs.getString(5));
+				user.setIdUser(rs.getInt(1));
+			}
+			
+			return user;
+			
+		} catch (Exception ex) {
+			throw ex;
+
 		}
 						
 	}
