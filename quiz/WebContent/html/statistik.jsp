@@ -15,13 +15,13 @@
 				<div class="formhead">Ihre Statistik</div>
 				<hr>
 				<p>
-				<div class="personalhead">Platzierung:</div>y<p>x
-				<div class="personalhead">Anzahl Spiele Gesamt:</div>y<p>
-				<div class="personalhead">Anzahl Spiele leicht:</div>y<p>
-				<div class="personalhead">Anzahl Spiele mittel:</div>y<p>
-				<div class="personalhead">Anzahl Spiele schwer:</div>y<p>
-				<div class="personalhead">Punkte Gesamt:</div>y<p>				
-				<div class="personalhead">Quote richtige Antworten:</div>x%<p>
+				<div class="personalhead">Platzierung:</div>${UserBean.currentRank}<p>
+				<div class="personalhead">Anzahl Spiele Gesamt:</div>${UserBean.gamesPlayed}<p>
+				<div class="personalhead">Anzahl Spiele leicht:</div>${UserBean.gamesPlayedEasy}<p>
+				<div class="personalhead">Anzahl Spiele mittel:</div>${UserBean.gamesPlayedMiddle}<p>
+				<div class="personalhead">Anzahl Spiele schwer:</div>${UserBean.gamesPlayedEasyHard}<p>
+				<div class="personalhead">Punkte Gesamt:</div>${UserBean.totalScore}<p>
+				<div class="personalhead">Quote richtige Antworten:</div>${UserBean.quoteAnswers}%<p>
 			</article>
 		</section>
 		<aside class="sidebar">
