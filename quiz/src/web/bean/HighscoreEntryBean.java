@@ -11,9 +11,9 @@ public class HighscoreEntryBean implements Serializable {
 	
 	private String username;
 	private int score, rank;
-	private String diff;
+	private Long diff;
 	
-	public HighscoreEntryBean(String username, int score, int rank, String diff) {
+	public HighscoreEntryBean(String username, int score, int rank, long diff) {
 		this.rank = rank;
 		this.score = score;
 		this.username = username;
@@ -40,11 +40,11 @@ public class HighscoreEntryBean implements Serializable {
 		this.rank = rank;
 	}
 
-	public String getPlayTime() {
+	public Long getPlayTime() {
 		return diff;
 	}
 
-	public void setPlayTime(String diff) {
+	public void setPlayTime(Long diff) {
 		this.diff = diff;
 	}
 	

@@ -535,14 +535,17 @@ public class QuizManagement extends HttpServlet {
 	
 	private List<HighscoreEntryBean> getHighScoreEntriesN() throws Exception{
 		try (Connection cnx = ds.getConnection();
-				PreparedStatement sql = cnx.prepareStatement("SELECT username, g1.userID, g1.score, timediff(g1.endtime, g1.starttime) AS Diff FROM thidb.games g1 LEFT JOIN thidb.games g2 ON g1.userID = g2.userID AND g1.score < g2.score INNER JOIN thidb.users u ON g1.userID = u.idUser WHERE g2.userID IS NULL ORDER BY g1.score DESC, timediff(g1.endtime, g1.starttime) ASC");) {
+				PreparedStatement sql = cnx.prepareStatement("SELECT username, g1.userID, g1.score, TIMESTAMPDIFF(SECOND, g1.starttime, g1.endtime) AS Diff FROM thidb.games g1 LEFT JOIN thidb.games g2 ON g1.userID = g2.userID AND g1.score < g2.score INNER JOIN thidb.users u ON g1.userID = u.idUser WHERE g2.userID IS NULL ORDER BY g1.score DESC, TIMESTAMPDIFF(SECOND, g1.starttime, g1.endtime) ASC LIMIT 10");) {
 			
 			ResultSet rs = sql.executeQuery();
 			
 			List<HighscoreEntryBean> hs = new ArrayList<HighscoreEntryBean>();
+			Integer rank = 1;
 			
 			while (rs != null && rs.next()) {
-				hs.add(new HighscoreEntryBean(rs.getString(1), rs.getInt(2), 1, rs.getString(3)));
+				Long asd = rs.getLong(4);
+				hs.add(new HighscoreEntryBean(rs.getString(1), rs.getInt(3), rank, rs.getLong(4)));
+				rank++;
 			}
 			
 			return hs;
