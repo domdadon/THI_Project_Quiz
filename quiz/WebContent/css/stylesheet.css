@@ -1,6 +1,6 @@
-/*  Scrollbalken ausschalten */
+/*  Scrollbalken horizontal ausblenden */
 body {
-	overflow: hidden;
+	overflow-x: hidden;
 }
 
 div.grid {

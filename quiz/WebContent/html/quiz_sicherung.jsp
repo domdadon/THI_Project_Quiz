@@ -1,18 +1,7 @@
 <%@ include file="header.jspf" %>
-	<aside>
-			<div class="navigation">
-				<form action="../quizmanagement" id="navigation" method="post">
-							<button type="submit" class="navigation" id="personal" name="action" value="personal">Persönliche Daten</button><p>
-							<button type="submit" class="navigation" id="statistik" name="action" value="statistik">Statistik</button><p>
-							<button type="submit" class="navigation" id="empty3" disabled="disabled"></button><p>
-							<button type="submit" class="navigation" id="logout" name="action" value="logout">Abmelden</button>
-				</form>
-			</div>
-	</aside>
-	<section>
 	<article>
 		<div class="grid">
-			<div class="currentQuestion">Frage x/10</div>
+			<div class="currentQuestion">Frage ${QuestionBean.q_Number}/10</div>
 			<p>
 			<div class="progressbar">Progressbar</div>
 			<p>
@@ -32,26 +21,7 @@
 					<button type="submit" class="nextQuestion" name="action" value="getNextQuestion" id="nextQuestion">weiter</button>
 				</div>
 			</form>
-		</div>
-		</article>		
-	</section>
-	<aside class="sidebar">
-			<div class="highscore">Highscore Tabelle<p>
-			<table class="highscore">
-				<tr>
-					<th>Platz</th>
-					<th>Benutzername</th>
-					<th>Punkte</th>
-			 	</tr>
-				<c:forEach items="${HighScore}" var="HighscoreEntryBean">
-					<tr>
-						<td>${HighscoreEntryBean.rank}</td>
-						<td>${HighscoreEntryBean.username}</td>
-						<td>${HighscoreEntryBean.score}</td>
-					</tr>
-				</c:forEach>
-			</table>
-			</div>
-		</aside>
+		</div>		
+	</article>
 	<script type="text/javascript" src="../js/quiz.js"></script>
 <%@ include file="footer.jspf" %>
