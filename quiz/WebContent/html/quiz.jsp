@@ -14,8 +14,8 @@
 		<div class="grid">
 			<div class="currentQuestion">Frage ${QuestionBean.q_Number}/10</div>
 			<p>
-			<div class="progressbar">
-				<div id="myBar"></div>
+			<div class="progressbar" id="progressbar">
+				<div class="myBar" id="myBar"></div>
 			</div>
 			<p>
 			<div class="numberOfPoints">Aktuelle Punkte ${QuestionBean.currentScore}</div>
