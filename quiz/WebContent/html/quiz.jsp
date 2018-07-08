@@ -18,7 +18,7 @@
 				<div id="myBar"></div>
 			</div>
 			<p>
-			<div class="numberOfPoints">Aktuelle Punkte ${QuestonBean.}</div>
+			<div class="numberOfPoints">Aktuelle Punkte ${QuestionBean.currentScore}</div>
 			<p>
 		</div>
 		<p>
