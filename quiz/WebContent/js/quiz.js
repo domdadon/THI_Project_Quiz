@@ -25,6 +25,33 @@ function checkAnswer(event) {
 	xmlhttp.send(par);
 }
 
+function progressbar() {
+	  var elem = document.getElementById("progressbar");   
+	  var width = 0;
+	  var id = setInterval(frame, 100);
+	  function frame() {
+	    if (width >= 100) {
+	      clearInterval(id);
+	    } else {
+	      width++; 
+	      elem.style.width = width + '%'; 
+	    }
+	    nowAnswer();
+	  }
+	}
+
+function noAnswer() {
+	var q_ID = document.getElementById("question").dataset.questionid;
+
+	var par = "action=setAnswer&question="+q_ID+"&answer="+0;
+	
+	xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("POST", "../quizmanagement", true);
+	xmlhttp.onreadystatechange = response;
+	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xmlhttp.send(par);
+}
+
 function response() {
 	
 	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {

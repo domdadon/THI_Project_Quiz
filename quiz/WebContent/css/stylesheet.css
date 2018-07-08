@@ -449,3 +449,19 @@ button#empty4.navigation {
 button#empty4.navigation:hover {
 	left: -210px;
 }
+
+
+/*progressbar*/
+#progressbar {
+  width: 50%;
+  background-color: #ddd;
+}
+
+#myBar {
+  width: 0%;
+  height: 30px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
