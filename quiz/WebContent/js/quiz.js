@@ -27,7 +27,7 @@ function checkAnswer(event) {
 }
 
 function progressbar() {
-	  var elem = document.getElementById("progressbar");   
+	  var elem = document.getElementById("myProgressbar");   
 	  var width = 0;
 	  var id = setInterval(frame, 100);
 	  function frame() {

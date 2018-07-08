@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <style>
-#myProgress {
+div.myProgressbar {
   width: 50%;
   background-color: #ddd;
 }
 
-#myBar {
+div.myBar {
   width: 0%;
   height: 30px;
   background-color: #4CAF50;
@@ -19,8 +19,8 @@
 
 <h1>JavaScript Progress Bar</h1>
 
-<div id="myProgress">
-  <div id="myBar"></div>
+<div class="myProgressbar">
+  <div id="myBar" class="myBar"></div>
 </div>
 
 <br>
@@ -38,7 +38,6 @@ function move() {
       width++; 
       elem.style.width = width + '%'; 
     }
-    nowAnswer();
   }
 }
 </script>

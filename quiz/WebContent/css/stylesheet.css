@@ -14,12 +14,6 @@ div.currentQuestion {
 	border: 1px solid red;
 }
 
-div.progressbar {
-	flex: 2;
-	border: 1px solid red;
-	text-align: center;
-}
-
 div.numberOfPoints {
 	flex: 1;
 	border: 1px solid red;
@@ -452,12 +446,13 @@ button#empty4.navigation:hover {
 
 
 /*progressbar*/
-#progressbar {
-  width: 50%;
+div.myProgressbar {
+flex: 2
+  width: 10%;
   background-color: #ddd;
 }
 
-#myBar {
+div.myBar {
   width: 0%;
   height: 30px;
   background-color: #4CAF50;
