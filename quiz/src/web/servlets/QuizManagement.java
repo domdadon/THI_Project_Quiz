@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +61,7 @@ public class QuizManagement extends HttpServlet {
 		Integer categoryID = -1;
 		
 		try {
-			request.setAttribute("HighScore", getHighScoreEntriesN());
+			request.setAttribute("HighScore", getHighScoreEntries());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -523,17 +521,7 @@ public class QuizManagement extends HttpServlet {
 		}
 	}
 	
-	private List<HighscoreEntryBean> getHighScoreEntries(){
-		List<HighscoreEntryBean> result = new ArrayList<HighscoreEntryBean>();
-		
-		for (int i = 1; i<=10;i++) {
-			//result.add(new HighscoreEntryBean("user" + String.valueOf(i),10-i,i, new Timestamp()));
-		}
-		
-		return result;
-	}
-	
-	private List<HighscoreEntryBean> getHighScoreEntriesN() throws Exception{
+	private List<HighscoreEntryBean> getHighScoreEntries() throws Exception{
 		try (Connection cnx = ds.getConnection();
 				PreparedStatement sql = cnx.prepareStatement("SELECT username, g1.userID, g1.score, TIMESTAMPDIFF(SECOND, g1.starttime, g1.endtime) AS Diff FROM thidb.games g1 LEFT JOIN thidb.games g2 ON g1.userID = g2.userID AND g1.score < g2.score INNER JOIN thidb.users u ON g1.userID = u.idUser WHERE g2.userID IS NULL ORDER BY g1.score DESC, TIMESTAMPDIFF(SECOND, g1.starttime, g1.endtime) ASC LIMIT 10");) {
 			
@@ -543,7 +531,6 @@ public class QuizManagement extends HttpServlet {
 			Integer rank = 1;
 			
 			while (rs != null && rs.next()) {
-				Long asd = rs.getLong(4);
 				hs.add(new HighscoreEntryBean(rs.getString(1), rs.getInt(3), rank, rs.getLong(4)));
 				rank++;
 			}
