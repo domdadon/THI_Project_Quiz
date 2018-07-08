@@ -15,7 +15,7 @@ public class UserBean implements Serializable {
 	private int gamesPlayedMiddle = 1;
 	private int gamesPlayedHard = 1;
 	private int totalScore = 1;
-	private int quoteAnswers = 100;
+	private double quoteAnswers = 100;
 	
 	public UserBean(String nName, String vName, String user, String mail, int idUser) {
 		this.nname = nName;
@@ -123,13 +123,13 @@ public class UserBean implements Serializable {
 	}
 
 
-	public int getQuoteAnswers() {
+	public double getQuoteAnswers() {
 		return quoteAnswers;
 	}
 
 
-	public void setQuoteAnswers(int quoteAnswers) {
-		this.quoteAnswers = quoteAnswers;
+	public void setQuoteAnswers(double qoute) {
+		this.quoteAnswers = qoute;
 	}
 
 

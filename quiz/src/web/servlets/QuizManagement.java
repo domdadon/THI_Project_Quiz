@@ -84,7 +84,7 @@ public class QuizManagement extends HttpServlet {
 		}
 		
 		try {
-			request.setAttribute("UserData", getUserData(userID));
+			request.setAttribute("UserData", getUserData(userID, false));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -125,7 +125,7 @@ public class QuizManagement extends HttpServlet {
 					Integer id = checkUser(userName, password);
 					if (id != -1) {
 						session.setAttribute("userID", id);
-						request.setAttribute("UserData", getUserData(id));
+						request.setAttribute("UserData", getUserData(id, false));
 
 						if (hasOpenGame(id, session)) {
 							gameID = (Integer) session.getAttribute("gameID");
@@ -229,14 +229,14 @@ public class QuizManagement extends HttpServlet {
 					
 				case "personal":
 					//hier Agrregation der Ergebnisse
-					request.setAttribute("UserData", getUserData(1));
+					request.setAttribute("UserData", getUserData(userID, false));
 					dispatcher = request.getRequestDispatcher(personal);
 					dispatcher.forward(request, response);
 					break;
 					
 				case "logout":
 					session.invalidate();
-					request.setAttribute("UserData", getUserData(0));
+					request.setAttribute("UserData", new UserBean());
 					dispatcher = request.getRequestDispatcher(login);
 					dispatcher.forward(request, response);
 			        break;
@@ -248,6 +248,7 @@ public class QuizManagement extends HttpServlet {
 			        
 				case "statistik":
 					//hier Agrregation der Ergebnisse
+					request.setAttribute("UserData", getUserData(userID, true));
 					dispatcher = request.getRequestDispatcher(statistik);
 					dispatcher.forward(request, response);
 			        break;
@@ -534,7 +535,7 @@ public class QuizManagement extends HttpServlet {
 	private List<HighscoreEntryBean> getHighScoreEntries(Boolean getAllEntries) throws Exception{
 		try (Connection cnx = ds.getConnection()) {
 			
-			String sqlS = "SELECT username, g1.userID, g1.score, TIMESTAMPDIFF(SECOND, g1.starttime, g1.endtime) AS Diff, g1.idUser FROM thidb.games g1 LEFT JOIN thidb.games g2 ON g1.userID = g2.userID AND g1.score < g2.score INNER JOIN thidb.users u ON g1.userID = u.idUser WHERE g2.userID IS NULL ORDER BY g1.score DESC, TIMESTAMPDIFF(SECOND, g1.starttime, g1.endtime) ASC";
+			String sqlS = "SELECT username, g1.userID, g1.score, TIMESTAMPDIFF(SECOND, g1.starttime, g1.endtime) AS Diff, g1.userID FROM thidb.games g1 LEFT JOIN thidb.games g2 ON g1.userID = g2.userID AND g1.score < g2.score INNER JOIN thidb.users u ON g1.userID = u.idUser WHERE g2.userID IS NULL ORDER BY g1.score DESC, TIMESTAMPDIFF(SECOND, g1.starttime, g1.endtime) ASC";
 			
 			if (!getAllEntries) {
 				sqlS.concat(" LIMIT 10");
@@ -560,10 +561,11 @@ public class QuizManagement extends HttpServlet {
 	}
 	
 
-	private UserBean getUserData(Integer UserID) throws Exception {
+	private UserBean getUserData(Integer UserID, Boolean complete) throws Exception {
 		
-		try (Connection cnx = ds.getConnection();
-				PreparedStatement sql = cnx.prepareStatement("SELECT * FROM users WHERE idUser = ?");) {
+		try (Connection cnx = ds.getConnection();) {
+			
+			PreparedStatement sql = cnx.prepareStatement("SELECT * FROM users WHERE idUser = ?");
 			
 			sql.setInt(1, UserID);
 			
@@ -585,6 +587,49 @@ public class QuizManagement extends HttpServlet {
 			int score = getScore(user.getIdUser());
 			user.setLastScore(score);
 			
+			if (complete) {
+				sql = cnx.prepareStatement("SELECT COUNT(*) as cout, SUM(score) as score FROM games WHERE userID = ? GROUP BY userID");
+				sql.setInt(1, UserID);
+				rs = sql.executeQuery();
+				
+				if (rs!= null && rs.next()) {
+					user.setGamesPlayed(rs.getInt(1));
+					user.setTotalScore(rs.getInt(2));
+				}
+				
+				sql = cnx.prepareStatement("SELECT categoryID, COUNT(*) as count FROM games WHERE userID = ? GROUP BY userID, categoryID");
+				sql.setInt(1, UserID);
+				
+				rs = sql.executeQuery();
+				
+				while (rs!= null && rs.next()) {
+					if (rs.getInt(1) == 1)
+					{
+						user.setGamesPlayedEasy(rs.getInt(2));
+					}
+					else if (rs.getInt(1) == 2) {
+						user.setGamesPlayedMiddle(rs.getInt(2));
+					}
+					else if (rs.getInt(1) == 3) {
+						user.setGamesPlayedHard(rs.getInt(2));
+					}
+				}
+				
+				sql = cnx.prepareStatement("SELECT x.userID, x.answers, y.correct FROM (SELECT g.userID, COUNT(*) as answers FROM thidb.results r INNER JOIN thidb.games g ON r.gameID = g.idGame WHERE g.userID = ?) as x INNER JOIN (SELECT g.userID, COUNT(isRight) as correct FROM thidb.results r INNER JOIN thidb.games g ON r.gameID = g.idGame INNER JOIN thidb.users u ON g.userID = u.idUser INNER JOIN thidb.questions_answers q ON q.answerID = r.answerID AND isRight = 1 WHERE userID = ?) as y ON x.userID = y.userID");
+				sql.setInt(1, UserID);
+				sql.setInt(2, UserID);
+				
+				rs = sql.executeQuery();
+				
+				if (rs!= null && rs.next()) {
+					int correct = rs.getInt(3);
+					int total = rs.getInt(2);
+							
+					user.setQuoteAnswers(correct/total*100.0);
+				}
+				
+			}
+			
 			return user;
 			
 		} catch (Exception ex) {
@@ -595,18 +640,20 @@ public class QuizManagement extends HttpServlet {
 	}
 	
 	private int getCurrentRank(Integer userID) {
-		List<HighscoreEntryBean> list = new ArrayList<HighscoreEntryBean>();
-		try {
-			list = getHighScoreEntries(true);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		for (HighscoreEntryBean entry : list){
-			if (entry.getId() == userID)
-			{
-				return entry.getRank();
+		if (userID > 0) {
+			List<HighscoreEntryBean> list = new ArrayList<HighscoreEntryBean>();
+			try {
+				list = getHighScoreEntries(true);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			for (HighscoreEntryBean entry : list){
+				if (entry.getId() == userID)
+				{
+					return entry.getRank();
+				}
 			}
 		}
 		
