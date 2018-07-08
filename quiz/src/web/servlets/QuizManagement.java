@@ -66,12 +66,7 @@ public class QuizManagement extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		try {
-			request.setAttribute("UserData", getUserData(1));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		
 
 		// Sessionhandling init
@@ -86,6 +81,13 @@ public class QuizManagement extends HttpServlet {
 
 		if (session.getAttribute("categoryID") != null) {
 			categoryID = (Integer) session.getAttribute("categoryID");
+		}
+		
+		try {
+			request.setAttribute("UserData", getUserData(userID));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		String action = request.getParameter("action");
