@@ -7,7 +7,7 @@ public class QuestionBean implements Serializable {
 		
 	private String q, a_1, a_2, a_3, a_4;
 	private Integer qID, a_ID1, a_ID2, a_ID3, a_ID4;
-	private Integer actualScore, q_Number;
+	private Integer currentScore, q_Number;
 	
 	public String getQ() {
 		return q;
@@ -70,10 +70,10 @@ public class QuestionBean implements Serializable {
 		this.a_ID4 = a_ID4;
 	}
 	public Integer getActualScore() {
-		return actualScore;
+		return currentScore;
 	}
-	public void setActualScore(Integer actualScore) {
-		this.actualScore = actualScore;
+	public void setActualScore(Integer currentScore) {
+		this.currentScore = currentScore;
 	}
 	public Integer getQ_Number() {
 		return q_Number;
