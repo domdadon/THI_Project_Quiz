@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +60,12 @@ public class QuizManagement extends HttpServlet {
 		Integer gameID = -1;
 		Integer categoryID = -1;
 		
-		request.setAttribute("HighScore", getHighScoreEntries());
+		try {
+			request.setAttribute("HighScore", getHighScoreEntries());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		request.setAttribute("UserData", getUserData(1));
 		
 
@@ -517,26 +521,18 @@ public class QuizManagement extends HttpServlet {
 		}
 	}
 	
-	private List<HighscoreEntryBean> getHighScoreEntries(){
-		List<HighscoreEntryBean> result = new ArrayList<HighscoreEntryBean>();
-		
-		for (int i = 1; i<=10;i++) {
-			result.add(new HighscoreEntryBean("user" + String.valueOf(i),10-i,i, new Time(12)));
-		}
-		
-		return result;
-	}
-	
-	private List<HighscoreEntryBean> getHighScoreEntriesN() throws Exception{
+	private List<HighscoreEntryBean> getHighScoreEntries() throws Exception{
 		try (Connection cnx = ds.getConnection();
-				PreparedStatement sql = cnx.prepareStatement("SELECT username, g1.userID, g1.score, timediff(g1.endtime, g1.starttime) AS Diff FROM thidb.games g1 LEFT JOIN thidb.games g2 ON g1.userID = g2.userID AND g1.score < g2.score INNER JOIN thidb.users u ON g1.userID = u.idUser WHERE g2.userID IS NULL ORDER BY g1.score DESC, timediff(g1.endtime, g1.starttime) ASC");) {
+				PreparedStatement sql = cnx.prepareStatement("SELECT username, g1.userID, g1.score, TIMESTAMPDIFF(SECOND, g1.starttime, g1.endtime) AS Diff FROM thidb.games g1 LEFT JOIN thidb.games g2 ON g1.userID = g2.userID AND g1.score < g2.score INNER JOIN thidb.users u ON g1.userID = u.idUser WHERE g2.userID IS NULL ORDER BY g1.score DESC, TIMESTAMPDIFF(SECOND, g1.starttime, g1.endtime) ASC LIMIT 10");) {
 			
 			ResultSet rs = sql.executeQuery();
 			
 			List<HighscoreEntryBean> hs = new ArrayList<HighscoreEntryBean>();
+			Integer rank = 1;
 			
 			while (rs != null && rs.next()) {
-				hs.add(new HighscoreEntryBean(rs.getString(1), rs.getInt(2), 1, rs.getTime(3)));
+				hs.add(new HighscoreEntryBean(rs.getString(1), rs.getInt(3), rank, rs.getLong(4)));
+				rank++;
 			}
 			
 			return hs;
