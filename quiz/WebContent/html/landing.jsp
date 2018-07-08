@@ -21,13 +21,13 @@
 				<form action="../quizmanagement" id="landingForm" method="post">
 					<div class="start">
 						<div>
-							<button type="submit" class="startGame" name="action" value="startGame1">leicht<br>&#040;2 Punkte pro richtige Antwort&#041;</button>
+							<button type="submit" class="startGame" name="action" value="startGame1">leicht<br>&#040;1 Punkt pro richtige Antwort&#041;</button>
 						</div>
 						<div>
-							<button type="submit" class="startGame" name="action" value="startGame2">mittel<br>&#040;4 Punkte pro richtige Antwort&#041;</button>
+							<button type="submit" class="startGame" name="action" value="startGame2">mittel<br>&#040;2 Punkte pro richtige Antwort&#041;</button>
 						</div>
 						<div>
-							<button type="submit" class="startGame" name="action" value="startGame3">schwer<br>&#040;6 Punkte pro richtige Antwort&#041;</button>
+							<button type="submit" class="startGame" name="action" value="startGame3">schwer<br>&#040;3 Punkte pro richtige Antwort&#041;</button>
 						</div>
 					</div>
 				</form>		
