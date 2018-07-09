@@ -1,17 +1,16 @@
 <%@ include file="header.jspf" %>
-	<div class="grid">
-		<aside>
+	
 			<div class="navigation">
 				<form action="../quizmanagement" id="navigation" method="post">
 							<button type="submit" class="navigation" id="personal" name="action" value="personal">Persönliche Daten</button><p>
 							<button type="submit" class="navigation" id="empty2" disabled="disabled"></button><p>
-							<button type="submit" class="navigation" id="quiz" name="action" value="landing">Quiz</button><p>
+							<button type="submit" class="navigation" id="quiz" name="action" value="getNextQuestion">Quiz</button><p>
 							<button type="submit" class="navigation" id="logout" name="action" value="logout">Abmelden</button>
 				</form>
 			</div>
-		</aside>
-		<section>
-			<article>
+	
+		
+			<div class="quiz">
 				<div class="formhead">Ihre Statistik</div>
 				<hr>
 				<p>
@@ -22,9 +21,8 @@
 				<div class="personalhead">Anzahl Spiele schwer:</div>${UserData.gamesPlayedHard}<p>
 				<div class="personalhead">Punkte Gesamt:</div>${UserData.totalScore}<p>
 				<div class="personalhead">Quote richtige Antworten:</div>${UserData.quoteAnswers}%<p>
-			</article>
-		</section>
-		<aside class="sidebar">
+			</div>
+		
 			<div class="highscore">Highscore Tabelle<p>
 				<table class="highscore">
 					<tr>
@@ -41,6 +39,5 @@
 					</c:forEach>
 				</table>
 				</div>
-		</aside>
-	</div>
+		
 <%@ include file="footer.jspf" %>

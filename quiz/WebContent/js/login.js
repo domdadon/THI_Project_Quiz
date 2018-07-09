@@ -4,6 +4,7 @@ var element;
 var xmlhttp = null;
 
 function init() {
+	console.log("init executed");
 	console.log("EventListener keyup executed");
 	document.getElementById("userName").addEventListener("keyup", checkUsername);
 	console.log("EventListener keyup successful");

@@ -55,11 +55,21 @@ button.answer {
 }
 
 button.answer:active {
-    background: #8f8f8f;
+    background: #3879B4;
 }
 
 button.answer:hover {
     background: #366896;
+    border: 1px solid #3879B4; 
+}
+
+button.answer[disabled] {
+    background: #8f8f8f;
+    border: 1px solid #3879B4; 
+}
+
+button.answer[disabled]:hover {
+    background: #8f8f8f;
     border: 1px solid #3879B4; 
 }
 
@@ -88,47 +98,51 @@ button.answerTrue {
 }
 
 button#empty1.navigation {
-	top: 20px;
+	top: 115px;
 	height: 51.333px;
 	background-color: grey;
 }
 
-button#empty1.navigation:hover {
-	left: -210px;
+button#empty1:hover.navigation {
+	position: relative;
+	left: 0px;
 }
 
 button#empty2.navigation {
-	top: 80px;
+	top: 175px;
 	height: 51.333px;
 	background-color: grey;
 }
 
-button#empty2.navigation:hover {
-	left: -210px;
+button#empty2:hover.navigation {
+	position: relative;
+	left: 0px;
 }
 
 button#empty3.navigation {
-	top: 140px;
+	top: 235px;
 	height: 51.333px;
 	background-color: grey;
 }
 
-button#empty3.navigation:hover {
-	left: -210px;
+button#empty3:hover.navigation {
+	position: relative;
+	left: 0px;
 }
 
 button#empty4.navigation {
-	top: 200px;
+	top: 295px;
 	height: 51.333px;
 	background-color: grey;
 }
 
-button#empty4.navigation:hover {
-	left: -210px;
+button#empty4:hover.navigation {
+	position: relative;
+	left: 0px;
 }
 
 button#logout.navigation {
-	top: 200px;
+	top: 295px;
     background-color: #f44336;
 }
 
@@ -142,6 +156,16 @@ button.nextQuestion {
 	color: black;
 }
 
+button.nextQuestion[disabled] {
+	background-color: grey;
+	color: black;
+}
+
+button.nextQuestion[disabled]:hover {
+	background-color: grey;
+	color: black;
+}
+
 button.nextQuestion:hover {
 	padding: 15px;
 	position: relative;
@@ -152,7 +176,7 @@ button.nextQuestion:hover {
 }
 
 button#personal.navigation {
-	top: 20px;
+	top: 115px;
     background-color: #4CAF50;
 }
 
@@ -165,7 +189,7 @@ button.quiz[disabled]:hover {
 }
 
 button#quiz.navigation {
-	top: 140px;
+	top: 235px;
 	background-color: yellow;
 	color: black;
 }
@@ -176,7 +200,7 @@ button.startGame {
 }
 
 button#statistik.navigation {
-	top: 80px;
+	top: 175px;
       background-color: #2196F3;
 }
 
@@ -188,9 +212,13 @@ div.button {
 	text-align: center;
 }
 
+div.currentPoints {
+	flex: 2;
+	text-align: right;
+}
+
 div.currentQuestion {
-	flex: 1;
-	border: 1px solid red;
+	flex: 2;
 }
 
 div.formhead {
@@ -205,10 +233,9 @@ div.getUser {
 	left: 85px;
 }
 
-div.grid {
+div.quizhead {
 	display: flex;
 	flex-flow: row wrap;
-	/*border: 5px solid green;*/
 }
 
 div.heading {
@@ -221,7 +248,8 @@ div.heading {
 
 div.highscore {
 	position: absolute;
-    right: -330px;
+    right: -300px;
+	top: 115px;
     transition: 0.3s;
     padding: 15px;
     width: 300px;
@@ -236,7 +264,7 @@ div.highscore {
 }
 
 div.highscore:hover {
-	right: -40px;
+	right: 0px;
 }
 
 div.inputrequired {
@@ -252,9 +280,10 @@ div.login {
 
 /*progressbar*/
 div.myProgressbar {
-flex: 2
+flex: 1;
   width: 10%;
   background-color: #ddd;
+  border: 1px solid black;
 }
 
 /*progressbar*/
@@ -269,7 +298,7 @@ div.myBar {
 
 div.navigation button {
 	position: absolute;
-    left: -210px;
+    left: -170px;
     transition: 0.3s;
     padding: 15px;
     width: 200px;
@@ -280,7 +309,7 @@ div.navigation button {
 }
 
 div.navigation button:hover {
-	left: -50px;
+	left: 0px;
 }
 
 div.nextQuestion {
@@ -304,12 +333,6 @@ div.noscript {
 	font-size: 1.5em;
 }
 
-div.numberOfPoints {
-	flex: 1;
-	border: 1px solid red;
-	text-align: right;
-}
-
 div.personalhead {
 	font-weight: bold;
 	font-style: italic;
@@ -320,6 +343,19 @@ div.question {
 	font-weight: bold;
 	font-size: 1.5em;
 }
+
+div.quiz {
+	border: 1px solid;
+    padding: 20px;
+    margin: 20px;
+	margin-left: auto;
+	margin-right: auto;
+    background: #dddddd;
+    border-color: black;
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+	width: 950px;
+}
+
 
 div.register {
 	font-size: 0.75em;

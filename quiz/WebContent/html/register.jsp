@@ -1,6 +1,5 @@
 <%@ include file="header.jspf" %>
-			<div class="grid">
-				<aside>
+			
 					<div class="navigation">
 						<form action="../quizmanagement" id="navigation" method="post">
 									<button type="submit" class="navigation" id="empty1" disabled="disabled"></button><p>
@@ -9,8 +8,6 @@
 									<button type="submit" class="navigation" id="empty4" disabled="disabled"></button>
 						</form>
 					</div>
-				</aside>
-				<section>
 					<fieldset>
 						<form action="../quizmanagement" id="loginForm" method="post">
 							<div class="formhead">Registrierung</div>
@@ -51,9 +48,7 @@
 							<p>
 							<div class="login"><a href="login.jsp">zurück zum Login</a></div>
 					</fieldset>
-				</section>
-				<aside class="sidebar">
-			<div class="highscore">Highscore Tabelle<p>
+					<div class="highscore">Highscore Tabelle<p>
 				<table class="highscore">
 					<tr>
 						<th>Platz</th>
@@ -69,7 +64,6 @@
 					</c:forEach>
 				</table>
 				</div>
-				</aside>
-			</div>
+
 			<script type="text/javascript" src="../js/register.js"></script>
 <%@ include file="footer.jspf" %>
