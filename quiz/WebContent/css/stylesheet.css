@@ -1,43 +1,3 @@
-/*  Scrollbalken horizontal ausblenden */
-body {
-	overflow-x: hidden;
-}
-
-div.grid {
-	display: flex;
-	flex-flow: row wrap;
-	/*border: 5px solid green;*/
-}
-
-div.currentQuestion {
-	flex: 1;
-	border: 1px solid red;
-}
-
-div.numberOfPoints {
-	flex: 1;
-	border: 1px solid red;
-	text-align: right;
-}
-
-section {
-	flex: 4;
-	/*border: 3px solid black;*/
-}
-
-aside {
-	flex: 1;
-	/*border: 3px solid red;*/
-margin: 30px;
-position: relative;
-	top: -35px;
-}
-  
-body {
-    font-family: "Helvetica Neue", Helvetica , Arial, sans-serif;
-    font-size: 1em;
-}
-
 article {
 	border: 1px solid;
     padding: 20px;
@@ -47,34 +7,19 @@ article {
     border-radius: 0.5em 0.5em 0.5em 0.5em;
 }
 
-fieldset {
-	width: 300px;
-	padding-top: 1.5em;
-	padding-left: 1.5em;
-	padding-right: 1.5em;
-	background: #dddddd;
-	border: 1px solid;
-	border-radius: 6px;
-	box-shadow: 0 0 10px rgba(0,0,0,0.2);
- 	margin: auto; /* zentriert Formular */
+aside {
+	flex: 1;
+	/*border: 3px solid red;*/
+	margin: 30px;
+	position: relative;
+	top: -35px;
 }
 
-/*nicht mehr verwendet*/
-legend {
-	background: white;
-	padding: 0.3em;
-	border: 1px solid #000330;
-	border-radius: 5px;
-	box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-
-button[type="submit"]:hover {
-    background:#366896;
-    border: 1px solid #3879B4; 
-}
-
-button[type="submit"]:active {
-    background:#8f8f8f;
+body {
+	/*  Scrollbalken horizontal ausblenden */
+	overflow-x: hidden;
+	font-family: "Helvetica Neue", Helvetica , Arial, sans-serif;
+    font-size: 1em;
 }
 
 button[type="submit"] {
@@ -88,81 +33,13 @@ button[type="submit"] {
 	position: relative;
 }
 
-button.quiz[disabled]{
-	background: #8f8f8f;
+button[type="submit"]:active {
+    background:#8f8f8f;
 }
 
-button.quiz[disabled]:hover {
-	background: #8f8f8f;
-}
-
-label {
-    display: inline-block;
-	font-size: 0.8em;
-	position: relative;
-	left: 3px;
-}
-
-label.checkUsername {
-	font-size: 0.75em;	
-}
-
-
-input {
-	width: 100%;
-	font-size: 1.0em;
-}
-
-input:hover {
-    background: #fffff0;
-    border: 2px solid #efe816; 
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
-
-input:required + label::after{
-	font-size: 1.2em;
-	color: red;
-	content: "*";
-	position: relative;
-	left: 290px;
-	top: -21px;
-	}
-
-input:valid + label::after{
-  font-size: 1.0em;  
-	color: green;
-    content: "✔";
-   	position: relative;
-	
-	left: 280px;
-	top: -21px;
-}
-
-input.userExisting + label::after{
-    color: red;
-    content: "Benutzername bereits vorhanden";
-	position: relative;
-	left: 130px;
-	top: -44px;
-	font-size: 0.9em;
-}
-
-input.userNotExisting + label::after{
-    color: red;
-    content: "Benutzername nicht vorhanden";
-	  font-size: 0.9em;
-		position: relative;
-	left: 140px;
-	top: -45px;
-}
-
-button.answer:hover {
-    background: #366896;
+button[type="submit"]:hover {
+    background:#366896;
     border: 1px solid #3879B4; 
-}
-
-button.answer:active {
-    background: #8f8f8f;
 }
 
 button.answer {
@@ -171,6 +48,27 @@ button.answer {
 	padding-bottom: 2.5em;
 	margin: 10px;
 	background: #3879B4;
+	border: 1px solid #3879B4;
+	color: #ffffff;
+	border-radius: 0px;
+	font-size: 0.9em;
+}
+
+button.answer:active {
+    background: #8f8f8f;
+}
+
+button.answer:hover {
+    background: #366896;
+    border: 1px solid #3879B4; 
+}
+
+button.answerFalse {
+	width: 25em;
+	padding-top: 2.5em;
+	padding-bottom: 2.5em;
+	margin: 10px;
+	background: red;
 	border: 1px solid #3879B4;
 	color: #ffffff;
 	border-radius: 0px;
@@ -187,221 +85,6 @@ button.answerTrue {
 	color: #ffffff;
 	border-radius: 0px;
 	font-size: 0.9em;
-}
-
-button.answerFalse {
-	width: 25em;
-	padding-top: 2.5em;
-	padding-bottom: 2.5em;
-	margin: 10px;
-	background: red;
-	border: 1px solid #3879B4;
-	color: #ffffff;
-	border-radius: 0px;
-	font-size: 0.9em;
-}
-
-
-button.nextQuestion {
-	padding: 15px;
-	position: relative;
-	top: 10px;
-	width: 12%;
-	background-color: orange;
-	border: 1px solid black;
-	color: black;
-}
-
-button.nextQuestion:hover {
-	padding: 15px;
-	position: relative;
-	width: 12%;
-	background-color: grey;
-	border: 1px solid black;
-	color: white;
-}
-
-button.startGame {
-	width: 80%;
-	margin: 5px;
-}
-
-div.answers {
-	text-align: center;
-}
-
-div.button {
-	text-align: center;
-}
-
-div.formhead {
-	font-size: 1.8em;
-	text-align: center
-}
-
-div.heading {
-	font-size: 2.5em;
-	font-weight: bold;
-	text-align: center;
-	padding: 10px;
-	
-}
-
-
-div.register {
-	font-size: 0.75em;
-	text-align: center;
-}
-
-div.login {
-	font-size: 0.75em;
-	text-align: center;
-}
-
-div.inputrequired {
-	font-size: 0.75em;
-	position: relative;
-	text-align: right;
-}
-
-
-div.noscript {
-	display: flex;
-	align-items: center;
-  	justify-content: center;
-	padding: 25px;
-	background: red;
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	opacity: 0.9;
-	font-size: 1.5em;
-}
-
-div.nextQuestion {
-	text-align: center;
-}
-
-div.personalhead {
-	font-weight: bold;
-	font-style: italic;
-}
-
-div.question {
-	text-align: center;
-	font-weight: bold;
-	font-size: 1.5em;
-}
-
-div.start{
-	text-align: center;
-}
-
-div.getUser {
-	color: black;
-	text-align: left;
-	position: relative;
-	left: 85px;
-}
-
-footer {
-	font-size: 0.7em;
-	text-align: center;
-}
-
-
-table.highscore {
-	text-align: center;
-	border-collapse: collapse;
-	margin-left: auto; 
-	//margin-right: auto;
-	border: 1px solid #3879B4;
-	width: 90%;
-}
-
-table.highscore th {
-	color: white;
-	background-color: #3879B4;
-	padding: 5px;
-}
-
-table.highscore td {
-	//border: 1px solid black;
-	
-	padding: 3px;
-}
-
-table.highscore tr:nth-child(even){
-	background-color: #dddddd;
-	color: black;
-}
-
-table.highscore tr:nth-child(odd){
-	background-color: white;
-	color: black;
-}
-
-
-div.highscore {
-	position: absolute;
-    right: -330px;
-    transition: 0.3s;
-    padding: 15px;
-    width: 300px;
-    text-decoration: none;
-    font-size: 1.0em;
-    color: black;
-    border-radius: 5px 0 0 5px;
-	border: 1px solid black;
-	background-color: orange;
-	font-size: 1.0em;
-	text-align: center;
-}
-
-div.highscore:hover {
-	right: -40px;
-}
-
-div.navigation button {
-	position: absolute;
-    left: -210px;
-    transition: 0.3s;
-    padding: 15px;
-    width: 200px;
-    text-decoration: none;
-    font-size: 1.0em;
-    color: white;
-    border-radius: 0 5px 5px 0;
-}
-
-div.navigation button:hover {
-	left: -50px;
-}
-
-
-button#personal.navigation {
-	top: 20px;
-    background-color: #4CAF50;
-}
-
-button#statistik.navigation {
-	top: 80px;
-      background-color: #2196F3;
-}
-
-button#quiz.navigation {
-	top: 140px;
-	background-color: yellow;
-	color: black;
-}
-
-button#logout.navigation {
-	top: 200px;
-    background-color: #f44336;
 }
 
 button#empty1.navigation {
@@ -444,6 +127,128 @@ button#empty4.navigation:hover {
 	left: -210px;
 }
 
+button#logout.navigation {
+	top: 200px;
+    background-color: #f44336;
+}
+
+button.nextQuestion {
+	padding: 15px;
+	position: relative;
+	top: 10px;
+	width: 12%;
+	background-color: orange;
+	border: 1px solid black;
+	color: black;
+}
+
+button.nextQuestion:hover {
+	padding: 15px;
+	position: relative;
+	width: 12%;
+	background-color: grey;
+	border: 1px solid black;
+	color: white;
+}
+
+button#personal.navigation {
+	top: 20px;
+    background-color: #4CAF50;
+}
+
+button.quiz[disabled]{
+	background: #8f8f8f;
+}
+
+button.quiz[disabled]:hover {
+	background: #8f8f8f;
+}
+
+button#quiz.navigation {
+	top: 140px;
+	background-color: yellow;
+	color: black;
+}
+
+button.startGame {
+	width: 80%;
+	margin: 5px;
+}
+
+button#statistik.navigation {
+	top: 80px;
+      background-color: #2196F3;
+}
+
+div.answers {
+	text-align: center;
+}
+
+div.button {
+	text-align: center;
+}
+
+div.currentQuestion {
+	flex: 1;
+	border: 1px solid red;
+}
+
+div.formhead {
+	font-size: 1.8em;
+	text-align: center
+}
+
+div.getUser {
+	color: black;
+	text-align: left;
+	position: relative;
+	left: 85px;
+}
+
+div.grid {
+	display: flex;
+	flex-flow: row wrap;
+	/*border: 5px solid green;*/
+}
+
+div.heading {
+	font-size: 2.5em;
+	font-weight: bold;
+	text-align: center;
+	padding: 10px;
+	
+}
+
+div.highscore {
+	position: absolute;
+    right: -330px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 300px;
+    text-decoration: none;
+    font-size: 1.0em;
+    color: black;
+    border-radius: 5px 0 0 5px;
+	border: 1px solid black;
+	background-color: orange;
+	font-size: 1.0em;
+	text-align: center;
+}
+
+div.highscore:hover {
+	right: -40px;
+}
+
+div.inputrequired {
+	font-size: 0.75em;
+	position: relative;
+	text-align: right;
+}
+
+div.login {
+	font-size: 0.75em;
+	text-align: center;
+}
 
 /*progressbar*/
 div.myProgressbar {
@@ -452,6 +257,7 @@ flex: 2
   background-color: #ddd;
 }
 
+/*progressbar*/
 div.myBar {
   width: 0%;
   height: 30px;
@@ -459,4 +265,179 @@ div.myBar {
   text-align: center;
   line-height: 30px;
   color: white;
+}
+
+div.navigation button {
+	position: absolute;
+    left: -210px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 200px;
+    text-decoration: none;
+    font-size: 1.0em;
+    color: white;
+    border-radius: 0 5px 5px 0;
+}
+
+div.navigation button:hover {
+	left: -50px;
+}
+
+div.nextQuestion {
+	text-align: center;
+}
+
+div.noscript {
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+	padding: 25px;
+	background: red;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	opacity: 0.9;
+	font-size: 1.5em;
+}
+
+div.numberOfPoints {
+	flex: 1;
+	border: 1px solid red;
+	text-align: right;
+}
+
+div.personalhead {
+	font-weight: bold;
+	font-style: italic;
+}
+
+div.question {
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+div.register {
+	font-size: 0.75em;
+	text-align: center;
+}
+
+div.start{
+	text-align: center;
+}
+
+fieldset {
+	width: 300px;
+	padding-top: 1.5em;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+	background: #dddddd;
+	border: 1px solid;
+	border-radius: 6px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.2);
+ 	margin: auto; /* zentriert Formular */
+}
+
+footer {
+	font-size: 0.7em;
+	text-align: center;
+}
+
+input {
+	width: 100%;
+	font-size: 1.0em;
+}
+
+input:hover {
+    background: #fffff0;
+    border: 2px solid #efe816; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+input:required + label::after{
+	font-size: 1.2em;
+	color: red;
+	content: "*";
+	position: relative;
+	left: 290px;
+	top: -21px;
+	}
+
+input.userExisting + label::after{
+    color: red;
+    content: "Benutzername bereits vorhanden";
+	position: relative;
+	left: 130px;
+	top: -44px;
+	font-size: 0.9em;
+}
+
+input.userNotExisting + label::after{
+    color: red;
+    content: "Benutzername nicht vorhanden";
+	  font-size: 0.9em;
+		position: relative;
+	left: 140px;
+	top: -45px;
+}
+
+input:valid + label::after{
+  font-size: 1.0em;  
+	color: green;
+    content: "✔";
+   	position: relative;
+	
+	left: 280px;
+	top: -21px;
+}
+
+label {
+    display: inline-block;
+	font-size: 0.8em;
+	position: relative;
+	left: 3px;
+}
+
+label.checkUsername {
+	font-size: 0.75em;	
+}
+
+section {
+	flex: 4;
+	/*border: 3px solid black;*/
+}
+
+table.highscore {
+	text-align: center;
+	border-collapse: collapse;
+	margin-left: auto; 
+	//margin-right: auto;
+	border: 1px solid #3879B4;
+	width: 90%;
+}
+
+table.highscore td {
+	//border: 1px solid black;
+	
+	padding: 3px;
+}
+
+table.highscore th {
+	color: white;
+	background-color: #3879B4;
+	padding: 5px;
+}
+
+table.highscore tr:nth-child(even){
+	background-color: #dddddd;
+	color: black;
+}
+
+table.highscore tr:nth-child(odd){
+	background-color: white;
+	color: black;
 }
