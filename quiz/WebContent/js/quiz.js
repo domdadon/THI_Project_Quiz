@@ -85,8 +85,10 @@ function response() {
 	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 		if (xmlhttp.responseText == "true") {
 			element.className = "answerTrue";
+			console.log("Answer True");
 		} else {
 			element.className = "answerFalse";
+			console.log("Answer False");
 		}
 		console.log("buttons disablen");
 		answer1.setAttribute("disabled", "disabled");

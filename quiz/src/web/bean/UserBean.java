@@ -141,7 +141,4 @@ public class UserBean implements Serializable {
 	public void setLastScore(int lastScore) {
 		this.lastScore = lastScore;
 	}	
-	
-	
-	
 }

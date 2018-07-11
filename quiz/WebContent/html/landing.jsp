@@ -8,9 +8,9 @@
 			</form>
 		</div>
 		<div class="quiz">
-			<div>Deine Punkte im letzten Spiel: xxx</div>
+			<div>Deine Punkte im letzten Spiel: ${UserData.lastScore}</div>
 			<br>
-			<div>Deine aktuelle Platzierung ist: xxx</div>
+			<div>Deine aktuelle Platzierung: ${UserData.currentRank}</div>
 			<br>
 			<div>Wählen Sie den gewünschten Schwierigkeitsgrad aus:</div>
 			
