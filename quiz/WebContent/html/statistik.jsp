@@ -1,15 +1,10 @@
 <%@ include file="header.jspf" %>
-	
-			<div class="navigation">
-				<form action="../quizmanagement" id="navigation" method="post">
-							<button type="submit" class="navigation" id="personal" name="action" value="personal">Persönliche Daten</button><p>
-							<button type="submit" class="navigation" id="empty2" disabled="disabled"></button><p>
-							<button type="submit" class="navigation" id="quiz" name="action" value="getNextQuestion">Quiz</button><p>
-							<button type="submit" class="navigation" id="logout" name="action" value="logout">Abmelden</button>
-				</form>
-			</div>
-	
-		
+			<form action="../quizmanagement" id="navigation" method="post">
+				<button type="submit" class="personal" id="personal" name="action" value="personal">Persönliche Daten</button><p>
+				<button type="submit" class="empty2" id="empty2" disabled="disabled"></button><p>
+				<button type="submit" class="quiz" id="quiz" name="action" value="getNextQuestion">Quiz</button><p>
+				<button type="submit" class="logout" id="logout" name="action" value="logout">Abmelden</button>
+			</form>
 			<div class="quiz">
 				<div class="formhead">Ihre Statistik</div>
 				<hr>
@@ -22,7 +17,6 @@
 				<div class="personalhead">Punkte Gesamt:</div>${UserData.totalScore}<p>
 				<div class="personalhead">Quote richtige Antworten:</div>${UserData.quoteAnswers}%<p>
 			</div>
-		
 			<div class="highscore">Highscore Tabelle<p>
 				<table class="highscore">
 					<tr>
