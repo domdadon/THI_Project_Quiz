@@ -237,6 +237,14 @@ button.register:hover {
     border: 1px solid #3879B4;
 }
 
+button.register[disabled] {
+	background-color: grey;
+}
+
+button.register[disabled]:hover {
+	background-color: grey;
+}
+
 button.quiz {
 	position: absolute;
 	top: 235px;

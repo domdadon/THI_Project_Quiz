@@ -29,9 +29,11 @@ function response() {
 	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 		if (xmlhttp.responseText == "true") {
 			document.getElementById("userName").className = "userExisting";
+			document.getElementById("register").setAttribute("disabled", "disabled");
 			console.log("change class to userExisting executed");
 		} else {
 			document.getElementById("userName").className = "userName";
+			document.getElementById("register").removeAttribute("disabled", "disabled");
 			document.log("change class reset executed");
 		}	
 	}
