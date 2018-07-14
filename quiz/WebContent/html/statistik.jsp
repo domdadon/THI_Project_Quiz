@@ -2,7 +2,7 @@
 			<form action="../quizmanagement" id="navigation" method="post">
 				<button type="submit" class="personal" id="personal" name="action" value="personal">Persönliche Daten</button><p>
 				<button type="submit" class="empty2" id="empty2" disabled="disabled"></button><p>
-				<button type="submit" class="quiz" id="quiz" name="action" value="getNextQuestion">Quiz</button><p>
+				<button type="submit" class="quiz" id="quiz" name="action" value="checkLandingOrGame">Quiz</button><p>
 				<button type="submit" class="logout" id="logout" name="action" value="logout">Abmelden</button>
 			</form>
 			<div class="quiz">

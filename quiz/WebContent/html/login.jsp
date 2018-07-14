@@ -22,7 +22,7 @@
 						</div>
 						<div class="inputrequired">* Pflichtfeld</div>
 						<p>
-						<button type="submit" class="login" id="login" name="action" value="login" disabled="disabled">Anmelden</button>
+						<button type="submit" class="login" id="login" name="action" value="login">Anmelden</button>
 					</form>
 					<p>
 					<div class="register">oder <a href="register.jsp">Registrieren</a></div>
