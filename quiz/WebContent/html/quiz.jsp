@@ -9,9 +9,12 @@
 		<div class="quizhead">
 			<div class="currentQuestion">Frage ${QuestionBean.q_Number}/10</div>
 				<p>
+				<!-- ANFANG Code aus dem Internet -->
+				<!-- URL: https://www.w3schools.com/howto/howto_js_progressbar.asp -->
 				<div class="myProgressbar" id="myProgressbar">
 					<div class="myBar" id="myBar"></div>
 				</div>
+				<!-- ENDE Code aus dem Internet -->
 				<p>
 				<div class="currentPoints">Aktuelle Punkte ${QuestionBean.currentScore}</div>
 				<p>

@@ -38,6 +38,9 @@ function checkAnswer(event) {
 	console.log("checkAnswer successful");
 }
 
+/* ANFANG Code aus dem Internet
+ * URL: https://www.w3schools.com/howto/howto_js_progressbar.asp
+ */
 function progressbar() {
 	console.log("progress executed");
 	var elem = document.getElementById("myBar");   
@@ -54,6 +57,7 @@ function progressbar() {
 		}
 	console.log("progress successful");
 }
+/* ENDE Code aus dem Internet */
 
 function noAnswer() {
 	var q_ID = document.getElementById("question").dataset.questionid;
