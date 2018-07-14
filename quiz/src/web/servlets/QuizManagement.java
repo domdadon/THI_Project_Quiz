@@ -126,7 +126,7 @@ public class QuizManagement extends HttpServlet {
 					String mail = request.getParameter("mail");
 					Integer result = registerUser(vName, nName, userName, password, mail);
 					session.setAttribute("userID", result);
-					dispatch(request, response,"login", result);
+					dispatch(request, response,"landing", result);
 					break;
 				case "checkLandingOrGame":
 					if (hasOpenGame(userID,session)) {
@@ -194,35 +194,27 @@ public class QuizManagement extends HttpServlet {
 					
 					if (qb == null) {
 						dispatch(request, response,"landing", userID);
-						break;
 					}
-					else {
+					else 
+					{
 						request.setAttribute("QuestionBean", qb);
 						dispatch(request, response,"quiz", userID);
-						
-						break;
 					}
-					
+					break;
 				case "personal":
-					//hier Agrregation der Ergebnisse
 					dispatch(request, response,"personal", userID);
 					break;
-					
 				case "logout":
 					session.invalidate();
 					request.setAttribute("UserData", new UserBean());
 					dispatch(request, response,"login", -1);
 			        break;
-			        
 				case "landing":
 					dispatch(request, response,"landing", userID);
 			        break;
-			        
 				case "statistik":
-					//hier Agrregation der Ergebnisse
 					dispatch(request, response,"statistik", userID);
 			        break;
-
 				}
 			}
 		} catch (Exception ex) {
