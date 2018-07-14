@@ -265,8 +265,20 @@ button.quiz:hover {
 }
 
 button.startGame {
-	width: 80%;
-	margin: 5px;
+	background-color: #3879B4;
+	color: white;
+	width: 50%;
+	margin: 25px;
+	padding: 25px;
+	border: 1px solid black;
+}
+
+button.startGame:active {
+	background-color: #8f8f8f;
+}
+
+button.startGame:hover {
+	background-color: #366896;
 }
 
 button.statistik {
@@ -303,6 +315,11 @@ div.currentPoints {
 
 div.currentQuestion {
 	flex: 2;
+}
+
+div.difficulty {
+	text-align: center;
+	font-weight: bold;
 }
 
 div.formhead {
@@ -421,17 +438,30 @@ div.quiz {
     background: #dddddd;
     border-color: black;
     border-radius: 0.5em 0.5em 0.5em 0.5em;
-	width: 950px;
+	width: 60%;
 }
-
 
 div.register {
 	font-size: 0.75em;
 	text-align: center;
 }
 
-div.start{
+div.startGame {
 	text-align: center;
+	display: flex;
+	flex-flow: wrap;
+}
+
+div.easy {
+	flex: 1;
+}
+
+div.medium {
+	flex: 1;
+}
+
+div.hard {
+	flex: 1;
 }
 
 fieldset {
