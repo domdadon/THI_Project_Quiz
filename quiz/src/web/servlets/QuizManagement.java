@@ -172,7 +172,6 @@ public class QuizManagement extends HttpServlet {
 					gameID = startGame(userID, 1);
 					session.setAttribute("gameID", gameID);
 					qb = getNextQuestion(gameID, 1);
-					//qb.setQ_Number(1);
 					request.setAttribute("QuestionBean", qb);
 					dispatcher = request.getRequestDispatcher(quiz);
 					dispatcher.forward(request, response);
@@ -182,7 +181,6 @@ public class QuizManagement extends HttpServlet {
 					gameID = startGame(userID, 2);
 					session.setAttribute("gameID", gameID);
 					qb = getNextQuestion(gameID, 2);
-					//qb.setQ_Number(1);
 					request.setAttribute("QuestionBean", qb);
 					dispatcher = request.getRequestDispatcher(quiz);
 					dispatcher.forward(request, response);
@@ -191,8 +189,7 @@ public class QuizManagement extends HttpServlet {
 					session.setAttribute("categoryID", 3);
 					gameID = startGame(userID, 3);
 					session.setAttribute("gameID", gameID);
-					qb = getNextQuestion(gameID, categoryID);
-					//qb.setQ_Number(1);
+					qb = getNextQuestion(gameID, 3);
 					request.setAttribute("QuestionBean", qb);
 					dispatcher = request.getRequestDispatcher(quiz);
 					dispatcher.forward(request, response);
@@ -210,8 +207,6 @@ public class QuizManagement extends HttpServlet {
 					}
 					break;
 				case "getNextQuestion":
-					//Integer qNumber = (Integer) request.getAttribute("questionNumber");
-					//qb.setQ_Number(qNumber);
 					qb = getNextQuestion(gameID, categoryID);
 					
 					if (qb == null) {
@@ -584,7 +579,7 @@ public class QuizManagement extends HttpServlet {
 			int rank = getCurrentRank(user.getIdUser());
 			user.setCurrentRank(rank);
 			
-			int score = getScore(user.getIdUser());
+			int score = getLastScore(user.getIdUser());
 			user.setLastScore(score);
 			
 			if (complete) {
@@ -661,7 +656,7 @@ public class QuizManagement extends HttpServlet {
 		
 	}
 	
-	private int getScore(int userID) throws Exception{
+	private int getLastScore(int userID) throws Exception{
 		try (Connection cnx = ds.getConnection();
 				PreparedStatement sql = cnx.prepareStatement("SELECT score FROM games WHERE userID = ? AND endtime != NULL ORDER BY starttime DESC LIMIT 1");) {
 			

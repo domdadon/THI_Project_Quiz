@@ -50,7 +50,6 @@ function progressbar() {
 			} else {
 			width++; 
 			elem.style.width = width + '%';
-			elem.innerHTML = Math.round(width * 1/10)  + 'sek';
 			}
 		}
 	console.log("progress successful");
