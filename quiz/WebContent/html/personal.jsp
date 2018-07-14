@@ -1,12 +1,10 @@
 <%@ include file="header.jspf" %>
-		<div class="navigation">
 			<form action="../quizmanagement" id="navigation" method="post">
-					<button type="submit" class="navigation" id="empty1" disabled="disabled"></button><p>
-					<button type="submit" class="navigation" id="statistik" name="action" value="statistik">Statistik</button><p>
-					<button type="submit" class="navigation" id="quiz" name="action" value="getNextQuestion">Quiz</button><p>
-					<button type="submit" class="navigation" id="logout" name="action" value="logout">Abmelden</button>
+				<button type="submit" class="empty1" id="empty1" disabled="disabled"></button><p>
+				<button type="submit" class="statistik" id="statistik" name="action" value="statistik">Statistik</button><p>
+				<button type="submit" class="quiz" id="quiz" name="action" value="getNextQuestion">Quiz</button><p>
+				<button type="submit" class="logout" id="logout" name="action" value="logout">Abmelden</button>
 			</form>
-		</div>
 			<div class="quiz">
 				<div class="formhead">Ihre gespeicherten Daten</div>
 				<hr>

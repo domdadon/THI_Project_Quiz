@@ -1,13 +1,10 @@
 <%@ include file="header.jspf" %>
-			
-					<div class="navigation">
-						<form action="../quizmanagement" id="navigation" method="post">
-									<button type="submit" class="navigation" id="empty1" disabled="disabled"></button><p>
-									<button type="submit" class="navigation" id="empty2" disabled="disabled"></button><p>
-									<button type="submit" class="navigation" id="empty3" disabled="disabled"></button><p>
-									<button type="submit" class="navigation" id="empty4" disabled="disabled"></button>
-						</form>
-					</div>
+					<form action="../quizmanagement" id="navigation" method="post">
+						<button type="submit" class="empty1" id="empty1" disabled="disabled"></button><p>
+						<button type="submit" class="empty2" id="empty2" disabled="disabled"></button><p>
+						<button type="submit" class="empty3" id="empty3" disabled="disabled"></button><p>
+						<button type="submit" class="empty4" id="empty4" disabled="disabled"></button>
+					</form>
 					<fieldset>
 						<form action="../quizmanagement" id="loginForm" method="post">
 							<div class="formhead">Registrierung</div>
@@ -40,10 +37,7 @@
 							</div>
 							<div class="inputrequired">* Pflichtfeld</div>
 							<p>
-							<div class="button">
-								<button type="submit" name="action" value="register" class="register">Registrieren</button>
-							</div>
-							
+							<button type="submit" id="register" name="action" value="register" class="register">Registrieren</button>
 						</form>
 							<p>
 							<div class="login"><a href="login.jsp">zurück zum Login</a></div>

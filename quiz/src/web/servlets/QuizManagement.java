@@ -352,10 +352,10 @@ public class QuizManagement extends HttpServlet {
 
 			sql.executeQuery();
 
-			try (ResultSet rs = sql.executeQuery()) {
-				if (rs != null && rs.next()) {
+			try (ResultSet rs = sql.executeQuery()) {	
+					if (rs != null && rs.next()) {
 					result = true;
-				}
+				} 
 			}
 			return result;
 
@@ -683,4 +683,3 @@ public class QuizManagement extends HttpServlet {
 		}
 	}
 }
-

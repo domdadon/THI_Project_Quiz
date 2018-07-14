@@ -1,12 +1,10 @@
 <%@ include file="header.jspf" %>
-	<div class="navigation">
 		<form action="../quizmanagement" id="navigation" method="post">
-							<button type="submit" class="navigation" id="personal" name="action" value="personal">Persönliche Daten</button><p>
-							<button type="submit" class="navigation" id="statistik" name="action" value="statistik">Statistik</button><p>
-							<button type="submit" class="navigation" id="empty3" disabled="disabled"></button><p>
-							<button type="submit" class="navigation" id="logout" name="action" value="logout">Abmelden</button>
+			<button type="submit" class="personal" id="personal" name="action" value="personal">Persönliche Daten</button><p>
+			<button type="submit" class="statistik" id="statistik" name="action" value="statistik">Statistik</button><p>
+			<button type="submit" class="empty3" id="empty3" disabled="disabled"></button><p>
+			<button type="submit" class="logout" id="logout" name="action" value="logout">Abmelden</button>
 		</form>
-	</div>
 	<div class="quiz">
 		<div class="quizhead">
 			<div class="currentQuestion">Frage ${QuestionBean.q_Number}/10</div>

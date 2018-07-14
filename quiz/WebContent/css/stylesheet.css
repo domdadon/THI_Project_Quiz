@@ -1,45 +1,7 @@
-article {
-	border: 1px solid;
-    padding: 20px;
-    margin: 20px;
-    background: #dddddd;
-    border-color: black;
-    border-radius: 0.5em 0.5em 0.5em 0.5em;
-}
-
-aside {
-	flex: 1;
-	/*border: 3px solid red;*/
-	margin: 30px;
-	position: relative;
-	top: -35px;
-}
-
 body {
-	/*  Scrollbalken horizontal ausblenden */
 	overflow-x: hidden;
 	font-family: "Helvetica Neue", Helvetica , Arial, sans-serif;
     font-size: 1em;
-}
-
-button[type="submit"] {
-	width: 100%;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
-	background: #3879B4;
-	border: 1px solid #3879B4;
-	color: #ffffff;
-	border-radius: 0px;
-	position: relative;
-}
-
-button[type="submit"]:active {
-    background:#8f8f8f;
-}
-
-button[type="submit"]:hover {
-    background:#366896;
-    border: 1px solid #3879B4; 
 }
 
 button.answer {
@@ -97,53 +59,114 @@ button.answerTrue {
 	font-size: 0.9em;
 }
 
-button#empty1.navigation {
+
+button.empty1 {
+	position: absolute;
 	top: 115px;
+	left: -170px;
+	width: 200px;
 	height: 51.333px;
 	background-color: grey;
+	    text-decoration: none;
+    font-size: 1.0em;
+    color: white;
+    border-radius: 0 5px 5px 0;
+	border: 1px solid black;
 }
 
-button#empty1:hover.navigation {
-	position: relative;
-	left: 0px;
+button.empty1:hover {	
+	left: -170px;
 }
 
-button#empty2.navigation {
+button.empty2 {
+	position: absolute;
 	top: 175px;
+	left: -170px;
+	width: 200px;
 	height: 51.333px;
 	background-color: grey;
+	    text-decoration: none;
+    font-size: 1.0em;
+    color: white;
+    border-radius: 0 5px 5px 0;
+	border: 1px solid black;
 }
 
-button#empty2:hover.navigation {
-	position: relative;
-	left: 0px;
+button.empty2:hover {
+	left: -170px;
 }
 
-button#empty3.navigation {
+button.empty3 {
+	position: absolute;
 	top: 235px;
+	left: -170px;
+	width: 200px;
 	height: 51.333px;
 	background-color: grey;
+	    text-decoration: none;
+    font-size: 1.0em;
+    color: white;
+    border-radius: 0 5px 5px 0;
+	border: 1px solid black;
 }
 
-button#empty3:hover.navigation {
-	position: relative;
-	left: 0px;
+button.empty3:hover {
+	left: -170px;
 }
 
-button#empty4.navigation {
+button.empty4 {
+	position: absolute;
 	top: 295px;
+	left: -170px;
+	width: 200px;
 	height: 51.333px;
 	background-color: grey;
+	    text-decoration: none;
+    font-size: 1.0em;
+    color: white;
+    border-radius: 0 5px 5px 0;
+	border: 1px solid black;
 }
 
-button#empty4:hover.navigation {
-	position: relative;
-	left: 0px;
+button.empty4:hover {
+	left: -170px;
 }
 
-button#logout.navigation {
+button.login {
+	width: 100%;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	background: #3879B4;
+	border: 1px solid #3879B4;
+	color: #ffffff;
+	border-radius: 0px;
+}
+
+button.login:active {
+	background: #8f8f8f;
+}
+
+button.login:hover {
+	background:#366896;
+    border: 1px solid #3879B4;
+}
+
+button.logout {
+	position: absolute;
 	top: 295px;
+	left: -170px;
+	width: 200px;
+	height: 51.333px;
     background-color: #f44336;
+	    text-decoration: none;
+    font-size: 1.0em;
+    color: white;
+    border-radius: 0 5px 5px 0;
+	border: 1px solid black;
+}
+
+button.logout:hover {
+	left: 0px;
 }
 
 button.nextQuestion {
@@ -175,9 +198,41 @@ button.nextQuestion:hover {
 	color: white;
 }
 
-button#personal.navigation {
+button.personal {
+	position: absolute;
 	top: 115px;
-    background-color: #4CAF50;
+	left: -170px;
+	width: 200px;
+	height: 51.333px;
+	background-color: #4CAF50;
+	    text-decoration: none;
+    font-size: 1.0em;
+    color: white;
+    border-radius: 0 5px 5px 0;
+	border: 1px solid black;
+}
+
+button.personal:hover {
+	left: 0px;
+}
+
+button.register {
+	width: 100%;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	background: #3879B4;
+	border: 1px solid #3879B4;
+	color: #ffffff;
+	border-radius: 0px;	
+}
+
+button.register:active {
+	background: #8f8f8f;
+}
+
+button.register:hover {
+	background:#366896;
+    border: 1px solid #3879B4;
 }
 
 button.quiz[disabled]{
@@ -188,8 +243,9 @@ button.quiz[disabled]:hover {
 	background: #8f8f8f;
 }
 
-button#quiz.navigation {
+button.quiz {
 	top: 235px;
+	left: -170px;
 	background-color: yellow;
 	color: black;
 }
@@ -199,9 +255,22 @@ button.startGame {
 	margin: 5px;
 }
 
-button#statistik.navigation {
+button.statistik {
+	position: absolute;
 	top: 175px;
+	left: -170px;
+	width: 200px;
+	height: 51.333px;
       background-color: #2196F3;
+	 text-decoration: none;
+    font-size: 1.0em;
+    color: white;
+    border-radius: 0 5px 5px 0;
+	border: 1px solid black;	   
+}
+
+button.statistik:hover {
+	left: 0px;
 }
 
 div.answers {
@@ -278,7 +347,7 @@ div.login {
 	text-align: center;
 }
 
-/*progressbar*/
+
 div.myProgressbar {
 flex: 1;
   width: 10%;
@@ -286,7 +355,7 @@ flex: 1;
   border: 1px solid black;
 }
 
-/*progressbar*/
+
 div.myBar {
   width: 0%;
   height: 30px;
@@ -294,22 +363,6 @@ div.myBar {
   text-align: center;
   line-height: 30px;
   color: white;
-}
-
-div.navigation button {
-	position: absolute;
-    left: -170px;
-    transition: 0.3s;
-    padding: 15px;
-    width: 200px;
-    text-decoration: none;
-    font-size: 1.0em;
-    color: white;
-    border-radius: 0 5px 5px 0;
-}
-
-div.navigation button:hover {
-	left: 0px;
 }
 
 div.nextQuestion {
@@ -375,7 +428,7 @@ fieldset {
 	border: 1px solid;
 	border-radius: 6px;
 	box-shadow: 0 0 10px rgba(0,0,0,0.2);
- 	margin: auto; /* zentriert Formular */
+ 	margin: auto;
 }
 
 footer {
@@ -442,23 +495,15 @@ label.checkUsername {
 	font-size: 0.75em;	
 }
 
-section {
-	flex: 4;
-	/*border: 3px solid black;*/
-}
-
 table.highscore {
 	text-align: center;
 	border-collapse: collapse;
 	margin-left: auto; 
-	//margin-right: auto;
 	border: 1px solid #3879B4;
 	width: 90%;
 }
 
 table.highscore td {
-	//border: 1px solid black;
-	
 	padding: 3px;
 }
 
@@ -476,4 +521,4 @@ table.highscore tr:nth-child(even){
 table.highscore tr:nth-child(odd){
 	background-color: white;
 	color: black;
-}
+}*/

@@ -1,16 +1,14 @@
 <%@ include file="header.jspf" %>
-		<div class="navigation">
-			<form action="../quizmanagement" id="navigation" method="post">
-						<button type="submit" class="navigation" id="personal" name="action" value="personal">Persönliche Daten</button><p>
-						<button type="submit" class="navigation" id="statistik" name="action" value="statistik">Statistik</button><p>
-						<button type="submit" class="navigation" id="empty3" disabled="disabled"></button><p>
-						<button type="submit" class="navigation" id="logout" name="action" value="logout">Abmelden</button>
-			</form>
-		</div>
+		<form action="../quizmanagement" id="navigation" method="post">
+			<button type="submit" class="personal" id="personal" name="action" value="personal">Persönliche Daten</button><p>
+			<button type="submit" class="statistik" id="statistik" name="action" value="statistik">Statistik</button><p>
+			<button type="submit" class="empty3" id="empty3" disabled="disabled"></button><p>
+			<button type="submit" class="logout" id="logout" name="action" value="logout">Abmelden</button>
+		</form>
 		<div class="quiz">
-			<div>Deine Punkte im letzten Spiel: xxx</div>
+			<div>Deine Punkte im letzten Spiel: ${UserData.lastScore}</div>
 			<br>
-			<div>Deine aktuelle Platzierung ist: xxx</div>
+			<div>Deine aktuelle Platzierung: ${UserData.currentRank}</div>
 			<br>
 			<div>Wählen Sie den gewünschten Schwierigkeitsgrad aus:</div>
 			

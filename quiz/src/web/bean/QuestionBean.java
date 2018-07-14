@@ -87,6 +87,4 @@ public class QuestionBean implements Serializable {
 	public void setCurrentScore(Integer currentScore) {
 		this.currentScore = currentScore;
 	}
-	
-	
 }

@@ -1,12 +1,10 @@
 <%@ include file="header.jspf" %>
-				<div class="navigation">
-					<form action="../quizmanagement" id="navigation" method="post">
-								<button type="submit" class="navigation" id="empty1" disabled="disabled"></button><p>
-								<button type="submit" class="navigation" id="empty2" disabled="disabled"></button><p>
-								<button type="submit" class="navigation" id="empty3" disabled="disabled"></button><p>
-								<button type="submit" class="navigation" id="empty4" disabled="disabled"></button>
-					</form>
-				</div>
+				<form action="../quizmanagement" id="navigation" method="post">
+					<button type="submit" class="empty1" id="empty1" disabled="disabled"></button>
+					<button type="submit" class="empty2" id="empty2" disabled="disabled"></button>
+					<button type="submit" class="empty3" id="empty3" disabled="disabled"></button>
+					<button type="submit" class="empty4" id="empty4" disabled="disabled"></button>
+				</form>
 				<fieldset>
 					<form action="../quizmanagement" id="loginForm" method="post">
 						<div class="formhead">Login</div>
@@ -24,9 +22,7 @@
 						</div>
 						<div class="inputrequired">* Pflichtfeld</div>
 						<p>
-						<div class="button">
-							<button type="submit" class="quiz" id="login" name="action" value="login" disabled="disabled">Anmelden</button>
-						</div>
+						<button type="submit" class="login" id="login" name="action" value="login" disabled="disabled">Anmelden</button>
 					</form>
 					<p>
 					<div class="register">oder <a href="register.jsp">Registrieren</a></div>
