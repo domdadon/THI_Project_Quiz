@@ -156,9 +156,17 @@ public class QuizManagement extends HttpServlet {
 				case "checkLandingOrGame":
 					if (hasOpenGame(userID,session)) {
 						qb = getNextQuestion(gameID, categoryID);
-						request.setAttribute("QuestionBean", qb);
-						dispatcher = request.getRequestDispatcher(quiz);
-						dispatcher.forward(request, response);
+						
+						if (qb != null) 
+						{
+							request.setAttribute("QuestionBean", qb);
+							dispatcher = request.getRequestDispatcher(quiz);
+							dispatcher.forward(request, response);
+						}
+						else {
+							dispatcher = request.getRequestDispatcher(landing);
+							dispatcher.forward(request, response);
+						}
 					} else {
 						
 						dispatcher = request.getRequestDispatcher(landing);
@@ -449,7 +457,9 @@ public class QuizManagement extends HttpServlet {
 				sql.setInt(2, qb.getqID());
 				sql.setInt(3, -1);
 				sql.executeUpdate();
-
+				
+				qb.setCurrentScore(getCurrentScore(gameID));
+				
 				return qb;
 
 			} catch (Exception ex) {
@@ -546,7 +556,7 @@ public class QuizManagement extends HttpServlet {
 	private List<HighscoreEntryBean> getHighScoreEntries(Boolean getAllEntries) throws Exception{
 		try (Connection cnx = ds.getConnection()) {
 			
-			String sqlS = "SELECT username, g1.userID, g1.score, TIMESTAMPDIFF(SECOND, g1.starttime, g1.endtime) AS Diff, g1.userID FROM thidb.games g1 LEFT JOIN thidb.games g2 ON g1.userID = g2.userID AND g1.score < g2.score INNER JOIN thidb.users u ON g1.userID = u.idUser WHERE g2.userID IS NULL ORDER BY g1.score DESC, TIMESTAMPDIFF(SECOND, g1.starttime, g1.endtime) ASC";
+			String sqlS = "SELECT username, userID, MAX(score) AS score, MIN(Diff) AS Diff FROM (SELECT username, g1.userID, g1.score, TIMESTAMPDIFF(SECOND, g1.starttime, g1.endtime) AS Diff FROM thidb.games g1 LEFT JOIN thidb.games g2 ON g1.userID = g2.userID AND g1.score < g2.score INNER JOIN thidb.users u ON g1.userID = u.idUser WHERE g2.userID IS NULL) AS result GROUP BY username, userID ORDER BY score DESC, Diff ASC";
 			
 			if (!getAllEntries) {
 				sqlS.concat(" LIMIT 10");
@@ -637,7 +647,7 @@ public class QuizManagement extends HttpServlet {
 					int correct = rs.getInt(3);
 					int total = rs.getInt(2);
 							
-					user.setQuoteAnswers(correct/total*100.0);
+					user.setQuoteAnswers((float)correct/(float)total*100.0);
 				}
 				
 			}
@@ -672,13 +682,13 @@ public class QuizManagement extends HttpServlet {
 			}
 		}
 		
-		return -1;
+		return 0;
 		
 	}
 	
 	private int getLastScore(int userID) throws Exception{
 		try (Connection cnx = ds.getConnection();
-				PreparedStatement sql = cnx.prepareStatement("SELECT score FROM games WHERE userID = ? AND endtime != NULL ORDER BY starttime DESC LIMIT 1");) {
+				PreparedStatement sql = cnx.prepareStatement("SELECT score FROM games WHERE userID = ? AND endtime IS NOT NULL ORDER BY starttime DESC LIMIT 1");) {
 			
 			sql.setInt(1, userID);
 			
@@ -689,7 +699,29 @@ public class QuizManagement extends HttpServlet {
 			}
 			else
 			{
-				return -1;
+				return 0;
+			}
+			
+		} catch (Exception ex) {
+			throw ex;
+
+		}
+	}
+	
+	private int getCurrentScore(int gameID) throws Exception{
+		try (Connection cnx = ds.getConnection();
+				PreparedStatement sql = cnx.prepareStatement("SELECT score FROM games WHERE idGame = ?");) {
+			
+			sql.setInt(1, gameID);
+			
+			ResultSet rs = sql.executeQuery();
+			
+			if (rs != null && rs.next()) {
+				return rs.getInt(1);
+			}
+			else
+			{
+				return 0;
 			}
 			
 		} catch (Exception ex) {
