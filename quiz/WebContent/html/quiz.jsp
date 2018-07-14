@@ -51,5 +51,5 @@
 			</tbody>
 		</table>
 	</div>
-	<script type="text/javascript" src="../js/quiz.js"></script>
+	<script src="../js/quiz.js"></script>
 <%@ include file="footer.jspf" %>
