@@ -63,5 +63,5 @@
 				</table>
 				</div>
 
-			<script type="text/javascript" src="../js/register.js"></script>
+			<script src="../js/register.js"></script>
 <%@ include file="footer.jspf" %>

@@ -3,16 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isErrorPage="true" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<base href="${pageContext.request.requestURI}" />
-		<meta name="author" content="Dominik Mueller, Daniel Reiss, Harald Schwirzenbeck">
+		<meta name="author" content="Dominik Mueller, Daniel Reiss, Harald Schwirzenbeck">
 		<title>Fehlerseite</title>
 	</head>
 	<body>
 		<h1>Fehlerseite</h1>
-		Es ist ein Fehler aufgetreten.<br>
+		Es ist ein Fehler aufgetreten. Bitte wenden Sie sich an Dr. Oliver Gmelch oder Prof. Dr. Volker Stiehl.<br>
 		<br>
 		<b>Die Fehlermeldung lautet:</b>
 		<br>

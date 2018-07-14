@@ -1,4 +1,4 @@
-<%@ include file="header.jspf" %>
+<%@ include file="header.jspf" %>				
 				<form action="../quizmanagement" id="navigation" method="post">
 					<button type="submit" class="empty1" id="empty1" disabled="disabled"></button>
 					<button type="submit" class="empty2" id="empty2" disabled="disabled"></button>
@@ -47,5 +47,5 @@
 						</tbody>
 					</table>
 				</div>
-			<script type="text/javascript" src="../js/login.js"></script>
+			<script src="../js/login.js"></script>
 <%@ include file="footer.jspf" %>
