@@ -18,8 +18,8 @@ function checkUsername() {
 	var par = "action=checkUsername&userName="+username;
 	
 	xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("POST", "../quizmanagement", true);
 	xmlhttp.onreadystatechange = response;
+	xmlhttp.open("POST", "../quizmanagement", true);
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.send(par);
 }
@@ -32,7 +32,7 @@ function response() {
 			console.log("change class to userExisting executed");
 		} else {
 			document.getElementById("userName").className = "userName";
-			console.log("change class reset executed");
+			document.log("change class reset executed");
 		}	
 	}
 }

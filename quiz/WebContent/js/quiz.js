@@ -1,7 +1,7 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", init);
 
-var xmlhttp;
+var xmlhttp = null;
 var element;
 var width;
 var answer1 = document.getElementById("answer1");
@@ -61,8 +61,8 @@ function noAnswer() {
 	var par = "action=setAnswer&question="+q_ID+"&answer="+0;
 	
 	xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("POST", "../quizmanagement", true);
 	xmlhttp.onreadystatechange = responseNoAnswer;
+	xmlhttp.open("POST", "../quizmanagement", true);
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.send(par);
 }
