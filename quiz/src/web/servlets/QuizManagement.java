@@ -680,7 +680,7 @@ public class QuizManagement extends HttpServlet {
 	
 	private int getLastScore(int userID) throws Exception{
 		try (Connection cnx = ds.getConnection();
-				PreparedStatement sql = cnx.prepareStatement("SELECT score FROM games WHERE userID = ? AND endtime != NULL ORDER BY starttime DESC LIMIT 1");) {
+				PreparedStatement sql = cnx.prepareStatement("SELECT score FROM games WHERE userID = ? AND endtime IS NOT NULL ORDER BY starttime DESC LIMIT 1");) {
 			
 			sql.setInt(1, userID);
 			
