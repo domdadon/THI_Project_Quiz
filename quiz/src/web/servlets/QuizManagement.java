@@ -98,7 +98,6 @@ public class QuizManagement extends HttpServlet {
 				
 				switch (action) {
 				case "login":
-
 					Integer id = checkUser(userName, password);
 					if (id != -1) {
 						session.setAttribute("userID", id);
@@ -118,7 +117,6 @@ public class QuizManagement extends HttpServlet {
 					} else {
 						dispatch(request, response,"login", id);
 					}
-
 					break;
 				case "register":
 					String vName = request.getParameter("vName");
@@ -126,7 +124,7 @@ public class QuizManagement extends HttpServlet {
 					String mail = request.getParameter("mail");
 					Integer result = registerUser(vName, nName, userName, password, mail);
 					session.setAttribute("userID", result);
-					dispatch(request, response,"login", result);
+					dispatch(request, response,"landing", result);
 					break;
 				case "checkLandingOrGame":
 					if (hasOpenGame(userID,session)) {
@@ -146,6 +144,7 @@ public class QuizManagement extends HttpServlet {
 					break;
 				
 				case "checkUsername":
+					response.setContentType("text/plain");
 					if (checkUsername(userName)) {
 						response.getWriter().append("true");
 					}
@@ -181,7 +180,7 @@ public class QuizManagement extends HttpServlet {
 					Integer q_ID = Integer.parseInt(request.getParameter("question"));
 					Integer a_ID = Integer.parseInt(request.getParameter("answer"));
 
-					
+					response.setContentType("text/plain");
 					if (checkAnswer(q_ID, a_ID, gameID)) {
 						response.getWriter().append("true");
 					}
@@ -194,35 +193,27 @@ public class QuizManagement extends HttpServlet {
 					
 					if (qb == null) {
 						dispatch(request, response,"landing", userID);
-						break;
 					}
-					else {
+					else 
+					{
 						request.setAttribute("QuestionBean", qb);
 						dispatch(request, response,"quiz", userID);
-						
-						break;
 					}
-					
+					break;
 				case "personal":
-					//hier Agrregation der Ergebnisse
 					dispatch(request, response,"personal", userID);
 					break;
-					
 				case "logout":
 					session.invalidate();
 					request.setAttribute("UserData", new UserBean());
 					dispatch(request, response,"login", -1);
 			        break;
-			        
 				case "landing":
 					dispatch(request, response,"landing", userID);
 			        break;
-			        
 				case "statistik":
-					//hier Agrregation der Ergebnisse
 					dispatch(request, response,"statistik", userID);
 			        break;
-
 				}
 			}
 		} catch (Exception ex) {
