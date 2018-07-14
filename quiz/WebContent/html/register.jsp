@@ -37,10 +37,10 @@
 							</div>
 							<div class="inputrequired">* Pflichtfeld</div>
 							<p>
-							<button type="submit" id="register" name="action" value="register" class="register">Registrieren</button>
+							<button type="submit" id="register" name="action" value="register" class="loginRegister">Registrieren</button>
 						</form>
 							<p>
-							<div class="login"><a href="login.jsp">zurück zum Login</a></div>
+							<div class="loginRegister"><a href="login.jsp">zurück zum Login</a></div>
 					</fieldset>
 					<div class="highscore">Highscore Tabelle<p>
 				<table class="highscore">

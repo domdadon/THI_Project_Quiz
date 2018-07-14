@@ -32,7 +32,6 @@ public class QuizManagement extends HttpServlet {
 	private String landing = "./html/landing.jsp";
 	private String quiz = "./html/quiz.jsp";
 	private String login = "./html/login.jsp";
-	//private String register = "./html/register.jsp";
 	private String personal = "./html/personal.jsp";
 	private String statistik = "./html/statistik.jsp";
 	
@@ -190,7 +189,7 @@ public class QuizManagement extends HttpServlet {
 					break;
 				case "getNextQuestion":
 					qb = getNextQuestion(gameID, categoryID);
-					
+					// Nach zehn Fragen keine neue Bean -> zurück zur landing
 					if (qb == null) {
 						dispatch(request, response,"landing", userID);
 					}
@@ -282,8 +281,7 @@ public class QuizManagement extends HttpServlet {
 
 	protected Boolean hasOpenGame(Integer userID, HttpSession session) throws Exception {
 		try (Connection cnx = ds.getConnection();
-				PreparedStatement sql = cnx
-						.prepareStatement("SELECT * FROM games WHERE userID = ? AND endtime IS NULL");) {
+				PreparedStatement sql = cnx.prepareStatement("SELECT * FROM games WHERE userID = ? AND endtime IS NULL");) {
 			sql.setLong(1, userID);
 
 			try (ResultSet rs = sql.executeQuery()) {
@@ -350,7 +348,7 @@ public class QuizManagement extends HttpServlet {
 				endGame(gameID, categoryID);
 				return null;
 			}
-			
+			//Aktueller Fragenzähler im Quiz anzeigen
 			qb.setQ_Number(qCount);
 			
 			sql = cnx.prepareStatement("SELECT * FROM questions WHERE idQuestion NOT IN (SELECT questionID FROM results WHERE gameID = ?) AND categoryID = ? ORDER BY RAND() LIMIT 1;");
@@ -368,7 +366,7 @@ public class QuizManagement extends HttpServlet {
 					qb.setQ(rs.getString(2));
 
 				}
-
+				//Antworttext und AnswerID aus Datenbank holen
 				sql = cnx.prepareStatement(
 						"SELECT qa.answerID, a.answer FROM questions_answers AS qa INNER JOIN answers AS a ON qa.answerID = a.idAnswer  WHERE qa.questionID = ?");
 
@@ -377,7 +375,7 @@ public class QuizManagement extends HttpServlet {
 				rs = sql.executeQuery();
 
 				if (rs != null) {
-
+					//Befüllung der QuestionBean mit Antworten
 					for (Integer i = 0; i <= 3; i++) {
 						rs.next();
 						switch (i) {
@@ -401,7 +399,7 @@ public class QuizManagement extends HttpServlet {
 					}
 
 				}
-				
+				//"Abfangen" des Zurückbuttons im Browser
 				sql = cnx.prepareStatement("INSERT INTO results (gameID, questionID, answerID) VALUES (?, ?, ?)");
 				sql.clearParameters();
 				sql.setInt(1, gameID);
@@ -422,8 +420,7 @@ public class QuizManagement extends HttpServlet {
 	private Integer checkUser(String userName, String password) throws Exception {
 
 		try (Connection cnx = ds.getConnection();
-				PreparedStatement sql = cnx
-						.prepareStatement("SELECT * FROM users WHERE username = ? AND pw = md5(?)");) {
+				PreparedStatement sql = cnx.prepareStatement("SELECT * FROM users WHERE username = ? AND pw = md5(?)");) {
 			sql.setString(1, userName);
 			sql.setString(2, password);
 
@@ -443,7 +440,7 @@ public class QuizManagement extends HttpServlet {
 
 	private Boolean checkAnswer(Integer questionID, Integer answerID, Integer gameID) throws Exception {
 		try (Connection cnx = ds.getConnection()) {
-			
+			//"Abfangen" des Zurückbuttons im Browser
 			PreparedStatement sql = cnx.prepareStatement("SELECT * from results WHERE questionID = ? AND gameID = ? AND answerID != -1");
 			sql.setInt(1, questionID);
 			sql.setInt(2, gameID);
@@ -453,7 +450,7 @@ public class QuizManagement extends HttpServlet {
 			if (rs != null && rs.next()) {
 				return false;
 			}
-			
+			//Abgegebene Antwort abspeichen -> 0 = noAnswer, oder gegebene AntwortID
 			sql = cnx.prepareStatement("UPDATE results SET answerID = ? WHERE gameID = ? AND questionID = ?");
 			sql.clearParameters();
 			
@@ -465,7 +462,7 @@ public class QuizManagement extends HttpServlet {
 			sql.executeUpdate();
 			
 			Boolean result = false;
-
+			//Prüfen ob die abgegebene Antwort richtig ist oder nicht 
 			sql = cnx.prepareStatement("SELECT * FROM questions_answers WHERE questionID = ? AND answerID = ? AND isRight=1");
 			
 			sql.clearParameters();
@@ -474,7 +471,7 @@ public class QuizManagement extends HttpServlet {
 			sql.setInt(2, answerID);
 			
 			rs = sql.executeQuery();
-			
+			//Bei richtiger Score hochzählen mittels categoryID
 			if (rs != null && rs.next()) {
 				sql = cnx.prepareStatement("UPDATE games SET score = score + categoryID WHERE idGame = ?");
 				sql.clearParameters();
@@ -507,7 +504,7 @@ public class QuizManagement extends HttpServlet {
 		try (Connection cnx = ds.getConnection()) {
 			
 			String sqlS = "SELECT username, userID, MAX(score) AS score, MIN(Diff) AS Diff FROM (SELECT username, g1.userID, g1.score, TIMESTAMPDIFF(SECOND, g1.starttime, g1.endtime) AS Diff FROM thidb.games g1 LEFT JOIN thidb.games g2 ON g1.userID = g2.userID AND g1.score < g2.score INNER JOIN thidb.users u ON g1.userID = u.idUser WHERE g2.userID IS NULL) AS result GROUP BY username, userID ORDER BY score DESC, Diff ASC";
-			
+			//Highscoretabelle auf 10 Einträge limitieren
 			if (!getAllEntries) {
 				sqlS.concat(" LIMIT 10");
 			}
@@ -531,7 +528,7 @@ public class QuizManagement extends HttpServlet {
 		}
 	}
 	
-
+	
 	private UserBean getUserData(Integer UserID, Boolean complete) throws Exception {
 		if (UserID != -1) {
 			
@@ -558,8 +555,9 @@ public class QuizManagement extends HttpServlet {
 			
 			int score = getLastScore(user.getIdUser());
 			user.setLastScore(score);
-			
+			//Alle Userdaten nur bei der Statistikseite laden -> Performancegründe
 			if (complete) {
+				//Anzahl der Spiele und Gesamtpunke ermitteln
 				sql = cnx.prepareStatement("SELECT COUNT(*) as cout, SUM(score) as score FROM games WHERE userID = ? GROUP BY userID");
 				sql.setInt(1, UserID);
 				rs = sql.executeQuery();
@@ -568,7 +566,7 @@ public class QuizManagement extends HttpServlet {
 					user.setGamesPlayed(rs.getInt(1));
 					user.setTotalScore(rs.getInt(2));
 				}
-				
+				//Anzahl der Spiele der jeweiligen Kategorie
 				sql = cnx.prepareStatement("SELECT categoryID, COUNT(*) as count FROM games WHERE userID = ? GROUP BY userID, categoryID");
 				sql.setInt(1, UserID);
 				
@@ -586,7 +584,7 @@ public class QuizManagement extends HttpServlet {
 						user.setGamesPlayedHard(rs.getInt(2));
 					}
 				}
-				
+				//Anzahl der richtigen und falschen Antworten für Quote
 				sql = cnx.prepareStatement("SELECT x.userID, x.answers, y.correct FROM (SELECT g.userID, COUNT(*) as answers FROM thidb.results r INNER JOIN thidb.games g ON r.gameID = g.idGame WHERE g.userID = ?) as x INNER JOIN (SELECT g.userID, COUNT(isRight) as correct FROM thidb.results r INNER JOIN thidb.games g ON r.gameID = g.idGame INNER JOIN thidb.users u ON g.userID = u.idUser INNER JOIN thidb.questions_answers q ON q.answerID = r.answerID AND isRight = 1 WHERE userID = ?) as y ON x.userID = y.userID");
 				sql.setInt(1, UserID);
 				sql.setInt(2, UserID);

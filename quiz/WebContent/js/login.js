@@ -32,11 +32,9 @@ function responseCheckUsername() {
 		
 		if (xmlhttp.responseText == "true") {
 			document.getElementById("userName").className = "userName";
-			//document.getElementById("login").removeAttribute("disabled", "disabled");
 			console.log("change class to userExisting");
 		} else if (xmlhttp.responseText == "false") {
 			document.getElementById("userName").className = "userNotExisting";
-			//document.getElementById("login").setAttribute("disabled", "disabled");
 			console.log("change class userNotExisting");
 		}	
 	}

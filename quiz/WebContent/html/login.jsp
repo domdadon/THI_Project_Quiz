@@ -22,10 +22,10 @@
 						</div>
 						<div class="inputrequired">* Pflichtfeld</div>
 						<p>
-						<button type="submit" class="login" id="login" name="action" value="login">Anmelden</button>
+						<button type="submit" class="loginRegister" id="login" name="action" value="login">Anmelden</button>
 					</form>
 					<p>
-					<div class="register">oder <a href="register.jsp">Registrieren</a></div>
+					<div class="loginRegister">oder <a href="register.jsp">Registrieren</a></div>
 				</fieldset>
 				<div class="highscore">Highscore Tabelle<p>
 					<table class="highscore">

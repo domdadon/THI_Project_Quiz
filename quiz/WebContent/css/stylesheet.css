@@ -1,5 +1,5 @@
 body {
-	overflow-x: hidden;
+	overflow-x: hidden; /*Scrollbalken horizontal entfernen*/
 	font-family: "Helvetica Neue", Helvetica , Arial, sans-serif;
     font-size: 1em;
 }
@@ -132,7 +132,7 @@ button.empty4:hover {
 	left: -170px;
 }
 
-button.login {
+button.loginRegister {
 	width: 100%;
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
@@ -142,13 +142,21 @@ button.login {
 	border-radius: 0px;
 }
 
-button.login:active {
+button.loginRegister:active {
 	background: #8f8f8f;
 }
 
-button.login:hover {
+button.loginRegister:hover {
 	background:#366896;
     border: 1px solid #3879B4;
+}
+
+button.loginRegister[disabled] {
+	background-color: grey;
+}
+
+button.loginRegister[disabled]:hover {
+	background-color: grey;
 }
 
 button.logout {
@@ -213,33 +221,6 @@ button.personal:hover {
 	left: 0px;
 }
 
-button.register {
-	width: 100%;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
-	background: #3879B4;
-	border: 1px solid #3879B4;
-	color: #ffffff;
-	border-radius: 0px;	
-}
-
-button.register:active {
-	background: #8f8f8f;
-}
-
-button.register:hover {
-	background:#366896;
-    border: 1px solid #3879B4;
-}
-
-button.register[disabled] {
-	background-color: grey;
-}
-
-button.register[disabled]:hover {
-	background-color: grey;
-}
-
 button.quiz {
 	position: absolute;
 	top: 235px;
@@ -298,11 +279,11 @@ button.statistik:hover {
 div.answers {
 	text-align: center;
 }
-
+/*
 div.button {
 	text-align: center;
 }
-
+*/
 div.currentPoints {
 	flex: 2;
 	text-align: right;
@@ -365,11 +346,10 @@ div.inputrequired {
 	text-align: right;
 }
 
-div.login {
+div.loginRegister {
 	font-size: 0.75em;
 	text-align: center;
 }
-
 
 div.myProgressbar {
 flex: 1;
@@ -383,9 +363,7 @@ div.myBar {
   width: 0%;
   height: 30px;
   background-color: #4CAF50;
-  text-align: center;
   line-height: 30px;
-  color: white;
 }
 
 div.nextQuestion {
@@ -393,7 +371,7 @@ div.nextQuestion {
 }
 
 div.noscript {
-	display: flex;
+	display: flex; /*Über gesamte Seite spannen*/
 	align-items: center;
   	justify-content: center;
 	background: red;
@@ -404,7 +382,7 @@ div.noscript {
 	right: 0;
 	top: 0;
 	bottom: 0;
-	z-index: 1;
+	z-index: 1; /*Überlagerung*/
 	font-size: 1.5em;
 }
 
@@ -429,11 +407,6 @@ div.quiz {
     border-color: black;
     border-radius: 0.5em 0.5em 0.5em 0.5em;
 	width: 60%;
-}
-
-div.register {
-	font-size: 0.75em;
-	text-align: center;
 }
 
 div.startGame {
@@ -496,7 +469,6 @@ input:valid + label::after{
 	color: green;
     content: "✔";
    	position: relative;
-	
 	left: 280px;
 	top: -21px;
 }
@@ -513,14 +485,14 @@ input.userExisting + label::after{
 input.userNotExisting + label::after{
     color: red;
     content: "Benutzername nicht vorhanden";
-	  font-size: 0.9em;
-		position: relative;
+	font-size: 0.9em;
+	position: relative;
 	left: 140px;
 	top: -45px;
 }
 
 label {
-    display: inline-block;
+    display: inline-block; /*Label und Inputfeld zweizeilig*/
 	font-size: 0.8em;
 	position: relative;
 	left: 3px;
@@ -532,7 +504,7 @@ label.checkUsername {
 
 table.highscore {
 	text-align: center;
-	border-collapse: collapse;
+	border-collapse: collapse; /* Rahmenlinien entfernen */
 	margin-left: auto; 
 	border: 1px solid #3879B4;
 	width: 90%;

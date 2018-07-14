@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", init);
 var id;
 var xmlhttp = null;
 var element;
-var width;
 var answer1 = document.getElementById("answer1");
 var answer2 = document.getElementById("answer2");
 var answer3 = document.getElementById("answer3");
@@ -24,11 +23,11 @@ function init() {
 
 function checkAnswer(event) {
 	console.log("start clearInterval");
-	clearInterval(id);
+	clearInterval(id); /*progressbar stoppen*/
 	console.log("checkAnswer executed");
-	var q_ID = document.getElementById("question").dataset.questionid;
+	var q_ID = document.getElementById("question").dataset.questionid; /*Attribut questionid beim Button hinzufügen*/
 	var a_ID = event.target.dataset.answerid;
-	element = event.target;
+	element = event.target; /* Speichern welcher Button wurde gedrückt*/
 	var par = "action=setAnswer&question="+q_ID+"&answer="+a_ID;
 	xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("POST", "../quizmanagement", true);

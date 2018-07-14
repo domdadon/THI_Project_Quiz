@@ -12,7 +12,6 @@
 			<hr>
 			<br>
 			<div class="difficulty">Wählen Sie den gewünschten Schwierigkeitsgrad aus:</div>
-			
 			<form action="../quizmanagement" id="landingForm" method="post">
 				<div class="startGame">
 					<div class="easy">
