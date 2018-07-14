@@ -409,7 +409,7 @@ public class QuizManagement extends HttpServlet {
 				sql.setInt(3, -1);
 				sql.executeUpdate();
 				
-				qb.setCurrentScore(getCurrentScore(gameID)*categoryID);
+				qb.setCurrentScore(getCurrentScore(gameID));
 				
 				return qb;
 
@@ -476,7 +476,7 @@ public class QuizManagement extends HttpServlet {
 			rs = sql.executeQuery();
 			
 			if (rs != null && rs.next()) {
-				sql = cnx.prepareStatement("UPDATE games SET score = score + 1 WHERE idGame = ?");
+				sql = cnx.prepareStatement("UPDATE games SET score = score + categoryID WHERE idGame = ?");
 				sql.clearParameters();
 				sql.setInt(1, gameID);
 				sql.executeUpdate();
@@ -493,9 +493,8 @@ public class QuizManagement extends HttpServlet {
 	
 	private void endGame(Integer gameID, Integer categoryID) throws Exception{
 		try (Connection cnx = ds.getConnection();
-				PreparedStatement sql = cnx.prepareStatement("UPDATE games SET endtime = NOW(), score = score * ? WHERE idGame = ?");) {
-			sql.setInt(1, categoryID);
-			sql.setInt(2, gameID);
+				PreparedStatement sql = cnx.prepareStatement("UPDATE games SET endtime = NOW() WHERE idGame = ?");) {
+			sql.setInt(1, gameID);
 			sql.executeUpdate();
 			
 		} catch (Exception ex) {

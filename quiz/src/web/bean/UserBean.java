@@ -129,9 +129,9 @@ public class UserBean implements Serializable {
 
 
 	public void setQuoteAnswers(double quote) {
-		quote = quote*100;
+		quote = quote*100.0;
 		quote = Math.round(quote);
-		quote = quote/100;
+		quote = quote/100.0;
 		this.quoteAnswers = quote;
 	}
 
