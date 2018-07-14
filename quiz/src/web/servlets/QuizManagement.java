@@ -449,7 +449,9 @@ public class QuizManagement extends HttpServlet {
 				sql.setInt(2, qb.getqID());
 				sql.setInt(3, -1);
 				sql.executeUpdate();
-
+				
+				qb.setCurrentScore(getCurrentScore(gameID));
+				
 				return qb;
 
 			} catch (Exception ex) {
@@ -637,7 +639,7 @@ public class QuizManagement extends HttpServlet {
 					int correct = rs.getInt(3);
 					int total = rs.getInt(2);
 							
-					user.setQuoteAnswers(correct/total*100.0);
+					user.setQuoteAnswers((float)correct/(float)total*100.0);
 				}
 				
 			}
@@ -672,7 +674,7 @@ public class QuizManagement extends HttpServlet {
 			}
 		}
 		
-		return -1;
+		return 0;
 		
 	}
 	
@@ -689,7 +691,29 @@ public class QuizManagement extends HttpServlet {
 			}
 			else
 			{
-				return -1;
+				return 0;
+			}
+			
+		} catch (Exception ex) {
+			throw ex;
+
+		}
+	}
+	
+	private int getCurrentScore(int gameID) throws Exception{
+		try (Connection cnx = ds.getConnection();
+				PreparedStatement sql = cnx.prepareStatement("SELECT score FROM games WHERE gameID = ?");) {
+			
+			sql.setInt(1, gameID);
+			
+			ResultSet rs = sql.executeQuery();
+			
+			if (rs != null && rs.next()) {
+				return rs.getInt(1);
+			}
+			else
+			{
+				return 0;
 			}
 			
 		} catch (Exception ex) {
