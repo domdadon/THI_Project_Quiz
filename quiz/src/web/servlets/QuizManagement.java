@@ -32,7 +32,7 @@ public class QuizManagement extends HttpServlet {
 	private String landing = "./html/landing.jsp";
 	private String quiz = "./html/quiz.jsp";
 	private String login = "./html/login.jsp";
-	private String register = "./html/register.jsp";
+	//private String register = "./html/register.jsp";
 	private String personal = "./html/personal.jsp";
 	private String statistik = "./html/statistik.jsp";
 	
@@ -67,8 +67,6 @@ public class QuizManagement extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		
-
 		// Sessionhandling init
 
 		if (session.getAttribute("userID") != null) {
@@ -150,7 +148,7 @@ public class QuizManagement extends HttpServlet {
 					String nName = request.getParameter("nName");
 					String mail = request.getParameter("mail");
 					Integer result = registerUser(vName, nName, userName, password, mail);
-					
+					request.setAttribute("UserData", getUserData(result, false));
 					session.setAttribute("userID", result);
 					dispatcher = request.getRequestDispatcher(landing);
 					dispatcher.forward(request, response);
@@ -166,6 +164,7 @@ public class QuizManagement extends HttpServlet {
 						dispatcher = request.getRequestDispatcher(landing);
 						dispatcher.forward(request, response);
 					}
+					break;
 				
 				case "checkUsername":
 					if (checkUsername(userName)) {
@@ -259,7 +258,7 @@ public class QuizManagement extends HttpServlet {
 				}
 			}
 		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
+			ex.printStackTrace();
 		}
 
 	}
@@ -443,6 +442,13 @@ public class QuizManagement extends HttpServlet {
 					}
 
 				}
+				
+				sql = cnx.prepareStatement("INSERT INTO results (gameID, questionID, answerID) VALUES (?, ?, ?)");
+				sql.clearParameters();
+				sql.setInt(1, gameID);
+				sql.setInt(2, qb.getqID());
+				sql.setInt(3, -1);
+				sql.executeUpdate();
 
 				return qb;
 
@@ -477,7 +483,7 @@ public class QuizManagement extends HttpServlet {
 	private Boolean checkAnswer(Integer questionID, Integer answerID, Integer gameID) throws Exception {
 		try (Connection cnx = ds.getConnection()) {
 			
-			PreparedStatement sql = cnx.prepareStatement("SELECT * from results WHERE questionID = ? AND gameID = ?");
+			PreparedStatement sql = cnx.prepareStatement("SELECT * from results WHERE questionID = ? AND gameID = ? AND answerID != -1");
 			sql.setInt(1, questionID);
 			sql.setInt(2, gameID);
 			
@@ -487,11 +493,13 @@ public class QuizManagement extends HttpServlet {
 				return false;
 			}
 			
-			sql = cnx.prepareStatement("INSERT INTO results (gameID, questionID, answerID) VALUES (?, ?, ?)");
+			sql = cnx.prepareStatement("UPDATE results SET answerID = ? WHERE gameID = ? AND questionID = ?");
 			sql.clearParameters();
-			sql.setInt(1, gameID);
-			sql.setInt(2, questionID);
-			sql.setInt(3, answerID);
+			
+			
+			sql.setInt(1, answerID);
+			sql.setInt(2, gameID);
+			sql.setInt(3, questionID);
 			
 			sql.executeUpdate();
 			
@@ -565,7 +573,8 @@ public class QuizManagement extends HttpServlet {
 	
 
 	private UserBean getUserData(Integer UserID, Boolean complete) throws Exception {
-		
+		if (UserID != -1) {
+			
 		try (Connection cnx = ds.getConnection();) {
 			
 			PreparedStatement sql = cnx.prepareStatement("SELECT * FROM users WHERE idUser = ?");
@@ -639,7 +648,10 @@ public class QuizManagement extends HttpServlet {
 			throw ex;
 
 		}
-						
+		}
+		else {
+			return new UserBean();
+		}
 	}
 	
 	private int getCurrentRank(Integer userID) {
