@@ -150,15 +150,23 @@ public class QuizManagement extends HttpServlet {
 					String nName = request.getParameter("nName");
 					String mail = request.getParameter("mail");
 					Integer result = registerUser(vName, nName, userName, password, mail);
+					
 					session.setAttribute("userID", result);
 					dispatcher = request.getRequestDispatcher(landing);
 					dispatcher.forward(request, response);
 					break;
-				//nicht mehr benoetigt
-				case "registerForm":
-					dispatcher = request.getRequestDispatcher(register);
-					dispatcher.forward(request, response);
-					break;
+				case "checkLandingOrGame":
+					if (hasOpenGame(userID,session)) {
+						qb = getNextQuestion(gameID, categoryID);
+						request.setAttribute("QuestionBean", qb);
+						dispatcher = request.getRequestDispatcher(quiz);
+						dispatcher.forward(request, response);
+					} else {
+						
+						dispatcher = request.getRequestDispatcher(landing);
+						dispatcher.forward(request, response);
+					}
+				
 				case "checkUsername":
 					if (checkUsername(userName)) {
 						response.getWriter().append("true");
