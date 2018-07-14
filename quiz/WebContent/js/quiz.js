@@ -22,7 +22,6 @@ function init() {
 	progressbar();
 }
 
-
 function checkAnswer(event) {
 	console.log("start clearInterval");
 	clearInterval(id);

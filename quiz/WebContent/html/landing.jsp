@@ -29,18 +29,22 @@
 		</div>
 		<div class="highscore">Highscore Tabelle<p>
 			<table class="highscore">
-				<tr>
-					<th>Platz</th>
-					<th>Benutzername</th>
-					<th>Punkte</th>
-			 	</tr>
-				<c:forEach items="${HighScore}" var="HighscoreEntryBean">
+				<thead>
+					<tr>
+						<th>Platz</th>
+						<th>Benutzername</th>
+						<th>Punkte</th>
+				 	</tr>
+				</thead>
+				<tbody>	
+					<c:forEach items="${HighScore}" var="HighscoreEntryBean">
 					<tr>
 						<td>${HighscoreEntryBean.rank}</td>
 						<td>${HighscoreEntryBean.username}</td>
 						<td>${HighscoreEntryBean.score}</td>
 					</tr>
-				</c:forEach>
+					</c:forEach>
+				</tbody>
 			</table>
 		</div>
 <%@ include file="footer.jspf" %>
