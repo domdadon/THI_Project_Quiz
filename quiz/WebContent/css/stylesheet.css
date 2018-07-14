@@ -163,6 +163,7 @@ button.logout {
     color: white;
     border-radius: 0 5px 5px 0;
 	border: 1px solid black;
+	transition: 0.3s;
 }
 
 button.logout:hover {
@@ -210,6 +211,7 @@ button.personal {
     color: white;
     border-radius: 0 5px 5px 0;
 	border: 1px solid black;
+	transition: 0.3s;
 }
 
 button.personal:hover {
@@ -235,19 +237,23 @@ button.register:hover {
     border: 1px solid #3879B4;
 }
 
-button.quiz[disabled]{
-	background: #8f8f8f;
-}
-
-button.quiz[disabled]:hover {
-	background: #8f8f8f;
-}
-
 button.quiz {
+	position: absolute;
 	top: 235px;
 	left: -170px;
+	width: 200px;
+	height: 51.333px;
 	background-color: yellow;
 	color: black;
+	text-decoration: none;
+    font-size: 1.0em;
+    border-radius: 0 5px 5px 0;
+	border: 1px solid black;
+	transition: 0.3s;
+}
+
+button.quiz:hover {
+	left: 0px;
 }
 
 button.startGame {
@@ -266,7 +272,8 @@ button.statistik {
     font-size: 1.0em;
     color: white;
     border-radius: 0 5px 5px 0;
-	border: 1px solid black;	   
+	border: 1px solid black;
+	transition: 0.3s;	   
 }
 
 button.statistik:hover {
