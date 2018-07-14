@@ -228,6 +228,7 @@ public class QuizManagement extends HttpServlet {
 						
 						dispatcher = request.getRequestDispatcher(landing);
 						dispatcher.forward(request, response);
+						request.setAttribute("HighScore", getHighScoreEntries(true));
 						break;
 					}
 					else {
@@ -569,7 +570,7 @@ public class QuizManagement extends HttpServlet {
 			Integer rank = 1;
 			
 			while (rs != null && rs.next()) {
-				hs.add(new HighscoreEntryBean(rs.getString(1), rs.getInt(3), rank, rs.getLong(4), rs.getInt(5)));
+				hs.add(new HighscoreEntryBean(rs.getString(1), rs.getInt(3), rank, rs.getLong(4), rs.getInt(2)));
 				rank++;
 			}
 			
