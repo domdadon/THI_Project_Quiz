@@ -1,6 +1,7 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", init);
 
+var id;
 var xmlhttp = null;
 var element;
 var width;
@@ -23,12 +24,13 @@ function init() {
 
 
 function checkAnswer(event) {
+	console.log("start clearInterval");
+	clearInterval(id);
 	console.log("checkAnswer executed");
 	var q_ID = document.getElementById("question").dataset.questionid;
 	var a_ID = event.target.dataset.answerid;
 	element = event.target;
 	var par = "action=setAnswer&question="+q_ID+"&answer="+a_ID;
-	
 	xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("POST", "../quizmanagement", true);
 	xmlhttp.onreadystatechange = response;
@@ -41,7 +43,7 @@ function progressbar() {
 	console.log("progress executed");
 	var elem = document.getElementById("myBar");   
 	width = 0;
-	var id = setInterval(frame, 100);
+	id = setInterval(frame, 100);
 	function frame() {
 		if (width >= 100) {
 			clearInterval(id);

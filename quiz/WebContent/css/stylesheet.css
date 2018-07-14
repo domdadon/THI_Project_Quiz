@@ -191,12 +191,7 @@ button.nextQuestion[disabled]:hover {
 }
 
 button.nextQuestion:hover {
-	padding: 15px;
-	position: relative;
-	width: 12%;
-	background-color: grey;
-	border: 1px solid black;
-	color: white;
+	background-color: darkorange;
 }
 
 button.personal {
