@@ -5,7 +5,7 @@ body {
 }
 
 button.answer {
-	width: 25em;
+	width: 20em;
 	padding-top: 2.5em;
 	padding-bottom: 2.5em;
 	margin: 10px;
@@ -26,7 +26,7 @@ button.answer:hover {
 }
 
 button.answerFalse {
-	width: 25em;
+	width: 20em;
 	padding-top: 2.5em;
 	padding-bottom: 2.5em;
 	margin: 10px;
@@ -38,7 +38,7 @@ button.answerFalse {
 }
 
 button.answerTrue {
-	width: 25em;
+	width: 20em;
 	padding-top: 2.5em;
 	padding-bottom: 2.5em;
 	margin: 10px;
@@ -58,6 +58,7 @@ button.answer[disabled]:hover {
     background: #8f8f8f;
     border: 1px solid #3879B4; 
 }
+
 
 button.empty1 {
 	position: absolute;

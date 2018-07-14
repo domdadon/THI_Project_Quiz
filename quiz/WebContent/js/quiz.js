@@ -34,7 +34,6 @@ function checkAnswer(event) {
 	xmlhttp.onreadystatechange = response;
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.send(par);
-	width=100;
 	console.log("checkAnswer successful");
 }
 
