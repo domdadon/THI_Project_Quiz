@@ -18,6 +18,7 @@
 			<div class="heading">
 				<img src="../img/megaquiz.jpg" width="459px" height="76px" alt="Megaquiz Logo">
 			</div>
+			<p>
 			<div class="getUser" id="getUser">Hallo, ${UserData.vname} ${UserData.nname}.</div>
 		</header>
 		<p>
