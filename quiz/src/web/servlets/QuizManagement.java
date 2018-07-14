@@ -52,20 +52,11 @@ public class QuizManagement extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		System.out.println(request.getParameterNames());
 		
 		final HttpSession session = request.getSession();
 		Integer userID = -1;
 		Integer gameID = -1;
 		Integer categoryID = -1;
-		
-		try {
-			request.setAttribute("HighScore", getHighScoreEntries(false));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		// Sessionhandling init
 
@@ -81,13 +72,6 @@ public class QuizManagement extends HttpServlet {
 			categoryID = (Integer) session.getAttribute("categoryID");
 		}
 		
-		try {
-			request.setAttribute("UserData", getUserData(userID, false));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		String action = request.getParameter("action");
 		QuestionBean qb;
 
@@ -99,31 +83,25 @@ public class QuizManagement extends HttpServlet {
 					if (hasOpenGame(userID, session)) {
 						qb = getNextQuestion(gameID, categoryID);
 						request.setAttribute("QuestionBean", qb);
-						final RequestDispatcher dispatcher = request.getRequestDispatcher(quiz);
-						dispatcher.forward(request, response);
+						dispatch(request, response,"quiz", userID);
 					} else {
-						
-						final RequestDispatcher dispatcher = request.getRequestDispatcher(landing);
-						dispatcher.forward(request, response);
+						dispatch(request, response,"landing", userID);
 					}
 				} else {
 					// nein => login
-					final RequestDispatcher dispatcher = request.getRequestDispatcher(login);
-					dispatcher.forward(request, response);
+					dispatch(request, response,"login", userID);
 				}
 			} else {
 				// Passwort + Username aus Formular auslesen
 				String password = request.getParameter("password");
 				String userName = request.getParameter("userName");
 				
-				final RequestDispatcher dispatcher;
 				switch (action) {
 				case "login":
 
 					Integer id = checkUser(userName, password);
 					if (id != -1) {
 						session.setAttribute("userID", id);
-						request.setAttribute("UserData", getUserData(id, false));
 
 						if (hasOpenGame(id, session)) {
 							gameID = (Integer) session.getAttribute("gameID");
@@ -131,15 +109,14 @@ public class QuizManagement extends HttpServlet {
 
 							qb = getNextQuestion(gameID, categoryID);
 							request.setAttribute("QuestionBean", qb);
-							dispatcher = request.getRequestDispatcher(quiz);
-							dispatcher.forward(request, response);
+							
+							dispatch(request, response,"quiz", id);
+							
 						} else {
-							dispatcher = request.getRequestDispatcher(landing);
-							dispatcher.forward(request, response);
+							dispatch(request, response,"landing", id);
 						}
 					} else {
-						dispatcher = request.getRequestDispatcher(login);
-						dispatcher.forward(request, response);
+						dispatch(request, response,"login", id);
 					}
 
 					break;
@@ -148,10 +125,8 @@ public class QuizManagement extends HttpServlet {
 					String nName = request.getParameter("nName");
 					String mail = request.getParameter("mail");
 					Integer result = registerUser(vName, nName, userName, password, mail);
-					request.setAttribute("UserData", getUserData(result, false));
 					session.setAttribute("userID", result);
-					dispatcher = request.getRequestDispatcher(landing);
-					dispatcher.forward(request, response);
+					dispatch(request, response,"login", result);
 					break;
 				case "checkLandingOrGame":
 					if (hasOpenGame(userID,session)) {
@@ -160,17 +135,13 @@ public class QuizManagement extends HttpServlet {
 						if (qb != null) 
 						{
 							request.setAttribute("QuestionBean", qb);
-							dispatcher = request.getRequestDispatcher(quiz);
-							dispatcher.forward(request, response);
+							dispatch(request, response,"quiz", userID);
 						}
 						else {
-							dispatcher = request.getRequestDispatcher(landing);
-							dispatcher.forward(request, response);
+							dispatch(request, response,"landing", userID);
 						}
 					} else {
-						
-						dispatcher = request.getRequestDispatcher(landing);
-						dispatcher.forward(request, response);
+						dispatch(request, response,"landing", userID);
 					}
 					break;
 				
@@ -188,8 +159,7 @@ public class QuizManagement extends HttpServlet {
 					session.setAttribute("gameID", gameID);
 					qb = getNextQuestion(gameID, 1);
 					request.setAttribute("QuestionBean", qb);
-					dispatcher = request.getRequestDispatcher(quiz);
-					dispatcher.forward(request, response);
+					dispatch(request, response,"quiz", userID);
 					break;
 				case "startGame2":
 					session.setAttribute("categoryID", 2);
@@ -197,8 +167,7 @@ public class QuizManagement extends HttpServlet {
 					session.setAttribute("gameID", gameID);
 					qb = getNextQuestion(gameID, 2);
 					request.setAttribute("QuestionBean", qb);
-					dispatcher = request.getRequestDispatcher(quiz);
-					dispatcher.forward(request, response);
+					dispatch(request, response,"quiz", userID);
 					break;
 				case "startGame3":
 					session.setAttribute("categoryID", 3);
@@ -206,8 +175,7 @@ public class QuizManagement extends HttpServlet {
 					session.setAttribute("gameID", gameID);
 					qb = getNextQuestion(gameID, 3);
 					request.setAttribute("QuestionBean", qb);
-					dispatcher = request.getRequestDispatcher(quiz);
-					dispatcher.forward(request, response);
+					dispatch(request, response,"quiz", userID);
 					break;
 				case "setAnswer":
 					Integer q_ID = Integer.parseInt(request.getParameter("question"));
@@ -225,43 +193,34 @@ public class QuizManagement extends HttpServlet {
 					qb = getNextQuestion(gameID, categoryID);
 					
 					if (qb == null) {
-						
-						dispatcher = request.getRequestDispatcher(landing);
-						dispatcher.forward(request, response);
-						request.setAttribute("HighScore", getHighScoreEntries(true));
+						dispatch(request, response,"landing", userID);
 						break;
 					}
 					else {
 						request.setAttribute("QuestionBean", qb);
-						dispatcher = request.getRequestDispatcher(quiz);
-						dispatcher.forward(request, response);
+						dispatch(request, response,"quiz", userID);
+						
 						break;
 					}
 					
 				case "personal":
 					//hier Agrregation der Ergebnisse
-					request.setAttribute("UserData", getUserData(userID, false));
-					dispatcher = request.getRequestDispatcher(personal);
-					dispatcher.forward(request, response);
+					dispatch(request, response,"personal", userID);
 					break;
 					
 				case "logout":
 					session.invalidate();
 					request.setAttribute("UserData", new UserBean());
-					dispatcher = request.getRequestDispatcher(login);
-					dispatcher.forward(request, response);
+					dispatch(request, response,"login", -1);
 			        break;
 			        
 				case "landing":
-					dispatcher = request.getRequestDispatcher(landing);
-					dispatcher.forward(request, response);
+					dispatch(request, response,"landing", userID);
 			        break;
 			        
 				case "statistik":
 					//hier Agrregation der Ergebnisse
-					request.setAttribute("UserData", getUserData(userID, true));
-					dispatcher = request.getRequestDispatcher(statistik);
-					dispatcher.forward(request, response);
+					dispatch(request, response,"statistik", userID);
 			        break;
 
 				}
@@ -728,6 +687,47 @@ public class QuizManagement extends HttpServlet {
 		} catch (Exception ex) {
 			throw ex;
 
+		}
+	
+	}
+	
+	protected void dispatch(HttpServletRequest request, HttpServletResponse response, String destination, Integer userID) throws ServletException, IOException {
+		try {
+			final RequestDispatcher dispatcher; 
+			
+			if (destination == "login") {
+				request.setAttribute("HighScore", getHighScoreEntries(false));
+				dispatcher = request.getRequestDispatcher(login);
+				dispatcher.forward(request, response);
+			}
+			else if(destination == "landing") {
+				request.setAttribute("UserData", getUserData(userID, false));
+				request.setAttribute("HighScore", getHighScoreEntries(true));
+				dispatcher = request.getRequestDispatcher(landing);
+				dispatcher.forward(request, response);
+				
+			}
+			else if(destination== "quiz") {
+				request.setAttribute("UserData", getUserData(userID, false));
+				request.setAttribute("HighScore", getHighScoreEntries(false));
+				dispatcher = request.getRequestDispatcher(quiz);
+				dispatcher.forward(request, response);
+			}
+			else if(destination == "personal") {
+				request.setAttribute("UserData", getUserData(userID, false));
+				request.setAttribute("HighScore", getHighScoreEntries(false));
+				dispatcher = request.getRequestDispatcher(personal);
+				dispatcher.forward(request, response);
+			}
+			else if(destination== "statistik") {
+				request.setAttribute("UserData", getUserData(userID, true));
+				request.setAttribute("HighScore", getHighScoreEntries(false));
+				dispatcher = request.getRequestDispatcher(statistik);
+				dispatcher.forward(request, response);
+			}
+		}
+		catch (Exception ex) {
+			ex.printStackTrace();
 		}
 	}
 }
