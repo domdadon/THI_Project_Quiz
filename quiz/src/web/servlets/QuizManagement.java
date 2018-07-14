@@ -156,9 +156,17 @@ public class QuizManagement extends HttpServlet {
 				case "checkLandingOrGame":
 					if (hasOpenGame(userID,session)) {
 						qb = getNextQuestion(gameID, categoryID);
-						request.setAttribute("QuestionBean", qb);
-						dispatcher = request.getRequestDispatcher(quiz);
-						dispatcher.forward(request, response);
+						
+						if (qb != null) 
+						{
+							request.setAttribute("QuestionBean", qb);
+							dispatcher = request.getRequestDispatcher(quiz);
+							dispatcher.forward(request, response);
+						}
+						else {
+							dispatcher = request.getRequestDispatcher(landing);
+							dispatcher.forward(request, response);
+						}
 					} else {
 						
 						dispatcher = request.getRequestDispatcher(landing);
