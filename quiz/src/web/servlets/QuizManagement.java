@@ -98,7 +98,6 @@ public class QuizManagement extends HttpServlet {
 				
 				switch (action) {
 				case "login":
-
 					Integer id = checkUser(userName, password);
 					if (id != -1) {
 						session.setAttribute("userID", id);
@@ -118,7 +117,6 @@ public class QuizManagement extends HttpServlet {
 					} else {
 						dispatch(request, response,"login", id);
 					}
-
 					break;
 				case "register":
 					String vName = request.getParameter("vName");
@@ -146,6 +144,7 @@ public class QuizManagement extends HttpServlet {
 					break;
 				
 				case "checkUsername":
+					response.setContentType("text/plain");
 					if (checkUsername(userName)) {
 						response.getWriter().append("true");
 					}
@@ -181,7 +180,7 @@ public class QuizManagement extends HttpServlet {
 					Integer q_ID = Integer.parseInt(request.getParameter("question"));
 					Integer a_ID = Integer.parseInt(request.getParameter("answer"));
 
-					
+					response.setContentType("text/plain");
 					if (checkAnswer(q_ID, a_ID, gameID)) {
 						response.getWriter().append("true");
 					}
