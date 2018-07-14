@@ -458,7 +458,7 @@ public class QuizManagement extends HttpServlet {
 				sql.setInt(3, -1);
 				sql.executeUpdate();
 				
-				qb.setCurrentScore(getCurrentScore(gameID));
+				qb.setCurrentScore(getCurrentScore(gameID)*categoryID);
 				
 				return qb;
 
