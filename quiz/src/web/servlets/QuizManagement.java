@@ -702,7 +702,7 @@ public class QuizManagement extends HttpServlet {
 	
 	private int getCurrentScore(int gameID) throws Exception{
 		try (Connection cnx = ds.getConnection();
-				PreparedStatement sql = cnx.prepareStatement("SELECT score FROM games WHERE gameID = ?");) {
+				PreparedStatement sql = cnx.prepareStatement("SELECT score FROM games WHERE idGame = ?");) {
 			
 			sql.setInt(1, gameID);
 			
