@@ -461,7 +461,17 @@ input:required + label::after{
 	position: relative;
 	left: 290px;
 	top: -21px;
-	}
+}
+
+input:valid + label::after{
+  font-size: 1.0em;  
+	color: green;
+    content: "✔";
+   	position: relative;
+	
+	left: 280px;
+	top: -21px;
+}
 
 input.userExisting + label::after{
     color: red;
@@ -479,16 +489,6 @@ input.userNotExisting + label::after{
 		position: relative;
 	left: 140px;
 	top: -45px;
-}
-
-input:valid + label::after{
-  font-size: 1.0em;  
-	color: green;
-    content: "✔";
-   	position: relative;
-	
-	left: 280px;
-	top: -21px;
 }
 
 label {
