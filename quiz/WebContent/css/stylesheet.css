@@ -174,7 +174,7 @@ button.nextQuestion {
 	padding: 15px;
 	position: relative;
 	top: 10px;
-	width: 12%;
+	width: 12em;
 	background-color: orange;
 	border: 1px solid black;
 	color: black;
@@ -262,7 +262,7 @@ button.quiz:hover {
 button.startGame {
 	background-color: #3879B4;
 	color: white;
-	width: 50%;
+	width: 13em;
 	margin: 25px;
 	padding: 25px;
 	border: 1px solid black;
@@ -326,7 +326,7 @@ div.getUser {
 	color: black;
 	text-align: left;
 	position: relative;
-	left: 85px;
+	left: 250px;
 }
 
 div.quizhead {

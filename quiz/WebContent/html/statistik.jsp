@@ -15,7 +15,7 @@
 				<div class="personalhead">Anzahl Spiele mittel:</div>${UserData.gamesPlayedMiddle}<p>
 				<div class="personalhead">Anzahl Spiele schwer:</div>${UserData.gamesPlayedHard}<p>
 				<div class="personalhead">Punkte Gesamt:</div>${UserData.totalScore}<p>
-				<div class="personalhead">Quote richtige Antworten:</div>${UserData.quoteAnswers}%<p>
+				<div class="personalhead">Quote richtige Antworten:</div>${UserData.quoteAnswers} %<p>
 			</div>
 			<div class="highscore">Highscore Tabelle<p>
 				<table class="highscore">

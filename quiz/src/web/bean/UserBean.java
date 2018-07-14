@@ -128,8 +128,11 @@ public class UserBean implements Serializable {
 	}
 
 
-	public void setQuoteAnswers(double qoute) {
-		this.quoteAnswers = Math.round(qoute*1000)/1000;
+	public void setQuoteAnswers(double quote) {
+		quote = quote*100;
+		quote = Math.round(quote);
+		quote = quote/100;
+		this.quoteAnswers = quote;
 	}
 
 
