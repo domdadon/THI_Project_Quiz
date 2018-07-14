@@ -400,7 +400,6 @@ div.noscript {
 	display: flex;
 	align-items: center;
   	justify-content: center;
-	padding: 25px;
 	background: red;
 	position: absolute;
 	height: 100%;
@@ -409,7 +408,7 @@ div.noscript {
 	right: 0;
 	top: 0;
 	bottom: 0;
-	opacity: 0.9;
+	z-index: 1;
 	font-size: 1.5em;
 }
 
