@@ -129,7 +129,7 @@ public class UserBean implements Serializable {
 
 
 	public void setQuoteAnswers(double qoute) {
-		this.quoteAnswers = qoute;
+		this.quoteAnswers = Math.round(qoute*1000)/1000;
 	}
 
 
