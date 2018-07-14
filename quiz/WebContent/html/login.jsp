@@ -1,4 +1,4 @@
-<%@ include file="header.jspf" %>
+<%@ include file="header.jspf" %>				
 				<form action="../quizmanagement" id="navigation" method="post">
 					<button type="submit" class="empty1" id="empty1" disabled="disabled"></button>
 					<button type="submit" class="empty2" id="empty2" disabled="disabled"></button>
@@ -22,26 +22,30 @@
 						</div>
 						<div class="inputrequired">* Pflichtfeld</div>
 						<p>
-						<button type="submit" class="login" id="login" name="action" value="login" disabled="disabled">Anmelden</button>
+						<button type="submit" class="loginRegister" id="login" name="action" value="login">Anmelden</button>
 					</form>
 					<p>
-					<div class="register">oder <a href="register.jsp">Registrieren</a></div>
+					<div class="loginRegister">oder <a href="register.jsp">Registrieren</a></div>
 				</fieldset>
 				<div class="highscore">Highscore Tabelle<p>
 					<table class="highscore">
-						<tr>
-							<th>Platz</th>
-							<th>Benutzername</th>
-							<th>Punkte</th>
-					 	</tr>
-						<c:forEach items="${HighScore}" var="HighscoreEntryBean">
+						<thead>
+							<tr>
+								<th>Platz</th>
+								<th>Benutzername</th>
+								<th>Punkte</th>
+						 	</tr>
+						</thead>
+						<tbody>	
+							<c:forEach items="${HighScore}" var="HighscoreEntryBean">
 							<tr>
 								<td>${HighscoreEntryBean.rank}</td>
 								<td>${HighscoreEntryBean.username}</td>
 								<td>${HighscoreEntryBean.score}</td>
 							</tr>
-						</c:forEach>
+							</c:forEach>
+						</tbody>
 					</table>
 				</div>
-			<script type="text/javascript" src="../js/login.js"></script>
+			<script src="../js/login.js"></script>
 <%@ include file="footer.jspf" %>

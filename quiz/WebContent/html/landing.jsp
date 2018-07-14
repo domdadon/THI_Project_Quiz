@@ -9,37 +9,41 @@
 			<div>Deine Punkte im letzten Spiel: ${UserData.lastScore}</div>
 			<br>
 			<div>Deine aktuelle Platzierung: ${UserData.currentRank}</div>
+			<hr>
 			<br>
-			<div>Wählen Sie den gewünschten Schwierigkeitsgrad aus:</div>
-			
+			<div class="difficulty">Wählen Sie den gewünschten Schwierigkeitsgrad aus:</div>
 			<form action="../quizmanagement" id="landingForm" method="post">
-				<div class="start">
-					<div>
-						<button type="submit" class="startGame" name="action" value="startGame1">leicht<br>&#040;1 Punkt pro richtige Antwort&#041;</button>
+				<div class="startGame">
+					<div class="easy">
+						<button type="submit" class="startGame" name="action" value="startGame1" title="1 Punkt pro richtiger Antwort">leicht</button>
 					</div>
-					<div>
-						<button type="submit" class="startGame" name="action" value="startGame2">mittel<br>&#040;2 Punkte pro richtige Antwort&#041;</button>
+					<div class="medium">
+						<button type="submit" class="startGame" name="action" value="startGame2" title="2 Punkte pro richtiger Antwort">mittel</button>
 					</div>
-					<div>
-						<button type="submit" class="startGame" name="action" value="startGame3">schwer<br>&#040;3 Punkte pro richtige Antwort&#041;</button>
+					<div class="hard">
+						<button type="submit" class="startGame" name="action" value="startGame3" title="3 Punkte pro richtiger Antwort">schwer</button>
 					</div>
 				</div>
 			</form>		
 		</div>
 		<div class="highscore">Highscore Tabelle<p>
 			<table class="highscore">
-				<tr>
-					<th>Platz</th>
-					<th>Benutzername</th>
-					<th>Punkte</th>
-			 	</tr>
-				<c:forEach items="${HighScore}" var="HighscoreEntryBean">
+				<thead>
+					<tr>
+						<th>Platz</th>
+						<th>Benutzername</th>
+						<th>Punkte</th>
+				 	</tr>
+				</thead>
+				<tbody>	
+					<c:forEach items="${HighScore}" var="HighscoreEntryBean">
 					<tr>
 						<td>${HighscoreEntryBean.rank}</td>
 						<td>${HighscoreEntryBean.username}</td>
 						<td>${HighscoreEntryBean.score}</td>
 					</tr>
-				</c:forEach>
+					</c:forEach>
+				</tbody>
 			</table>
 		</div>
 <%@ include file="footer.jspf" %>

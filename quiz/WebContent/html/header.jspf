@@ -6,6 +6,7 @@
 <html lang="de">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="description" content="Megaquiz">
 		<meta name="author" content="Dominik Mueller, Daniel Reiss,  Harald Schwirzenbeck">
 		<base href="${pageContext.request.requestURI}" />
 		<link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
@@ -14,7 +15,9 @@
 	<body>
 		<noscript><div class="noscript">Hinweis: Diese Seite nutzt JavaScript. Bitte aktivieren JavaScript um das Quiz zu starten.</div></noscript>
 		<header>
-			<div class="heading">Megaquiz</div>
+			<div class="heading">
+				<img src="../img/megaquiz.jpg" width="459px" height="76px" alt="Megaquiz Logo">
+			</div>
 			<div class="getUser" id="getUser">Hallo, ${UserData.vname} ${UserData.nname}.</div>
 		</header>
 		<p>

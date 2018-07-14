@@ -37,27 +37,31 @@
 							</div>
 							<div class="inputrequired">* Pflichtfeld</div>
 							<p>
-							<button type="submit" id="register" name="action" value="register" class="register">Registrieren</button>
+							<button type="submit" id="register" name="action" value="register" class="loginRegister">Registrieren</button>
 						</form>
 							<p>
-							<div class="login"><a href="login.jsp">zurück zum Login</a></div>
+							<div class="loginRegister"><a href="login.jsp">zurück zum Login</a></div>
 					</fieldset>
 					<div class="highscore">Highscore Tabelle<p>
 				<table class="highscore">
-					<tr>
-						<th>Platz</th>
-						<th>Benutzername</th>
-						<th>Punkte</th>
-				 	</tr>
-					<c:forEach items="${HighScore}" var="HighscoreEntryBean">
+					<thead>
+						<tr>
+							<th>Platz</th>
+							<th>Benutzername</th>
+							<th>Punkte</th>
+					 	</tr>
+					</thead>
+					<tbody>	
+						<c:forEach items="${HighScore}" var="HighscoreEntryBean">
 						<tr>
 							<td>${HighscoreEntryBean.rank}</td>
 							<td>${HighscoreEntryBean.username}</td>
 							<td>${HighscoreEntryBean.score}</td>
 						</tr>
-					</c:forEach>
+						</c:forEach>
+					</tbody>
 				</table>
 				</div>
 
-			<script type="text/javascript" src="../js/register.js"></script>
+			<script src="../js/register.js"></script>
 <%@ include file="footer.jspf" %>

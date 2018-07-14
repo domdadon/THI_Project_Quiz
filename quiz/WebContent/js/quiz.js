@@ -1,9 +1,9 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", init);
 
-var xmlhttp;
+var id;
+var xmlhttp = null;
 var element;
-var width;
 var answer1 = document.getElementById("answer1");
 var answer2 = document.getElementById("answer2");
 var answer3 = document.getElementById("answer3");
@@ -21,28 +21,30 @@ function init() {
 	progressbar();
 }
 
-
 function checkAnswer(event) {
+	console.log("start clearInterval");
+	clearInterval(id); /*progressbar stoppen*/
 	console.log("checkAnswer executed");
-	var q_ID = document.getElementById("question").dataset.questionid;
+	var q_ID = document.getElementById("question").dataset.questionid; /*Attribut questionid beim Button hinzufügen*/
 	var a_ID = event.target.dataset.answerid;
-	element = event.target;
+	element = event.target; /* Speichern welcher Button wurde gedrückt*/
 	var par = "action=setAnswer&question="+q_ID+"&answer="+a_ID;
-	
 	xmlhttp = new XMLHttpRequest();
 	xmlhttp.open("POST", "../quizmanagement", true);
 	xmlhttp.onreadystatechange = response;
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.send(par);
-	width=100;
 	console.log("checkAnswer successful");
 }
 
+/* ANFANG Code aus dem Internet
+ * URL: https://www.w3schools.com/howto/howto_js_progressbar.asp
+ */
 function progressbar() {
 	console.log("progress executed");
 	var elem = document.getElementById("myBar");   
 	width = 0;
-	var id = setInterval(frame, 100);
+	id = setInterval(frame, 100);
 	function frame() {
 		if (width >= 100) {
 			clearInterval(id);
@@ -50,19 +52,19 @@ function progressbar() {
 			} else {
 			width++; 
 			elem.style.width = width + '%';
-			elem.innerHTML = Math.round(width * 1/10)  + 'sek';
 			}
 		}
 	console.log("progress successful");
 }
+/* ENDE Code aus dem Internet */
 
 function noAnswer() {
 	var q_ID = document.getElementById("question").dataset.questionid;
 	var par = "action=setAnswer&question="+q_ID+"&answer="+0;
 	
 	xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("POST", "../quizmanagement", true);
 	xmlhttp.onreadystatechange = responseNoAnswer;
+	xmlhttp.open("POST", "../quizmanagement", true);
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.send(par);
 }

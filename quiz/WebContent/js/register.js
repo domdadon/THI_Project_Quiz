@@ -18,8 +18,8 @@ function checkUsername() {
 	var par = "action=checkUsername&userName="+username;
 	
 	xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("POST", "../quizmanagement", true);
 	xmlhttp.onreadystatechange = response;
+	xmlhttp.open("POST", "../quizmanagement", true);
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.send(par);
 }
@@ -29,10 +29,12 @@ function response() {
 	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 		if (xmlhttp.responseText == "true") {
 			document.getElementById("userName").className = "userExisting";
+			document.getElementById("register").setAttribute("disabled", "disabled");
 			console.log("change class to userExisting executed");
 		} else {
 			document.getElementById("userName").className = "userName";
-			console.log("change class reset executed");
+			document.getElementById("register").removeAttribute("disabled", "disabled");
+			document.log("change class reset executed");
 		}	
 	}
 }

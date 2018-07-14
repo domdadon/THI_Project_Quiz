@@ -1,7 +1,7 @@
 "use strict";
 document.addEventListener("DOMContentLoaded", init);
 var element;
-var xmlhttp = null;
+var xmlhttp;
 
 function init() {
 	console.log("start init");
@@ -19,23 +19,24 @@ function checkUsername() {
 	var par = "action=checkUsername&userName="+username;
 	
 	xmlhttp = new XMLHttpRequest();
-	xmlhttp.open("POST", "../quizmanagement", true);
 	xmlhttp.onreadystatechange = responseCheckUsername;
+	xmlhttp.open("POST", "../quizmanagement", true);
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.send(par);
 }
 
 function responseCheckUsername() {
 	console.log("start response checkUsername");
+	
 	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+		
 		if (xmlhttp.responseText == "true") {
 			document.getElementById("userName").className = "userName";
-			document.getElementById("login").removeAttribute("disabled", "disabled");
 			console.log("change class to userExisting");
-		} else if (xml.http.responsteText == "false") {
+		} else if (xmlhttp.responseText == "false") {
 			document.getElementById("userName").className = "userNotExisting";
-			document.getElementById("login").setAttribute("disabled", "disabled");
 			console.log("change class userNotExisting");
 		}	
 	}
+	console.log("response checkUsername successfull");
 }

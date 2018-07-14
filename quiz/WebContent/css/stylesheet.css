@@ -1,11 +1,11 @@
 body {
-	overflow-x: hidden;
+	overflow-x: hidden; /*Scrollbalken horizontal entfernen*/
 	font-family: "Helvetica Neue", Helvetica , Arial, sans-serif;
     font-size: 1em;
 }
 
 button.answer {
-	width: 25em;
+	width: 20em;
 	padding-top: 2.5em;
 	padding-bottom: 2.5em;
 	margin: 10px;
@@ -25,18 +25,8 @@ button.answer:hover {
     border: 1px solid #3879B4; 
 }
 
-button.answer[disabled] {
-    background: #8f8f8f;
-    border: 1px solid #3879B4; 
-}
-
-button.answer[disabled]:hover {
-    background: #8f8f8f;
-    border: 1px solid #3879B4; 
-}
-
 button.answerFalse {
-	width: 25em;
+	width: 20em;
 	padding-top: 2.5em;
 	padding-bottom: 2.5em;
 	margin: 10px;
@@ -48,7 +38,7 @@ button.answerFalse {
 }
 
 button.answerTrue {
-	width: 25em;
+	width: 20em;
 	padding-top: 2.5em;
 	padding-bottom: 2.5em;
 	margin: 10px;
@@ -57,6 +47,16 @@ button.answerTrue {
 	color: #ffffff;
 	border-radius: 0px;
 	font-size: 0.9em;
+}
+
+button.answer[disabled] {
+    background: #8f8f8f;
+    border: 1px solid #3879B4; 
+}
+
+button.answer[disabled]:hover {
+    background: #8f8f8f;
+    border: 1px solid #3879B4; 
 }
 
 
@@ -132,7 +132,7 @@ button.empty4:hover {
 	left: -170px;
 }
 
-button.login {
+button.loginRegister {
 	width: 100%;
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
@@ -142,13 +142,21 @@ button.login {
 	border-radius: 0px;
 }
 
-button.login:active {
+button.loginRegister:active {
 	background: #8f8f8f;
 }
 
-button.login:hover {
+button.loginRegister:hover {
 	background:#366896;
     border: 1px solid #3879B4;
+}
+
+button.loginRegister[disabled] {
+	background-color: grey;
+}
+
+button.loginRegister[disabled]:hover {
+	background-color: grey;
 }
 
 button.logout {
@@ -174,7 +182,7 @@ button.nextQuestion {
 	padding: 15px;
 	position: relative;
 	top: 10px;
-	width: 12%;
+	width: 12em;
 	background-color: orange;
 	border: 1px solid black;
 	color: black;
@@ -191,12 +199,7 @@ button.nextQuestion[disabled]:hover {
 }
 
 button.nextQuestion:hover {
-	padding: 15px;
-	position: relative;
-	width: 12%;
-	background-color: grey;
-	border: 1px solid black;
-	color: white;
+	background-color: darkorange;
 }
 
 button.personal {
@@ -216,25 +219,6 @@ button.personal {
 
 button.personal:hover {
 	left: 0px;
-}
-
-button.register {
-	width: 100%;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
-	background: #3879B4;
-	border: 1px solid #3879B4;
-	color: #ffffff;
-	border-radius: 0px;	
-}
-
-button.register:active {
-	background: #8f8f8f;
-}
-
-button.register:hover {
-	background:#366896;
-    border: 1px solid #3879B4;
 }
 
 button.quiz {
@@ -257,8 +241,20 @@ button.quiz:hover {
 }
 
 button.startGame {
-	width: 80%;
-	margin: 5px;
+	background-color: #3879B4;
+	color: white;
+	width: 13em;
+	margin: 25px;
+	padding: 25px;
+	border: 1px solid black;
+}
+
+button.startGame:active {
+	background-color: #8f8f8f;
+}
+
+button.startGame:hover {
+	background-color: #366896;
 }
 
 button.statistik {
@@ -283,11 +279,11 @@ button.statistik:hover {
 div.answers {
 	text-align: center;
 }
-
+/*
 div.button {
 	text-align: center;
 }
-
+*/
 div.currentPoints {
 	flex: 2;
 	text-align: right;
@@ -295,6 +291,11 @@ div.currentPoints {
 
 div.currentQuestion {
 	flex: 2;
+}
+
+div.difficulty {
+	text-align: center;
+	font-weight: bold;
 }
 
 div.formhead {
@@ -306,7 +307,7 @@ div.getUser {
 	color: black;
 	text-align: left;
 	position: relative;
-	left: 85px;
+	left: 20%;
 }
 
 div.quizhead {
@@ -315,11 +316,7 @@ div.quizhead {
 }
 
 div.heading {
-	font-size: 2.5em;
-	font-weight: bold;
 	text-align: center;
-	padding: 10px;
-	
 }
 
 div.highscore {
@@ -349,11 +346,10 @@ div.inputrequired {
 	text-align: right;
 }
 
-div.login {
+div.loginRegister {
 	font-size: 0.75em;
 	text-align: center;
 }
-
 
 div.myProgressbar {
 flex: 1;
@@ -367,9 +363,7 @@ div.myBar {
   width: 0%;
   height: 30px;
   background-color: #4CAF50;
-  text-align: center;
   line-height: 30px;
-  color: white;
 }
 
 div.nextQuestion {
@@ -377,10 +371,9 @@ div.nextQuestion {
 }
 
 div.noscript {
-	display: flex;
+	display: flex; /*Über gesamte Seite spannen*/
 	align-items: center;
   	justify-content: center;
-	padding: 25px;
 	background: red;
 	position: absolute;
 	height: 100%;
@@ -389,7 +382,7 @@ div.noscript {
 	right: 0;
 	top: 0;
 	bottom: 0;
-	opacity: 0.9;
+	z-index: 1; /*Überlagerung*/
 	font-size: 1.5em;
 }
 
@@ -413,17 +406,25 @@ div.quiz {
     background: #dddddd;
     border-color: black;
     border-radius: 0.5em 0.5em 0.5em 0.5em;
-	width: 950px;
+	width: 60%;
 }
 
-
-div.register {
-	font-size: 0.75em;
+div.startGame {
 	text-align: center;
+	display: flex;
+	flex-flow: wrap;
 }
 
-div.start{
-	text-align: center;
+div.easy {
+	flex: 1;
+}
+
+div.medium {
+	flex: 1;
+}
+
+div.hard {
+	flex: 1;
 }
 
 fieldset {
@@ -461,7 +462,16 @@ input:required + label::after{
 	position: relative;
 	left: 290px;
 	top: -21px;
-	}
+}
+
+input:valid + label::after{
+  font-size: 1.0em;  
+	color: green;
+    content: "✔";
+   	position: relative;
+	left: 280px;
+	top: -21px;
+}
 
 input.userExisting + label::after{
     color: red;
@@ -475,24 +485,14 @@ input.userExisting + label::after{
 input.userNotExisting + label::after{
     color: red;
     content: "Benutzername nicht vorhanden";
-	  font-size: 0.9em;
-		position: relative;
+	font-size: 0.9em;
+	position: relative;
 	left: 140px;
 	top: -45px;
 }
 
-input:valid + label::after{
-  font-size: 1.0em;  
-	color: green;
-    content: "✔";
-   	position: relative;
-	
-	left: 280px;
-	top: -21px;
-}
-
 label {
-    display: inline-block;
+    display: inline-block; /*Label und Inputfeld zweizeilig*/
 	font-size: 0.8em;
 	position: relative;
 	left: 3px;
@@ -504,7 +504,7 @@ label.checkUsername {
 
 table.highscore {
 	text-align: center;
-	border-collapse: collapse;
+	border-collapse: collapse; /* Rahmenlinien entfernen */
 	margin-left: auto; 
 	border: 1px solid #3879B4;
 	width: 90%;
@@ -528,4 +528,4 @@ table.highscore tr:nth-child(even){
 table.highscore tr:nth-child(odd){
 	background-color: white;
 	color: black;
-}*/
+}

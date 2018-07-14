@@ -9,9 +9,12 @@
 		<div class="quizhead">
 			<div class="currentQuestion">Frage ${QuestionBean.q_Number}/10</div>
 				<p>
+				<!-- ANFANG Code aus dem Internet -->
+				<!-- URL: https://www.w3schools.com/howto/howto_js_progressbar.asp -->
 				<div class="myProgressbar" id="myProgressbar">
 					<div class="myBar" id="myBar"></div>
 				</div>
+				<!-- ENDE Code aus dem Internet -->
 				<p>
 				<div class="currentPoints">Aktuelle Punkte ${QuestionBean.currentScore}</div>
 				<p>
@@ -33,19 +36,23 @@
 	</div>
 	<div class="highscore">Highscore Tabelle<p>
 		<table class="highscore">
-			<tr>
-				<th>Platz</th>
-				<th>Benutzername</th>
-				<th>Punkte</th>
-		 	</tr>
-			<c:forEach items="${HighScore}" var="HighscoreEntryBean">
+			<thead>
+				<tr>
+					<th>Platz</th>
+					<th>Benutzername</th>
+					<th>Punkte</th>
+			 	</tr>
+			</thead>
+			<tbody>	
+				<c:forEach items="${HighScore}" var="HighscoreEntryBean">
 				<tr>
 					<td>${HighscoreEntryBean.rank}</td>
 					<td>${HighscoreEntryBean.username}</td>
 					<td>${HighscoreEntryBean.score}</td>
 				</tr>
-			</c:forEach>
+				</c:forEach>
+			</tbody>
 		</table>
 	</div>
-	<script type="text/javascript" src="../js/quiz.js"></script>
+	<script src="../js/quiz.js"></script>
 <%@ include file="footer.jspf" %>

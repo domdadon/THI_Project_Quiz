@@ -32,7 +32,6 @@ public class QuizManagement extends HttpServlet {
 	private String landing = "./html/landing.jsp";
 	private String quiz = "./html/quiz.jsp";
 	private String login = "./html/login.jsp";
-	private String register = "./html/register.jsp";
 	private String personal = "./html/personal.jsp";
 	private String statistik = "./html/statistik.jsp";
 	
@@ -52,23 +51,12 @@ public class QuizManagement extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
-		System.out.println(request.getParameterNames());
 		
 		final HttpSession session = request.getSession();
 		Integer userID = -1;
 		Integer gameID = -1;
 		Integer categoryID = -1;
 		
-		try {
-			request.setAttribute("HighScore", getHighScoreEntries(false));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-
 		// Sessionhandling init
 
 		if (session.getAttribute("userID") != null) {
@@ -83,13 +71,6 @@ public class QuizManagement extends HttpServlet {
 			categoryID = (Integer) session.getAttribute("categoryID");
 		}
 		
-		try {
-			request.setAttribute("UserData", getUserData(userID, false));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		String action = request.getParameter("action");
 		QuestionBean qb;
 
@@ -101,31 +82,24 @@ public class QuizManagement extends HttpServlet {
 					if (hasOpenGame(userID, session)) {
 						qb = getNextQuestion(gameID, categoryID);
 						request.setAttribute("QuestionBean", qb);
-						final RequestDispatcher dispatcher = request.getRequestDispatcher(quiz);
-						dispatcher.forward(request, response);
+						dispatch(request, response,"quiz", userID);
 					} else {
-						
-						final RequestDispatcher dispatcher = request.getRequestDispatcher(landing);
-						dispatcher.forward(request, response);
+						dispatch(request, response,"landing", userID);
 					}
 				} else {
 					// nein => login
-					final RequestDispatcher dispatcher = request.getRequestDispatcher(login);
-					dispatcher.forward(request, response);
+					dispatch(request, response,"login", userID);
 				}
 			} else {
 				// Passwort + Username aus Formular auslesen
 				String password = request.getParameter("password");
 				String userName = request.getParameter("userName");
 				
-				final RequestDispatcher dispatcher;
 				switch (action) {
 				case "login":
-
 					Integer id = checkUser(userName, password);
 					if (id != -1) {
 						session.setAttribute("userID", id);
-						request.setAttribute("UserData", getUserData(id, false));
 
 						if (hasOpenGame(id, session)) {
 							gameID = (Integer) session.getAttribute("gameID");
@@ -133,17 +107,15 @@ public class QuizManagement extends HttpServlet {
 
 							qb = getNextQuestion(gameID, categoryID);
 							request.setAttribute("QuestionBean", qb);
-							dispatcher = request.getRequestDispatcher(quiz);
-							dispatcher.forward(request, response);
+							
+							dispatch(request, response,"quiz", id);
+							
 						} else {
-							dispatcher = request.getRequestDispatcher(landing);
-							dispatcher.forward(request, response);
+							dispatch(request, response,"landing", id);
 						}
 					} else {
-						dispatcher = request.getRequestDispatcher(login);
-						dispatcher.forward(request, response);
+						dispatch(request, response,"login", id);
 					}
-
 					break;
 				case "register":
 					String vName = request.getParameter("vName");
@@ -151,15 +123,27 @@ public class QuizManagement extends HttpServlet {
 					String mail = request.getParameter("mail");
 					Integer result = registerUser(vName, nName, userName, password, mail);
 					session.setAttribute("userID", result);
-					dispatcher = request.getRequestDispatcher(landing);
-					dispatcher.forward(request, response);
+					dispatch(request, response,"landing", result);
 					break;
-				//nicht mehr benoetigt
-				case "registerForm":
-					dispatcher = request.getRequestDispatcher(register);
-					dispatcher.forward(request, response);
+				case "checkLandingOrGame":
+					if (hasOpenGame(userID,session)) {
+						qb = getNextQuestion(gameID, categoryID);
+						
+						if (qb != null) 
+						{
+							request.setAttribute("QuestionBean", qb);
+							dispatch(request, response,"quiz", userID);
+						}
+						else {
+							dispatch(request, response,"landing", userID);
+						}
+					} else {
+						dispatch(request, response,"landing", userID);
+					}
 					break;
+				
 				case "checkUsername":
+					response.setContentType("text/plain");
 					if (checkUsername(userName)) {
 						response.getWriter().append("true");
 					}
@@ -172,36 +156,30 @@ public class QuizManagement extends HttpServlet {
 					gameID = startGame(userID, 1);
 					session.setAttribute("gameID", gameID);
 					qb = getNextQuestion(gameID, 1);
-					//qb.setQ_Number(1);
 					request.setAttribute("QuestionBean", qb);
-					dispatcher = request.getRequestDispatcher(quiz);
-					dispatcher.forward(request, response);
+					dispatch(request, response,"quiz", userID);
 					break;
 				case "startGame2":
 					session.setAttribute("categoryID", 2);
 					gameID = startGame(userID, 2);
 					session.setAttribute("gameID", gameID);
 					qb = getNextQuestion(gameID, 2);
-					//qb.setQ_Number(1);
 					request.setAttribute("QuestionBean", qb);
-					dispatcher = request.getRequestDispatcher(quiz);
-					dispatcher.forward(request, response);
+					dispatch(request, response,"quiz", userID);
 					break;
 				case "startGame3":
 					session.setAttribute("categoryID", 3);
 					gameID = startGame(userID, 3);
 					session.setAttribute("gameID", gameID);
-					qb = getNextQuestion(gameID, categoryID);
-					//qb.setQ_Number(1);
+					qb = getNextQuestion(gameID, 3);
 					request.setAttribute("QuestionBean", qb);
-					dispatcher = request.getRequestDispatcher(quiz);
-					dispatcher.forward(request, response);
+					dispatch(request, response,"quiz", userID);
 					break;
 				case "setAnswer":
 					Integer q_ID = Integer.parseInt(request.getParameter("question"));
 					Integer a_ID = Integer.parseInt(request.getParameter("answer"));
 
-					
+					response.setContentType("text/plain");
 					if (checkAnswer(q_ID, a_ID, gameID)) {
 						response.getWriter().append("true");
 					}
@@ -210,53 +188,35 @@ public class QuizManagement extends HttpServlet {
 					}
 					break;
 				case "getNextQuestion":
-					//Integer qNumber = (Integer) request.getAttribute("questionNumber");
-					//qb.setQ_Number(qNumber);
 					qb = getNextQuestion(gameID, categoryID);
-					
+					// Nach zehn Fragen keine neue Bean -> zurück zur landing
 					if (qb == null) {
-						
-						dispatcher = request.getRequestDispatcher(landing);
-						dispatcher.forward(request, response);
-						break;
+						dispatch(request, response,"landing", userID);
 					}
-					else {
+					else 
+					{
 						request.setAttribute("QuestionBean", qb);
-						dispatcher = request.getRequestDispatcher(quiz);
-						dispatcher.forward(request, response);
-						break;
+						dispatch(request, response,"quiz", userID);
 					}
-					
-				case "personal":
-					//hier Agrregation der Ergebnisse
-					request.setAttribute("UserData", getUserData(userID, false));
-					dispatcher = request.getRequestDispatcher(personal);
-					dispatcher.forward(request, response);
 					break;
-					
+				case "personal":
+					dispatch(request, response,"personal", userID);
+					break;
 				case "logout":
 					session.invalidate();
 					request.setAttribute("UserData", new UserBean());
-					dispatcher = request.getRequestDispatcher(login);
-					dispatcher.forward(request, response);
+					dispatch(request, response,"login", -1);
 			        break;
-			        
 				case "landing":
-					dispatcher = request.getRequestDispatcher(landing);
-					dispatcher.forward(request, response);
+					dispatch(request, response,"landing", userID);
 			        break;
-			        
 				case "statistik":
-					//hier Agrregation der Ergebnisse
-					request.setAttribute("UserData", getUserData(userID, true));
-					dispatcher = request.getRequestDispatcher(statistik);
-					dispatcher.forward(request, response);
+					dispatch(request, response,"statistik", userID);
 			        break;
-
 				}
 			}
 		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
+			ex.printStackTrace();
 		}
 
 	}
@@ -321,8 +281,7 @@ public class QuizManagement extends HttpServlet {
 
 	protected Boolean hasOpenGame(Integer userID, HttpSession session) throws Exception {
 		try (Connection cnx = ds.getConnection();
-				PreparedStatement sql = cnx
-						.prepareStatement("SELECT * FROM games WHERE userID = ? AND endtime IS NULL");) {
+				PreparedStatement sql = cnx.prepareStatement("SELECT * FROM games WHERE userID = ? AND endtime IS NULL");) {
 			sql.setLong(1, userID);
 
 			try (ResultSet rs = sql.executeQuery()) {
@@ -389,7 +348,7 @@ public class QuizManagement extends HttpServlet {
 				endGame(gameID, categoryID);
 				return null;
 			}
-			
+			//Aktueller Fragenzähler im Quiz anzeigen
 			qb.setQ_Number(qCount);
 			
 			sql = cnx.prepareStatement("SELECT * FROM questions WHERE idQuestion NOT IN (SELECT questionID FROM results WHERE gameID = ?) AND categoryID = ? ORDER BY RAND() LIMIT 1;");
@@ -407,7 +366,7 @@ public class QuizManagement extends HttpServlet {
 					qb.setQ(rs.getString(2));
 
 				}
-
+				//Antworttext und AnswerID aus Datenbank holen
 				sql = cnx.prepareStatement(
 						"SELECT qa.answerID, a.answer FROM questions_answers AS qa INNER JOIN answers AS a ON qa.answerID = a.idAnswer  WHERE qa.questionID = ?");
 
@@ -416,7 +375,7 @@ public class QuizManagement extends HttpServlet {
 				rs = sql.executeQuery();
 
 				if (rs != null) {
-
+					//Befüllung der QuestionBean mit Antworten
 					for (Integer i = 0; i <= 3; i++) {
 						rs.next();
 						switch (i) {
@@ -440,7 +399,16 @@ public class QuizManagement extends HttpServlet {
 					}
 
 				}
-
+				//"Abfangen" des Zurückbuttons im Browser
+				sql = cnx.prepareStatement("INSERT INTO results (gameID, questionID, answerID) VALUES (?, ?, ?)");
+				sql.clearParameters();
+				sql.setInt(1, gameID);
+				sql.setInt(2, qb.getqID());
+				sql.setInt(3, -1);
+				sql.executeUpdate();
+				
+				qb.setCurrentScore(getCurrentScore(gameID));
+				
 				return qb;
 
 			} catch (Exception ex) {
@@ -452,8 +420,7 @@ public class QuizManagement extends HttpServlet {
 	private Integer checkUser(String userName, String password) throws Exception {
 
 		try (Connection cnx = ds.getConnection();
-				PreparedStatement sql = cnx
-						.prepareStatement("SELECT * FROM users WHERE username = ? AND pw = md5(?)");) {
+				PreparedStatement sql = cnx.prepareStatement("SELECT * FROM users WHERE username = ? AND pw = md5(?)");) {
 			sql.setString(1, userName);
 			sql.setString(2, password);
 
@@ -473,8 +440,8 @@ public class QuizManagement extends HttpServlet {
 
 	private Boolean checkAnswer(Integer questionID, Integer answerID, Integer gameID) throws Exception {
 		try (Connection cnx = ds.getConnection()) {
-			
-			PreparedStatement sql = cnx.prepareStatement("SELECT * from results WHERE questionID = ? AND gameID = ?");
+			//"Abfangen" des Zurückbuttons im Browser
+			PreparedStatement sql = cnx.prepareStatement("SELECT * from results WHERE questionID = ? AND gameID = ? AND answerID != -1");
 			sql.setInt(1, questionID);
 			sql.setInt(2, gameID);
 			
@@ -483,17 +450,19 @@ public class QuizManagement extends HttpServlet {
 			if (rs != null && rs.next()) {
 				return false;
 			}
-			
-			sql = cnx.prepareStatement("INSERT INTO results (gameID, questionID, answerID) VALUES (?, ?, ?)");
+			//Abgegebene Antwort abspeichen -> 0 = noAnswer, oder gegebene AntwortID
+			sql = cnx.prepareStatement("UPDATE results SET answerID = ? WHERE gameID = ? AND questionID = ?");
 			sql.clearParameters();
-			sql.setInt(1, gameID);
-			sql.setInt(2, questionID);
-			sql.setInt(3, answerID);
+			
+			
+			sql.setInt(1, answerID);
+			sql.setInt(2, gameID);
+			sql.setInt(3, questionID);
 			
 			sql.executeUpdate();
 			
 			Boolean result = false;
-
+			//Prüfen ob die abgegebene Antwort richtig ist oder nicht 
 			sql = cnx.prepareStatement("SELECT * FROM questions_answers WHERE questionID = ? AND answerID = ? AND isRight=1");
 			
 			sql.clearParameters();
@@ -502,9 +471,9 @@ public class QuizManagement extends HttpServlet {
 			sql.setInt(2, answerID);
 			
 			rs = sql.executeQuery();
-			
+			//Bei richtiger Score hochzählen mittels categoryID
 			if (rs != null && rs.next()) {
-				sql = cnx.prepareStatement("UPDATE games SET score = score + 1 WHERE idGame = ?");
+				sql = cnx.prepareStatement("UPDATE games SET score = score + categoryID WHERE idGame = ?");
 				sql.clearParameters();
 				sql.setInt(1, gameID);
 				sql.executeUpdate();
@@ -521,9 +490,8 @@ public class QuizManagement extends HttpServlet {
 	
 	private void endGame(Integer gameID, Integer categoryID) throws Exception{
 		try (Connection cnx = ds.getConnection();
-				PreparedStatement sql = cnx.prepareStatement("UPDATE games SET endtime = NOW(), score = score * ? WHERE idGame = ?");) {
-			sql.setInt(1, categoryID);
-			sql.setInt(2, gameID);
+				PreparedStatement sql = cnx.prepareStatement("UPDATE games SET endtime = NOW() WHERE idGame = ?");) {
+			sql.setInt(1, gameID);
 			sql.executeUpdate();
 			
 		} catch (Exception ex) {
@@ -535,8 +503,8 @@ public class QuizManagement extends HttpServlet {
 	private List<HighscoreEntryBean> getHighScoreEntries(Boolean getAllEntries) throws Exception{
 		try (Connection cnx = ds.getConnection()) {
 			
-			String sqlS = "SELECT username, g1.userID, g1.score, TIMESTAMPDIFF(SECOND, g1.starttime, g1.endtime) AS Diff, g1.userID FROM thidb.games g1 LEFT JOIN thidb.games g2 ON g1.userID = g2.userID AND g1.score < g2.score INNER JOIN thidb.users u ON g1.userID = u.idUser WHERE g2.userID IS NULL ORDER BY g1.score DESC, TIMESTAMPDIFF(SECOND, g1.starttime, g1.endtime) ASC";
-			
+			String sqlS = "SELECT username, userID, MAX(score) AS score, MIN(Diff) AS Diff FROM (SELECT username, g1.userID, g1.score, TIMESTAMPDIFF(SECOND, g1.starttime, g1.endtime) AS Diff FROM thidb.games g1 LEFT JOIN thidb.games g2 ON g1.userID = g2.userID AND g1.score < g2.score INNER JOIN thidb.users u ON g1.userID = u.idUser WHERE g2.userID IS NULL) AS result GROUP BY username, userID ORDER BY score DESC, Diff ASC";
+			//Highscoretabelle auf 10 Einträge limitieren
 			if (!getAllEntries) {
 				sqlS.concat(" LIMIT 10");
 			}
@@ -548,7 +516,7 @@ public class QuizManagement extends HttpServlet {
 			Integer rank = 1;
 			
 			while (rs != null && rs.next()) {
-				hs.add(new HighscoreEntryBean(rs.getString(1), rs.getInt(3), rank, rs.getLong(4), rs.getInt(5)));
+				hs.add(new HighscoreEntryBean(rs.getString(1), rs.getInt(3), rank, rs.getLong(4), rs.getInt(2)));
 				rank++;
 			}
 			
@@ -560,9 +528,10 @@ public class QuizManagement extends HttpServlet {
 		}
 	}
 	
-
+	
 	private UserBean getUserData(Integer UserID, Boolean complete) throws Exception {
-		
+		if (UserID != -1) {
+			
 		try (Connection cnx = ds.getConnection();) {
 			
 			PreparedStatement sql = cnx.prepareStatement("SELECT * FROM users WHERE idUser = ?");
@@ -584,10 +553,11 @@ public class QuizManagement extends HttpServlet {
 			int rank = getCurrentRank(user.getIdUser());
 			user.setCurrentRank(rank);
 			
-			int score = getScore(user.getIdUser());
+			int score = getLastScore(user.getIdUser());
 			user.setLastScore(score);
-			
+			//Alle Userdaten nur bei der Statistikseite laden -> Performancegründe
 			if (complete) {
+				//Anzahl der Spiele und Gesamtpunke ermitteln
 				sql = cnx.prepareStatement("SELECT COUNT(*) as cout, SUM(score) as score FROM games WHERE userID = ? GROUP BY userID");
 				sql.setInt(1, UserID);
 				rs = sql.executeQuery();
@@ -596,7 +566,7 @@ public class QuizManagement extends HttpServlet {
 					user.setGamesPlayed(rs.getInt(1));
 					user.setTotalScore(rs.getInt(2));
 				}
-				
+				//Anzahl der Spiele der jeweiligen Kategorie
 				sql = cnx.prepareStatement("SELECT categoryID, COUNT(*) as count FROM games WHERE userID = ? GROUP BY userID, categoryID");
 				sql.setInt(1, UserID);
 				
@@ -614,7 +584,7 @@ public class QuizManagement extends HttpServlet {
 						user.setGamesPlayedHard(rs.getInt(2));
 					}
 				}
-				
+				//Anzahl der richtigen und falschen Antworten für Quote
 				sql = cnx.prepareStatement("SELECT x.userID, x.answers, y.correct FROM (SELECT g.userID, COUNT(*) as answers FROM thidb.results r INNER JOIN thidb.games g ON r.gameID = g.idGame WHERE g.userID = ?) as x INNER JOIN (SELECT g.userID, COUNT(isRight) as correct FROM thidb.results r INNER JOIN thidb.games g ON r.gameID = g.idGame INNER JOIN thidb.users u ON g.userID = u.idUser INNER JOIN thidb.questions_answers q ON q.answerID = r.answerID AND isRight = 1 WHERE userID = ?) as y ON x.userID = y.userID");
 				sql.setInt(1, UserID);
 				sql.setInt(2, UserID);
@@ -625,7 +595,7 @@ public class QuizManagement extends HttpServlet {
 					int correct = rs.getInt(3);
 					int total = rs.getInt(2);
 							
-					user.setQuoteAnswers(correct/total*100.0);
+					user.setQuoteAnswers((float)correct/(float)total*100.0);
 				}
 				
 			}
@@ -636,7 +606,10 @@ public class QuizManagement extends HttpServlet {
 			throw ex;
 
 		}
-						
+		}
+		else {
+			return new UserBean();
+		}
 	}
 	
 	private int getCurrentRank(Integer userID) {
@@ -657,13 +630,13 @@ public class QuizManagement extends HttpServlet {
 			}
 		}
 		
-		return -1;
+		return 0;
 		
 	}
 	
-	private int getScore(int userID) throws Exception{
+	private int getLastScore(int userID) throws Exception{
 		try (Connection cnx = ds.getConnection();
-				PreparedStatement sql = cnx.prepareStatement("SELECT score FROM games WHERE userID = ? AND endtime != NULL ORDER BY starttime DESC LIMIT 1");) {
+				PreparedStatement sql = cnx.prepareStatement("SELECT score FROM games WHERE userID = ? AND endtime IS NOT NULL ORDER BY starttime DESC LIMIT 1");) {
 			
 			sql.setInt(1, userID);
 			
@@ -674,12 +647,75 @@ public class QuizManagement extends HttpServlet {
 			}
 			else
 			{
-				return -1;
+				return 0;
 			}
 			
 		} catch (Exception ex) {
 			throw ex;
 
+		}
+	}
+	
+	private int getCurrentScore(int gameID) throws Exception{
+		try (Connection cnx = ds.getConnection();
+				PreparedStatement sql = cnx.prepareStatement("SELECT score FROM games WHERE idGame = ?");) {
+			
+			sql.setInt(1, gameID);
+			
+			ResultSet rs = sql.executeQuery();
+			
+			if (rs != null && rs.next()) {
+				return rs.getInt(1);
+			}
+			else
+			{
+				return 0;
+			}
+			
+		} catch (Exception ex) {
+			throw ex;
+
+		}
+	
+	}
+	
+	protected void dispatch(HttpServletRequest request, HttpServletResponse response, String destination, Integer userID) throws ServletException, IOException {
+		try {
+			final RequestDispatcher dispatcher; 
+			
+			if (destination == "login") {
+				request.setAttribute("HighScore", getHighScoreEntries(false));
+				dispatcher = request.getRequestDispatcher(login);
+				dispatcher.forward(request, response);
+			}
+			else if(destination == "landing") {
+				request.setAttribute("UserData", getUserData(userID, false));
+				request.setAttribute("HighScore", getHighScoreEntries(true));
+				dispatcher = request.getRequestDispatcher(landing);
+				dispatcher.forward(request, response);
+				
+			}
+			else if(destination== "quiz") {
+				request.setAttribute("UserData", getUserData(userID, false));
+				request.setAttribute("HighScore", getHighScoreEntries(false));
+				dispatcher = request.getRequestDispatcher(quiz);
+				dispatcher.forward(request, response);
+			}
+			else if(destination == "personal") {
+				request.setAttribute("UserData", getUserData(userID, false));
+				request.setAttribute("HighScore", getHighScoreEntries(false));
+				dispatcher = request.getRequestDispatcher(personal);
+				dispatcher.forward(request, response);
+			}
+			else if(destination== "statistik") {
+				request.setAttribute("UserData", getUserData(userID, true));
+				request.setAttribute("HighScore", getHighScoreEntries(false));
+				dispatcher = request.getRequestDispatcher(statistik);
+				dispatcher.forward(request, response);
+			}
+		}
+		catch (Exception ex) {
+			ex.printStackTrace();
 		}
 	}
 }
