@@ -16,7 +16,7 @@
 		<noscript><div class="noscript">Hinweis: Diese Seite nutzt JavaScript. Bitte aktivieren JavaScript um das Quiz zu starten.</div></noscript>
 		<header>
 			<div class="heading">
-				<img src="../img/megaquiz.jpg" width="459px" height="76px" alt="Megaquiz Logo">
+				<img src="../img/megaquiz.jpg" width="459" height="76" alt="Megaquiz Logo">
 			</div>
 			<p>
 			<div class="getUser" id="getUser">Hallo, ${UserData.vname} ${UserData.nname}.</div>
