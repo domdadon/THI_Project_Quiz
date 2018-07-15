@@ -504,20 +504,20 @@ public class QuizManagement extends HttpServlet {
 		try (Connection cnx = ds.getConnection()) {
 			
 			String sqlS = "SELECT username, userID, MAX(score) AS score, MIN(Diff) AS Diff FROM (SELECT username, g1.userID, g1.score, TIMESTAMPDIFF(SECOND, g1.starttime, g1.endtime) AS Diff FROM thidb.games g1 LEFT JOIN thidb.games g2 ON g1.userID = g2.userID AND g1.score < g2.score INNER JOIN thidb.users u ON g1.userID = u.idUser WHERE g2.userID IS NULL) AS result GROUP BY username, userID ORDER BY score DESC, Diff ASC";
-			//Highscoretabelle auf 10 Eintr�ge limitieren
-			if (!getAllEntries) {
-				sqlS.concat(" LIMIT 10");
-			}
+			
 			PreparedStatement sql = cnx.prepareStatement(sqlS);
 			
 			ResultSet rs = sql.executeQuery();
 			
 			List<HighscoreEntryBean> hs = new ArrayList<HighscoreEntryBean>();
-			Integer rank = 1;
+			Integer rank = 0;
 			
 			while (rs != null && rs.next()) {
-				hs.add(new HighscoreEntryBean(rs.getString(1), rs.getInt(3), rank, rs.getLong(4), rs.getInt(2)));
 				rank++;
+				hs.add(new HighscoreEntryBean(rs.getString(1), rs.getInt(3), rank, rs.getLong(4), rs.getInt(2)));
+				if (rank >= 10 && !getAllEntries) {
+					break;
+				}
 			}
 			
 			return hs;
