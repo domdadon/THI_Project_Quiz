@@ -25,7 +25,7 @@
 						<button type="submit" class="loginRegister" id="login" name="action" value="login">Anmelden</button>
 					</form>
 					<p>
-					<div class="loginRegister">oder
+					<div class="loginRegister">kein User vorhanden?
 						<form action="../quizmanagement" id="loginRegister" method="post">
 							<button type="submit" class="loginRegister" name="action" value="registerpage">Registrieren</button>
 						</form>
