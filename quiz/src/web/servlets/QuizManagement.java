@@ -35,6 +35,7 @@ public class QuizManagement extends HttpServlet {
 	private String personal = "./html/personal.jsp";
 	private String statistik = "./html/statistik.jsp";
 	private String registerpage = "./html/register.jsp";
+	private String loginpage = "./html/login.jsp";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -126,8 +127,11 @@ public class QuizManagement extends HttpServlet {
 					dispatch(request, response,"landing", result);
 					break;
 				case "registerpage":
-					dispatch(request, response,"registerpage", null);
-					break;	
+					dispatch(request, response,"registerpage", userID);
+					break;
+				case "loginpage":
+					dispatch(request, response,"loginpage", userID);
+					break;
 				case "checkLandingOrGame":
 					if (hasOpenGame(userID,session)) {
 						qb = getNextQuestion(gameID, categoryID);
@@ -720,6 +724,12 @@ public class QuizManagement extends HttpServlet {
 				request.setAttribute("UserData", getUserData(userID, true));
 				request.setAttribute("HighScore", getHighScoreEntries(false));
 				dispatcher = request.getRequestDispatcher(registerpage);
+				dispatcher.forward(request, response);
+			}
+			else if(destination== "loginpage") {
+				request.setAttribute("UserData", getUserData(userID, true));
+				request.setAttribute("HighScore", getHighScoreEntries(false));
+				dispatcher = request.getRequestDispatcher(loginpage);
 				dispatcher.forward(request, response);
 			}
 		}

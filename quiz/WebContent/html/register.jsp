@@ -40,7 +40,11 @@
 							<button type="submit" id="register" name="action" value="register" class="loginRegister">Registrieren</button>
 						</form>
 							<p>
-							<div class="loginRegister"><a href="login.jsp">zurück zum Login</a></div>
+							<div class="loginRegister">zurück zum
+								<form action="../quizmanagement" id="loginRegister" method="post">
+									<button type="submit" class="loginRegister" name="action" value="loginpage">Login</button>
+								</form>
+							</div>
 					</fieldset>
 					<div class="highscore">Highscore Tabelle<p>
 						<table class="highscore">
