@@ -43,7 +43,7 @@ function checkAnswer(event) {
 function progressbar() {
 	console.log("progress executed");
 	var elem = document.getElementById("myBar");   
-	width = 0;
+	var width = 0;
 	id = setInterval(frame, 100);
 	function frame() {
 		if (width >= 100) {
