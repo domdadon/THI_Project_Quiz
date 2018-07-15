@@ -25,7 +25,11 @@
 						<button type="submit" class="loginRegister" id="login" name="action" value="login">Anmelden</button>
 					</form>
 					<p>
-					<div class="loginRegister">oder <a href="register.jsp">Registrieren</a></div>
+					<div class="loginRegister">oder
+						<form action="../quizmanagement" id="loginRegister" method="post">
+							<button type="submit" class="loginRegister" name="action" value="registerpage">Registrieren</button>
+						</form>
+					</div>
 				</fieldset>
 				<div class="highscore">Highscore Tabelle<p>
 					<table class="highscore">

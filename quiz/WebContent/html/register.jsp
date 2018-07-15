@@ -43,25 +43,24 @@
 							<div class="loginRegister"><a href="login.jsp">zurück zum Login</a></div>
 					</fieldset>
 					<div class="highscore">Highscore Tabelle<p>
-				<table class="highscore">
-					<thead>
-						<tr>
-							<th>Platz</th>
-							<th>Benutzername</th>
-							<th>Punkte</th>
-					 	</tr>
-					</thead>
-					<tbody>	
-						<c:forEach items="${HighScore}" var="HighscoreEntryBean">
-						<tr>
-							<td>${HighscoreEntryBean.rank}</td>
-							<td>${HighscoreEntryBean.username}</td>
-							<td>${HighscoreEntryBean.score}</td>
-						</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+						<table class="highscore">
+							<thead>
+								<tr>
+									<th>Platz</th>
+									<th>Benutzername</th>
+									<th>Punkte</th>
+							 	</tr>
+							</thead>
+							<tbody>	
+								<c:forEach items="${HighScore}" var="HighscoreEntryBean">
+								<tr>
+									<td>${HighscoreEntryBean.rank}</td>
+									<td>${HighscoreEntryBean.username}</td>
+									<td>${HighscoreEntryBean.score}</td>
+								</tr>
+								</c:forEach>
+							</tbody>
+						</table>
 				</div>
-
 			<script src="../js/register.js"></script>
 <%@ include file="footer.jspf" %>
